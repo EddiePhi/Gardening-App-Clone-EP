@@ -1,4 +1,5 @@
-//Referenceing code from Week 11 activity: Hot Restuarant [SOLVED]
+// Referenceing code from Week 11 activity: Hot Restuarant [SOLVED]
+// server.js file must be at root level for Jeroku to work
 
 // ==============================================================================
 // DEPENDENCIES
