@@ -1,4 +1,5 @@
 // Referenceing code from Week 11 activity: Hot Restuarant [SOLVED]
+// Tested in Eddie P HW: WK-11 (Note-Taker)
 // server.js file must be at root level for Jeroku to work
 
 // ==============================================================================

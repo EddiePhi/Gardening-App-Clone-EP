@@ -2,7 +2,7 @@
 
 
 Description:
-    "Gardening-App provides a quick and easy hub for all your gardening needs.
+    Gardening-App provides a quick and easy hub for all your gardening needs.
 
 Technologies used:
     
