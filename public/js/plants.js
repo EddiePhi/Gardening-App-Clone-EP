@@ -6,8 +6,14 @@ const $saveNoteBtn = $(".save-note");
 const $newNoteBtn = $(".new-note");
 const $noteList = $(".list-container .list-group");
 
-// custom event listener
+
+
+// Custom event listeners
 const $plusPlantBtn = $(".plus-plant");
+const $tomatoBtn = $("#tomatoBtn");
+const $lettuceBtn = $("#lettuceBtn");
+const $pepperBtn = $("#pepperBtn");
+// End of customer event listeners
 
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
@@ -141,9 +147,44 @@ const renderNoteList = (notes) => {
   $noteList.append(noteListItems);
 };
 
-const handlePlusPlant = () => {
-    
+
+// Added custom functions
+const handleAddTomato = function () {
+  const tomato = {
+    title: "Tomato",
+    text: "Facts about tomatoes",
+  };
+
+  saveNote(tomato).then(() => {
+    getAndRenderNotes();
+    renderActiveNote();
+  });
 };
+
+const handleAddLettuce = function () {
+  const lettuce = {
+    title: "Lettuce",
+    text: "Facts about lettuce",
+  };
+
+  saveNote(lettuce).then(() => {
+    getAndRenderNotes();
+    renderActiveNote();
+  });
+};
+
+const handleAddPepper = function () {
+  const pepper = {
+    title: "Pepper",
+    text: "Facts about peppers",
+  };
+
+  saveNote(pepper).then(() => {
+    getAndRenderNotes();
+    renderActiveNote();
+  });
+};
+// End of custom functions
 
 // Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = () => {
@@ -157,8 +198,13 @@ $noteList.on("click", ".delete-note", handleNoteDelete);
 $noteTitle.on("keyup", handleRenderSaveBtn);
 $noteText.on("keyup", handleRenderSaveBtn);
 
-// Custom event listener
-// $plusPlantBtn.on("click", handleAddPlant);
+// Custom event listeners (copied from existing code in this file)
+$tomatoBtn.on("click", handleAddTomato);
+$lettuceBtn.on("click", handleAddLettuce);
+$pepperBtn.on("click", handleAddPepper);
+// End of custom event listeners
+
+
 
 // Gets and renders the initial list of notes
 getAndRenderNotes();

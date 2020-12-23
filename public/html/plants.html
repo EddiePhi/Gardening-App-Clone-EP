@@ -27,16 +27,13 @@
       <!-- Removing ability to add and save noted. Replacing with ability to simply add or delete Plant facts. -->
       <i class="fas fa-save text-light save-note"></i>
       <i class="fas fa-pen text-light new-note"></i>
+
+      <!-- Icon trigger modal -->
       <i class="fas fa-plus text-light plus-plant" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
     </div>
   </nav>
 
   <!-- Bootstrap Modal -->
-  <!-- Button trigger modal -->
-  <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button> -->
-
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -48,7 +45,15 @@
           </button>
         </div>
         <div class="modal-body">
-          ...
+          <button type="button" id="tomatoBtn" class="btn btn-primary">
+            Tomato
+          </button>
+          <button type="button" id="lettuceBtn" class="btn btn-primary">
+            Lettuce
+          </button>
+          <button type="button" id="pepperBtn" class="btn btn-primary">
+            Pepper
+          </button>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
