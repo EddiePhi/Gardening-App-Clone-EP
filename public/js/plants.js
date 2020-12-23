@@ -6,6 +6,9 @@ const $saveNoteBtn = $(".save-note");
 const $newNoteBtn = $(".new-note");
 const $noteList = $(".list-container .list-group");
 
+// custom event listener
+const $plusPlantBtn = $(".plus-plant");
+
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
@@ -138,6 +141,10 @@ const renderNoteList = (notes) => {
   $noteList.append(noteListItems);
 };
 
+const handlePlusPlant = () => {
+    
+};
+
 // Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = () => {
   return getNotes().then(renderNoteList);
@@ -149,6 +156,9 @@ $newNoteBtn.on("click", handleNewNoteView);
 $noteList.on("click", ".delete-note", handleNoteDelete);
 $noteTitle.on("keyup", handleRenderSaveBtn);
 $noteText.on("keyup", handleRenderSaveBtn);
+
+// Custom event listener
+// $plusPlantBtn.on("click", handleAddPlant);
 
 // Gets and renders the initial list of notes
 getAndRenderNotes();

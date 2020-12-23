@@ -1,12 +1,17 @@
 [
   {
-    "title": "save note",
-    "text": "note",
+    "title": "Tomatoes",
+    "text": "Facts about tomatoes",
     "id": "JYMvX4ZxT"
   },
   {
-    "title": "Plants",
-    "text": "plants1",
+    "title": "Lettuce",
+    "text": "Facts about lettuce",
     "id": "nbz-bvUXu"
+  },
+  {
+    "title": "Peppers",
+    "text": "Facts about peppers",
+    "id": "3C18ioBQO"
   }
 ]
