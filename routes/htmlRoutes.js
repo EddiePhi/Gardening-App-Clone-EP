@@ -21,9 +21,17 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/html/notes.html"));
   });
 
+
+  // Custom html routes
   app.get("/plants", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/html/plants.html"));
   });
+
+  app.get("/plot", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/html/plot.html"));
+  });
+  // Custom routes end
+
 
   // If no matching route is found default to home
   app.get("*", function(req, res) {
