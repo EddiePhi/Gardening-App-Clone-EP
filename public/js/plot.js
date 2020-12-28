@@ -13,7 +13,8 @@ const $plusPlantBtn = $(".plus-plot");
 const $rowsInput = $("#rows-input");
 const $columnsInput = $("#columns-input");
 const $savePlotBtn = $("#save-plot-btn");
-const $tableDiv = $("#table-div");
+const $titleDiv = $("#title-div");
+const $myTable = $("#myTable");
 // End of customer event listeners
 
 // activeNote is used to keep track of the note in the textarea
@@ -44,9 +45,28 @@ const deleteNote = (id) => {
   });
 };
 
+//Table generation:
+      // https://www.w3resource.com/javascript-exercises/javascript-dom-exercise-7.php
+      // https://stackoverflow.com/questions/8182608/dynamically-creating-table-with-user-input
+      // https://stackoverflow.com/questions/171027/add-table-row-in-jquery 
+const createTable = () => {
+  let rn = activeNote.rows;
+  let cn = activeNote.columns;
+
+  for(let r = 0; r < parseInt(rn); r++){
+      let x = document.getElementById('myTable').insertRow(r);
+      for (let c = 0; c < parseInt(cn); c++){
+        let y = x.insertCell(c);
+        y.innerHTML = "Row-" + r + " Column-" + c; 
+      };
+    };
+}
+
 // If there is an activeNote, display it, otherwise render empty inputs
 const renderActiveNote = () => {
   $saveNoteBtn.hide();
+  $myTable.empty();
+  
 
   if (activeNote.id) {
     $noteTitle.attr("readonly", true);
@@ -54,18 +74,35 @@ const renderActiveNote = () => {
     $noteTitle.val(activeNote.title);
     // $noteText.val(activeNote.text);
 
-    $tableDiv.attr("readonly", true);
-    $tableDiv.text(`columns: ${activeNote.columns} \n rows: ${activeNote.rows} \n`);
+    $titleDiv.attr("readonly", true);
+    $titleDiv.text(`columns: ${activeNote.columns} \n rows: ${activeNote.rows} \n`);
     // consider .html() method for jquery
+    // $titleDiv.html(`<div>Test .html() insert</div>`);
     
+    $titleDiv.html(createTable)
+
+    
+
+    // jQuery has a built-in facility to manipulate DOM elements on the fly.
+    // You can add anything to your table like this:
+    // $("#myTable").find('tbody')
+    // .append($('<tr>')
+    //     .append($('<td>')
+    //         .append($('<img>')
+    //             .attr('src', 'img.png')
+    //             .text('Image cell')
+    //         )
+    //     )
+    // );
+
   } else {
     $noteTitle.attr("readonly", false);
     // $noteText.attr("readonly", false);
     $noteTitle.val("");
     // $noteText.val("");
 
-    $tableDiv.attr("readonly", false);
-    $tableDiv.text("");
+    $titleDiv.attr("readonly", false);
+    $titleDiv.text("");
   }
 };
 
@@ -103,12 +140,14 @@ const handleNoteDelete = function (event) {
 
 // Sets the activeNote and displays it
 const handleNoteView = function () {
+  $plusPlantBtn.hide();
   activeNote = $(this).data();
   renderActiveNote();
 };
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
 const handleNewNoteView = function () {
+  $plusPlantBtn.show();
   activeNote = {};
   renderActiveNote();
 };
@@ -116,7 +155,7 @@ const handleNewNoteView = function () {
 // If a note's title or text are empty, hide the save button
 // Or else show it
 const handleRenderSaveBtn = function () {
-  if (!$noteTitle.val().trim() || !$tableDiv.val().trim()) {
+  if (!$noteTitle.val().trim() || !$titleDiv.val().trim()) {
     $saveNoteBtn.hide();
   } else {
     $saveNoteBtn.show();
