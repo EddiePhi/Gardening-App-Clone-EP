@@ -71,6 +71,6 @@ html, body {
     cursor: pointer;
   }
   
-  table {
+  table, th, td {
     border: 1px solid black;
   }

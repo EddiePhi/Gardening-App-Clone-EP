@@ -1,23 +1,16 @@
 [
   {
     "title": "new plot",
-    "text": "2",
+    "text": "1",
     "rows": "1",
+    "columns": "1",
+    "id": "iFhLul0gx"
+  },
+  {
+    "title": "plot 2",
+    "text": "2",
+    "rows": "2",
     "columns": "2",
-    "id": "fG3_OoQ9e"
-  },
-  {
-    "title": "new plot 2",
-    "text": "5",
-    "rows": "5",
-    "columns": "5",
-    "id": "cuvzUIQzZ"
-  },
-  {
-    "title": "plot 3",
-    "text": "3",
-    "rows": "3",
-    "columns": "3",
-    "id": "ZhZP0Oq7_"
+    "id": "N8iANExT8"
   }
 ]

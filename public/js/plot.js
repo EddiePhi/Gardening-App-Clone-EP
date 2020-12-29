@@ -2,8 +2,9 @@
 
 const $noteTitle = $("#note-title");
 const $noteText = $(".note-textarea");
+// $saveNoteBtn is needed for tables to populate for some reason???
 const $saveNoteBtn = $(".save-note");
-const $newNoteBtn = $(".new-note");
+const $returnBtn = $("#return");
 const $noteList = $(".list-container .list-group");
 
 
@@ -19,6 +20,9 @@ const $myTable = $("#myTable");
 
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
+
+// Hide return button when page first launches
+$returnBtn.hide();
 
 // A function for getting all notes from the db
 const getNotes = () => {
@@ -66,6 +70,7 @@ const createTable = () => {
 const renderActiveNote = () => {
   $saveNoteBtn.hide();
   $myTable.empty();
+
   
 
   if (activeNote.id) {
@@ -119,6 +124,9 @@ const handleNoteSave = function () {
     getAndRenderNotes();
     renderActiveNote();
   });
+
+  $columnsInput.val("");
+  $rowsInput.val("");
 };
 
 // Delete the clicked note
@@ -140,6 +148,7 @@ const handleNoteDelete = function (event) {
 
 // Sets the activeNote and displays it
 const handleNoteView = function () {
+  $returnBtn.show();
   $plusPlantBtn.hide();
   activeNote = $(this).data();
   renderActiveNote();
@@ -150,6 +159,7 @@ const handleNewNoteView = function () {
   $plusPlantBtn.show();
   activeNote = {};
   renderActiveNote();
+  $returnBtn.hide();
 };
 
 // If a note's title or text are empty, hide the save button
@@ -259,7 +269,7 @@ const getAndRenderNotes = () => {
 
 // $saveNoteBtn.on("click", handleNoteSave);
 $noteList.on("click", ".list-group-item", handleNoteView);
-$newNoteBtn.on("click", handleNewNoteView);
+$returnBtn.on("click", handleNewNoteView);
 $noteList.on("click", ".delete-note", handleNoteDelete);
 $noteTitle.on("keyup", handleRenderSaveBtn);
 $noteText.on("keyup", handleRenderSaveBtn);
