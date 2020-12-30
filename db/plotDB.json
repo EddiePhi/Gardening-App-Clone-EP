@@ -12,5 +12,19 @@
     "rows": "2",
     "columns": "2",
     "id": "N8iANExT8"
+  },
+  {
+    "title": "plot 3",
+    "text": "3",
+    "rows": "3",
+    "columns": "3",
+    "id": "-P712RycR"
+  },
+  {
+    "title": "big plot",
+    "text": "10",
+    "rows": "10",
+    "columns": "10",
+    "id": "89bQ4iZMR"
   }
 ]

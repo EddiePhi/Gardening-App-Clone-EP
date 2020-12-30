@@ -49,29 +49,11 @@ const deleteNote = (id) => {
   });
 };
 
-//Table generation:
-      // https://www.w3resource.com/javascript-exercises/javascript-dom-exercise-7.php
-      // https://stackoverflow.com/questions/8182608/dynamically-creating-table-with-user-input
-      // https://stackoverflow.com/questions/171027/add-table-row-in-jquery 
-const createTable = () => {
-  let rn = activeNote.rows;
-  let cn = activeNote.columns;
-
-  for(let r = 0; r < parseInt(rn); r++){
-      let x = document.getElementById('myTable').insertRow(r);
-      for (let c = 0; c < parseInt(cn); c++){
-        let y = x.insertCell(c);
-        y.innerHTML = "Row-" + r + " Column-" + c; 
-      };
-    };
-}
 
 // If there is an activeNote, display it, otherwise render empty inputs
 const renderActiveNote = () => {
   $saveNoteBtn.hide();
   $myTable.empty();
-
-  
 
   if (activeNote.id) {
     $noteTitle.attr("readonly", true);
@@ -86,7 +68,7 @@ const renderActiveNote = () => {
     
     $titleDiv.html(createTable)
 
-    
+
 
     // jQuery has a built-in facility to manipulate DOM elements on the fly.
     // You can add anything to your table like this:
@@ -282,6 +264,35 @@ $savePlotBtn.on("click", handleNoteSave)
 // End of custom event listeners
 
 
-
 // Gets and renders the initial list of notes
 getAndRenderNotes();
+
+
+
+// Functionality from external sources
+
+//Table generation:
+      // https://www.w3resource.com/javascript-exercises/javascript-dom-exercise-7.php
+      // https://stackoverflow.com/questions/8182608/dynamically-creating-table-with-user-input
+      // https://stackoverflow.com/questions/171027/add-table-row-in-jquery 
+      const createTable = () => {
+        let rn = activeNote.rows;
+        let cn = activeNote.columns;
+      
+        for(let r = 0; r < parseInt(rn); r++){
+            let x = document.getElementById('myTable').insertRow(r);
+            for (let c = 0; c < parseInt(cn); c++){
+              let y = x.insertCell(c);
+              // y.innerHTML = "Row-" + r + " Column-" + c; 
+              
+              
+              y.innerHTML = "<img src='../../assets/tomato.png'>"
+              //Img pops up when launching in default browser, but not when using nodemon
+
+            };
+          };
+      };
+
+
+// Click and drag selection: https://simonwep.github.io/selection/
+    // Included via script tag per https://github.com/Simonwep/selection - NOT UTILIZED YET
