@@ -16,6 +16,7 @@ const $columnsInput = $("#columns-input");
 const $savePlotBtn = $("#save-plot-btn");
 const $titleDiv = $("#title-div");
 const $myTable = $("#myTable");
+const $currentDate = $("#current-date");
 // End of customer event listeners
 
 // activeNote is used to keep track of the note in the textarea
@@ -67,21 +68,6 @@ const renderActiveNote = () => {
     // $titleDiv.html(`<div>Test .html() insert</div>`);
     
     $titleDiv.html(createTable)
-
-
-
-    // jQuery has a built-in facility to manipulate DOM elements on the fly.
-    // You can add anything to your table like this:
-    // $("#myTable").find('tbody')
-    // .append($('<tr>')
-    //     .append($('<td>')
-    //         .append($('<img>')
-    //             .attr('src', 'img.png')
-    //             .text('Image cell')
-    //         )
-    //     )
-    // );
-
   } else {
     $noteTitle.attr("readonly", false);
     // $noteText.attr("readonly", false);
@@ -191,43 +177,6 @@ const renderNoteList = (notes) => {
 
 
 // Added custom functions
-
-// const handleAddTomato = function () {
-//   const tomato = {
-//     title: "Tomato",
-//     text: "Facts about tomatoes",
-//   };
-
-//   saveNote(tomato).then(() => {
-//     getAndRenderNotes();
-//     renderActiveNote();
-//   });
-// };
-
-// const handleAddLettuce = function () {
-//   const lettuce = {
-//     title: "Lettuce",
-//     text: "Facts about lettuce",
-//   };
-
-//   saveNote(lettuce).then(() => {
-//     getAndRenderNotes();
-//     renderActiveNote();
-//   });
-// };
-
-// const handleAddPepper = function () {
-//   const pepper = {
-//     title: "Pepper",
-//     text: "Facts about peppers",
-//   };
-
-//   saveNote(pepper).then(() => {
-//     getAndRenderNotes();
-//     renderActiveNote();
-//   });
-// };
-
 const handleTableRender = function () {
   const newNote = {
     title: $noteTitle.val(),
@@ -242,6 +191,21 @@ const handleTableRender = function () {
   //   renderActiveNote();
   // });
   };
+
+  // handleDateSave NOT UTILIZED. UNSURE HOW TO INITIATE.
+const handleDateSave = function () {
+  const currentDate = {
+    text: dayjs().format('ddd. MMM. DD, YYYY'),
+  };
+
+  saveDate(currentDate).then(() => {
+    getAndRenderNotes();
+    renderActiveNote();
+  });
+};
+
+  //populate current date
+$currentDate.html(dayjs().format('ddd. MMM. DD, YYYY'));
 // End of custom functions
 
 // Gets notes from the db and renders them to the sidebar
@@ -272,26 +236,26 @@ getAndRenderNotes();
 // Functionality from external sources
 
 //Table generation:
-      // https://www.w3resource.com/javascript-exercises/javascript-dom-exercise-7.php
-      // https://stackoverflow.com/questions/8182608/dynamically-creating-table-with-user-input
-      // https://stackoverflow.com/questions/171027/add-table-row-in-jquery 
-      const createTable = () => {
-        let rn = activeNote.rows;
-        let cn = activeNote.columns;
-      
-        for(let r = 0; r < parseInt(rn); r++){
-            let x = document.getElementById('myTable').insertRow(r);
-            for (let c = 0; c < parseInt(cn); c++){
-              let y = x.insertCell(c);
-              // y.innerHTML = "Row-" + r + " Column-" + c; 
-              
-              
-              y.innerHTML = "<img src='../../assets/tomato.png'>"
-              //Img pops up when launching in default browser, but not when using nodemon
+// https://www.w3resource.com/javascript-exercises/javascript-dom-exercise-7.php
+// https://stackoverflow.com/questions/8182608/dynamically-creating-table-with-user-input
+// https://stackoverflow.com/questions/171027/add-table-row-in-jquery 
+const createTable = () => {
+  let rn = activeNote.rows;
+  let cn = activeNote.columns;
 
-            };
-          };
+  for(let r = 0; r < parseInt(rn); r++){
+      let x = document.getElementById('myTable').insertRow(r);
+      for (let c = 0; c < parseInt(cn); c++){
+        let y = x.insertCell(c);
+        // y.innerHTML = "Row-" + r + " Column-" + c; 
+        
+        
+        y.innerHTML = "<img src='../../assets/tomato.png'>"
+        //Img pops up when launching in default browser, but not when using nodemon
+
       };
+    };
+};
 
 
 // Click and drag selection: https://simonwep.github.io/selection/

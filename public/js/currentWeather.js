@@ -31,7 +31,7 @@ $(document).ready(function () {
   function previousSearch() {
 
     //Grab value from local storage
-    let zipCode = storageParse[0];
+    // let zipCode = storageParse[0];
 
     //Define URL for AJAX request
     let currentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=0f848c85d2b3dd23041f7c21a9bd6d0b`;
@@ -300,9 +300,5 @@ $(document).ready(function () {
       });
     });
 
-    //Set Local Storage. Must stay withing curly brackets for searchCity function
-    localStorage.setItem("savedDetails", JSON.stringify(searchHistory));
-    console.log(localStorage);
-    console.log(storageParse[0]);
   }
 });
