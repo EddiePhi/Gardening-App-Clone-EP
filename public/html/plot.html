@@ -23,6 +23,14 @@
   <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="/">Plot Info
     </a>
+    <!-- <form> -->
+    <div id="zipcode-container">
+      <label class="navbar-brand" for="zip-code-input">Zip Code:</label>
+      <input type="text" id="zip-code-input" >
+      <!-- Additional attr for text input (changes URL): name="zip-code-input" -->
+      <input id="submitBtn" type="submit" value="Submit">
+    <!-- </form> -->
+    </div>
     <div id="current-date" class="navbar-brand">Current Date</div>
     <div class="icons">
       <!-- Removing ability to add and save noted. Replacing with ability to simply add or delete Plant facts. -->
@@ -110,7 +118,7 @@
   <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 
   <script src="../js/plot.js"></script>
-  <!-- <script src="../js/currentWeather.js"></script> -->
+  <script src="../js/currentWeather.js"></script>
 </body>
 
 </html>
