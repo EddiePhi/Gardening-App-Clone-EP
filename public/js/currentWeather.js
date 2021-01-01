@@ -1,15 +1,11 @@
-//Code for weather app reflects previous HW assignment for class https://github.com/EddiePhi/Weather-Dashboard
-  //Adjustments made accordingly to match what app requires.
+// Code for weather app reflects previous HW assignment for class https://github.com/EddiePhi/Weather-Dashboard
+  // Adjustments made accordingly to match what Project 2 requires.
 
 // WEATHER API: https://openweathermap.org/api
   // API Key: 0f848c85d2b3dd23041f7c21a9bd6d0b
   // Current Weather by ZIP code: https://api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
   // 5 day/3 hour forecast by Zip code: //https://api.openweathermap.org/data/2.5/forecast?zip=${zipCode},us&appid=0f848c85d2b3dd23041f7c21a9bd6d0b
   // UV Index: http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=0f848c85d2b3dd23041f7c21a9bd6d0b
-
-//Hiking API:
-  // API key: 200961813-537b8cc50123339ddfc558c885477477
-  //https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=10&key=200961813-537b8cc50123339ddfc558c885477477
 
 //Fix CORS error: https://medium.com/@dtkatz/3-ways-to-fix-the-cors-error-and-how-access-control-allow-origin-works-d97d55946d9
 //---------------------------------------------------------------------
@@ -31,8 +27,8 @@ $("#zip-code-input").keyup(function (event) {
   }
 });
 
-   //Populate search results from value stored in local storage when page is first loaded.
-  //  previousSearch();
+// Populate search results from value stored in local storage when page is first loaded.
+// previousSearch();
 
 function previousSearch() {
   // let zipCode = stored data from db for zipcode input
@@ -43,7 +39,6 @@ function searchCity() {
   let zipCode = zipCodeInput.val();
   //Define URL for AJAX request
   let currentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=0f848c85d2b3dd23041f7c21a9bd6d0b`;
-
 
   searchHistory.push(zipCode);
   console.log(searchHistory);
@@ -61,14 +56,25 @@ function searchCity() {
 function getResponse(response) {
   //Test console.log response to ensure AJAX request is successful
   console.log(response);
+  container.html("");
+  container.html(`
+    <div id="currentCity" class="navbar-brand"></div>
+    <div id="currentTemp" class="navbar-brand"></div>
+    <div id="currentHumid" class="navbar-brand"></div>
+    <div id="currentWind" class="navbar-brand"></div>
+    <div id="currentUv" class="navbar-brand"></div>
+  `);
+
+  
+
 
   //Clear fields before new search request data populates to prevent repetitive info
   $("#currentCity").empty();
 
   //Define an <h4> tag to hold the city name based on zip code captured.
-  let cityName = response.name;
-  let currentCity = $(`<h4>${cityName}</h4>`);
-  $("#currentCity").append(currentCity);
+  // let cityName = response.name;
+  // let currentCity = $(`<h4>${cityName}</h4>`);
+  // $("#currentCity").append(currentCity);
 
   //Append Weather Icon after momentDate
   let currentIcon = response.weather[0].icon;
@@ -106,13 +112,12 @@ function getResponse(response) {
   }).then(getUV);
 }
 
-
-
 function getUV(response) {
-  console.log(response);
-
   let uvIndex = $("#currentUv");
   let cityUVIndex = response.value;
+  
+  console.log(response);
+
   //Change text of UV Index
   uvIndex.text("UV Index: " + cityUVIndex);
 
@@ -129,4 +134,3 @@ function getUV(response) {
     uvIndex.css("backgroundColor", "purple");
   };
 };
-// });
