@@ -9,9 +9,13 @@
 
 //Fix CORS error: https://medium.com/@dtkatz/3-ways-to-fix-the-cors-error-and-how-access-control-allow-origin-works-d97d55946d9
 //---------------------------------------------------------------------
+
+// consider https://datatables.net/ for table creation and cell selection OR https://www.ag-grid.com/javascript-grid/ (Very galaxy brain)
+
 const container = $("#zipcode-container")
 const zipCodeInput = $("#zip-code-input");
 const searchHistory = [];
+let zipCode = null;
 
 
 //Run searchCity when element with ID #submitBtn is clicked
@@ -36,7 +40,7 @@ function previousSearch() {
 };
 
 function searchCity() {
-  let zipCode = zipCodeInput.val();
+  zipCode = zipCodeInput.val();
   //Define URL for AJAX request
   let currentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=0f848c85d2b3dd23041f7c21a9bd6d0b`;
 
@@ -63,6 +67,7 @@ function getResponse(response) {
     <div id="currentHumid" class="navbar-brand"></div>
     <div id="currentWind" class="navbar-brand"></div>
     <div id="currentUv" class="navbar-brand"></div>
+    <a class="navbar-brand" href="/forecast">Forecast</a>
   `);
 
   
@@ -78,25 +83,25 @@ function getResponse(response) {
 
   //Append Weather Icon after momentDate
   let currentIcon = response.weather[0].icon;
-  $("#currentCity").append(`<img src="http://openweathermap.org/img/wn/${currentIcon}@2x.png">`);
+  $("#currentCity").append(`<img class="shrink" src="http://openweathermap.org/img/wn/${currentIcon}@2x.png">`);
 
   //Append Temperature after Weather Icon
   let cityTemp = response.main.temp;
   //Conversion from Kelvin to Fahrenheit: https://www.rapidtables.com/convert/temperature/how-kelvin-to-fahrenheit.html
   let tempF = Math.round(((cityTemp - 273.15) * 9/5 + 32)*100)/100
-  let temp = $(`<section id="temp">Temp: ${tempF}°F</section>`);
+  let temp = $(`<section id="temp">${tempF}°F</section>`);
   $("#currentTemp").empty();
   $("#currentTemp").append(temp);
 
   //Append Humidity after Temperature
   let cityHumidity = response.main.humidity;
-  let humidity = $(`<section id="humidity">Humidity: ${cityHumidity}%</section>`);
+  let humidity = $(`<section id="humidity">${cityHumidity}%</section>`);
   $("#currentHumid").empty();
   $("#currentHumid").append(humidity);
 
   //Append Wind Speed after Humidty
   let cityWindSpeed = response.wind.speed;
-  let windSpeed = $(`<section id="windSpeed">Wind Speed: ${cityWindSpeed} mph</section>`);
+  let windSpeed = $(`<section id="windSpeed">${cityWindSpeed} mph</section>`);
   $("#currentWind").empty();
   $("#currentWind").append(windSpeed);
 
@@ -119,7 +124,7 @@ function getUV(response) {
   console.log(response);
 
   //Change text of UV Index
-  uvIndex.text("UV Index: " + cityUVIndex);
+  uvIndex.text(`${cityUVIndex}`);
 
   //If/Else conditional to determine background color of UV Index Element
   if (cityUVIndex >= 0 && cityUVIndex < 3) {

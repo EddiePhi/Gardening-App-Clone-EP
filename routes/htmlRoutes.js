@@ -30,6 +30,10 @@ module.exports = function(app) {
   app.get("/plot", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/html/plot.html"));
   });
+
+  app.get("/forecast", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/html/forecast.html"));
+  });
   // Custom routes end
 
 

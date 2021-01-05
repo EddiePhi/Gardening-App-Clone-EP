@@ -75,7 +75,11 @@ html, body {
     border: 1px solid black;
   }
 
-  /* img {
-    height: 50%;
-    width: 50%;
-  } */
+  .shrink {
+    height: 75%;
+    width: 75%;
+  }
+
+  img {
+    height: 10%;
+  }

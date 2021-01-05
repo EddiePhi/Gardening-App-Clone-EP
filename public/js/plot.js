@@ -250,7 +250,7 @@ const createTable = () => {
         // y.innerHTML = "Row-" + r + " Column-" + c; 
         
         
-        y.innerHTML = "<img src='../../assets/tomato.png'>"
+        y.innerHTML = "<img src='../assets/tomato.png'>"
         //Img pops up when launching in default browser, but not when using nodemon
 
       };
