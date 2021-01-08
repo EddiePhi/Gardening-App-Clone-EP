@@ -140,35 +140,59 @@ module.exports = function (app) {
 
 // duplicate GET, POST, and DELETE method for /plot
 app.get("/api/plot", function(req, res) {
-  fs.readFile('db/plotDB.json', function(err, data){
-    if(err) throw err;
-    let notes = JSON.parse(data);
-    return res.json(notes);
+  // fs.readFile('db/plotDB.json', function(err, data){
+  //   if(err) throw err;
+  //   let notes = JSON.parse(data);
+  //   return res.json(notes);
+  // });
+
+
+  Model.findAll({})
+  .then(function(results) {
+    // results are available to us inside the .then
+    res.json(results);
+  })
+  .catch((error) => {
+    throw error;
   });
 });
 
 app.post("/api/plot", function (req, res) {
   //Should receive a new note to save on the request body, 
-  fs.readFile('db/plotDB.json', function(err, data){
-    if(err) throw err;
-    let notes = JSON.parse(data);
-    const newNote = {
-          title: req.body.title,
-          text: req.body.text,
-          rows: req.body.rows,
-          columns: req.body.columns,
-          id: shortId.generate()
-    };
+  // fs.readFile('db/plotDB.json', function(err, data){
+  //   if(err) throw err;
+  //   let notes = JSON.parse(data);
+  //   const newNote = {
+  //         title: req.body.title,
+  //         text: req.body.text,
+  //         rows: req.body.rows,
+  //         columns: req.body.columns,
+  //         id: shortId.generate()
+  //   };
   
-    console.log(plotDB)
-    //add it to the `plotDB.json` file, 
-    notes.push(newNote);
-    //and then return the new note to the client.
-    fs.writeFile('db/plotDB.json', JSON.stringify(notes, null, 2), (err) => {
-      if(err) throw err;
-      res.send('200');
+  //   console.log(plotDB);
+  //   //add it to the `plotDB.json` file, 
+  //   notes.push(newNote);
+  //   //and then return the new note to the client.
+  //   fs.writeFile('db/plotDB.json', JSON.stringify(notes, null, 2), (err) => {
+  //     if(err) throw err;
+  //     res.send('200');
+  //   })
+
+    console.log(req.body)
+
+    Model.create({
+      plot_name: req.body.plot_name,
+      plot_rows: req.body.plot_rows,
+      plot_columns: req.body.plot_columns,
     })
-  });
+    .then(function(results) {
+      // results are available to us inside the .then
+      res.json(results);
+    })
+    .catch((error) => {
+      throw error;
+    });
 
 
 

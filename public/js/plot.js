@@ -59,11 +59,11 @@ const renderActiveNote = () => {
   if (activeNote.id) {
     $plotName.attr("readonly", true);
     // $noteText.attr("readonly", true);
-    $plotName.val(activeNote.title);
+    $plotName.val(activeNote.plot_name);
     // $noteText.val(activeNote.text);
 
     $titleDiv.attr("readonly", true);
-    $titleDiv.text(`columns: ${activeNote.columns} \n rows: ${activeNote.rows} \n`);
+    $titleDiv.text(`columns: ${activeNote.plot_columns} \n rows: ${activeNote.plot_rows} \n`);
     // consider .html() method for jquery
     // $titleDiv.html(`<div>Test .html() insert</div>`);
     
@@ -82,10 +82,9 @@ const renderActiveNote = () => {
 // Get the note data from the inputs, save it to the db and update the view
 const handleNoteSave = function () {
   const newNote = {
-    title: $plotName.val(),
-    text: $columnsInput.val(),
-    rows: $rowsInput.val(),
-    columns: $columnsInput.val()
+    plot_name: $plotName.val(),
+    plot_rows: $rowsInput.val(),
+    plot_columns: $columnsInput.val()
   };
 
   saveNote(newNote).then(() => {
@@ -168,7 +167,7 @@ const renderNoteList = (notes) => {
   }
 
   notes.forEach((note) => {
-    const $li = create$li(note.title).data(note);
+    const $li = create$li(note.plot_name).data(note);
     noteListItems.push($li);
   });
 
@@ -179,8 +178,8 @@ const renderNoteList = (notes) => {
 // Added custom functions
 const handleTableRender = function () {
   const newNote = {
-    title: $plotName.val(),
-    text: $columnsInput.val(),
+    plot_name: $plotName.val(),
+    plot_columns: $columnsInput.val(),
     // rows: $rowsInput.val(),
     // columns: 
   };
@@ -240,8 +239,8 @@ getAndRenderNotes();
 // https://stackoverflow.com/questions/8182608/dynamically-creating-table-with-user-input
 // https://stackoverflow.com/questions/171027/add-table-row-in-jquery 
 const createTable = () => {
-  let rn = activeNote.rows;
-  let cn = activeNote.columns;
+  let rn = activeNote.plot_rows;
+  let cn = activeNote.plot_columns;
 
   for(let r = 0; r < parseInt(rn); r++){
       let x = document.getElementById('myTable').insertRow(r);
