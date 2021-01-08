@@ -158,27 +158,6 @@ app.get("/api/plot", function(req, res) {
 });
 
 app.post("/api/plot", function (req, res) {
-  //Should receive a new note to save on the request body, 
-  // fs.readFile('db/plotDB.json', function(err, data){
-  //   if(err) throw err;
-  //   let notes = JSON.parse(data);
-  //   const newNote = {
-  //         title: req.body.title,
-  //         text: req.body.text,
-  //         rows: req.body.rows,
-  //         columns: req.body.columns,
-  //         id: shortId.generate()
-  //   };
-  
-  //   console.log(plotDB);
-  //   //add it to the `plotDB.json` file, 
-  //   notes.push(newNote);
-  //   //and then return the new note to the client.
-  //   fs.writeFile('db/plotDB.json', JSON.stringify(notes, null, 2), (err) => {
-  //     if(err) throw err;
-  //     res.send('200');
-  //   })
-
     console.log(req.body)
 
     Model.create({
@@ -218,22 +197,36 @@ app.post("/api/plot", function (req, res) {
 // Express Route Params: https://www.youtube.com/watch?v=MuMs1pLuT7I
 app.delete("/api/plot/:id", function (req, res) {
   //In order to delete a note, you'll need to read all notes from the `db.json` file, 
-  fs.readFile('db/plotDB.json', function(err, data){
-    const deleteNotes = req.params.id;
-    if(err) throw err;
-    let notes = JSON.parse(data);
-    //This means you'll need to find a way to give each note a unique `id` when it's saved.
-    //remove the note with the given `id` property, 
-    for (let i = 0; i < notes.length; i++) {
-      if(notes[i].id === deleteNotes){
-        notes.splice(i, 1);
-      };
-    };
-    //and then rewrite the notes to the `db.json` file.
-    fs.writeFile('db/plotDB.json', JSON.stringify(notes, null, 2), (err) => {
-      if(err) throw err;
-      res.send('200');
-    });
+  // fs.readFile('db/plotDB.json', function(err, data){
+  //   const deleteNotes = req.params.id;
+  //   if(err) throw err;
+  //   let notes = JSON.parse(data);
+  //   //This means you'll need to find a way to give each note a unique `id` when it's saved.
+  //   //remove the note with the given `id` property, 
+  //   for (let i = 0; i < notes.length; i++) {
+  //     if(notes[i].id === deleteNotes){
+  //       notes.splice(i, 1);
+  //     };
+  //   };
+  //   //and then rewrite the notes to the `db.json` file.
+  //   fs.writeFile('db/plotDB.json', JSON.stringify(notes, null, 2), (err) => {
+  //     if(err) throw err;
+  //     res.send('200');
+  //   });
+  // });
+
+
+  Model.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(function(results) {
+    // results are available to us inside the .then
+    res.json(results);
+  })
+  .catch((error) => {
+    throw error;
   });
 });
 // duplicate for /plot end
