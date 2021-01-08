@@ -12,7 +12,7 @@ const plotDB = require('../db/plotDB.json');
 const weatherDB = require('../db/weatherDB.json');
 const fs = require('fs');
 const shortId = require('shortid'); // Assitance from Tutor Mazin Abed
-var Model = require("../models/model.js")
+var Model = require("../models/models.js")
 
 // ===============================================================================
 // ROUTING
