@@ -9,7 +9,7 @@ var Sequelize = require("sequelize");
 var sequelize = require("../config/connection.js");
 
 // Creates a "Chirp" model that matches up with DB
-var Model = sequelize.define("plots", {
+var plotModel = sequelize.define("plots", {
   plot_name: Sequelize.STRING,
   plot_rows: Sequelize.INTEGER,
   plot_columns: Sequelize.INTEGER
@@ -19,7 +19,7 @@ var Model = sequelize.define("plots", {
 );
 
 // Syncs with DB
-Model.sync();
+plotModel.sync();
 
 // Makes the Chirp Model available for other files (will also create a table)
-module.exports = Model;
+module.exports = plotModel;

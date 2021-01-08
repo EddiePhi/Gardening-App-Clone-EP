@@ -220,9 +220,6 @@ $plotName.on("keyup", handleRenderSaveBtn);
 $noteText.on("keyup", handleRenderSaveBtn);
 
 // Custom event listeners (copied from existing code in this file)
-// $tomatoBtn.on("click", handleAddTomato);
-// $lettuceBtn.on("click", handleAddLettuce);
-// $pepperBtn.on("click", handleAddPepper);
 $savePlotBtn.on("click", handleNoteSave)
 // End of custom event listeners
 

@@ -50,8 +50,8 @@ const renderActiveNote = () => {
   if (activeNote.id) {
     $noteTitle.attr("readonly", true);
     $noteText.attr("readonly", true);
-    $noteTitle.val(activeNote.title);
-    $noteText.val(activeNote.text);
+    $noteTitle.val(activeNote.plant_name);
+    $noteText.val(activeNote.plant_facts);
   } else {
     $noteTitle.attr("readonly", false);
     $noteText.attr("readonly", false);
@@ -63,8 +63,8 @@ const renderActiveNote = () => {
 // Get the note data from the inputs, save it to the db and update the view
 const handleNoteSave = function () {
   const newNote = {
-    title: $noteTitle.val(),
-    text: $noteText.val(),
+    plant_name: $noteTitle.val(),
+    plant_facts: $noteText.val(),
   };
 
   saveNote(newNote).then(() => {
@@ -140,7 +140,7 @@ const renderNoteList = (notes) => {
   }
 
   notes.forEach((note) => {
-    const $li = create$li(note.title).data(note);
+    const $li = create$li(note.plant_name).data(note);
     noteListItems.push($li);
   });
 
@@ -148,11 +148,11 @@ const renderNoteList = (notes) => {
 };
 
 
-// Added custom functions
+// Added custom functions to store PRE-DEFINED plant info (possibly use.json file instead?)
 const handleAddTomato = function () {
   const tomato = {
-    title: "Tomato",
-    text: "Facts about tomatoes",
+    plant_name: "Tomato",
+    plant_facts: "Facts about tomatoes",
   };
 
   saveNote(tomato).then(() => {
@@ -163,8 +163,8 @@ const handleAddTomato = function () {
 
 const handleAddLettuce = function () {
   const lettuce = {
-    title: "Lettuce",
-    text: "Facts about lettuce",
+    plant_name: "Lettuce",
+    plant_facts: "Facts about lettuce",
   };
 
   saveNote(lettuce).then(() => {
@@ -175,8 +175,8 @@ const handleAddLettuce = function () {
 
 const handleAddPepper = function () {
   const pepper = {
-    title: "Pepper",
-    text: "Facts about peppers",
+    plant_name: "Pepper",
+    plant_facts: "Facts about peppers",
   };
 
   saveNote(pepper).then(() => {
