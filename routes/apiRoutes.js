@@ -12,6 +12,7 @@ const plotDB = require('../db/plotDB.json');
 const weatherDB = require('../db/weatherDB.json');
 const fs = require('fs');
 const shortId = require('shortid'); // Assitance from Tutor Mazin Abed
+var Model = require("../models/model.js")
 
 // ===============================================================================
 // ROUTING
@@ -269,5 +270,49 @@ app.delete("/api/weather/:id", function (req, res) {
 });
 // duplicate for /weather end
 
+
+
+  // Copied from WK 14 Act 03-Chirpy-Sequelize VERIFY FIRST ARGUMENT PATHS FOR GET AND POST
+  app.get("/api/all", function(req, res) {
+
+    // Finding all Chirps, and then returning them to the user as JSON.
+    // Sequelize queries are asynchronous, which helps with perceived speed.
+    // If we want something to be guaranteed to happen after the query, we'll use
+    // the .then function
+    Model.findAll({
+      where: {
+        plot_name: req.params.plot_name,
+      },
+    })
+    .then(function(results) {
+      // results are available to us inside the .then
+      res.json(results);
+    })
+    .catch((error) => {
+      throw error;
+    });
+
+  });
+
+  // Add a chirp
+  app.post("/api/new", function(req, res) {
+
+    console.log("Plot Data:");
+    console.log(req.body);
+
+    Model.create({
+      plot_name: req.body.plot_name,
+      plot_rows: req.body.plot_rows,
+      plot_columns: req.body.plot_columns
+    })
+    .then(function(results) {
+      // `results` here would be the newly created chirp
+      res.json(results);
+    })
+    .catch((error) => {
+      throw error;
+    });
+
+  });
 // end of module.exports  
 };

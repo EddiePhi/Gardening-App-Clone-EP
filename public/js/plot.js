@@ -1,6 +1,6 @@
 // Reference from Eddie P HW: WK-11 (Note-Taker)
 
-const $noteTitle = $("#note-title");
+const $plotName = $("#plot-name");
 const $noteText = $(".note-textarea");
 // $saveNoteBtn is needed for tables to populate for some reason???
 const $saveNoteBtn = $(".save-note");
@@ -57,9 +57,9 @@ const renderActiveNote = () => {
   $myTable.empty();
 
   if (activeNote.id) {
-    $noteTitle.attr("readonly", true);
+    $plotName.attr("readonly", true);
     // $noteText.attr("readonly", true);
-    $noteTitle.val(activeNote.title);
+    $plotName.val(activeNote.title);
     // $noteText.val(activeNote.text);
 
     $titleDiv.attr("readonly", true);
@@ -69,9 +69,9 @@ const renderActiveNote = () => {
     
     $titleDiv.html(createTable)
   } else {
-    $noteTitle.attr("readonly", false);
+    $plotName.attr("readonly", false);
     // $noteText.attr("readonly", false);
-    $noteTitle.val("");
+    $plotName.val("");
     // $noteText.val("");
 
     $titleDiv.attr("readonly", false);
@@ -82,7 +82,7 @@ const renderActiveNote = () => {
 // Get the note data from the inputs, save it to the db and update the view
 const handleNoteSave = function () {
   const newNote = {
-    title: $noteTitle.val(),
+    title: $plotName.val(),
     text: $columnsInput.val(),
     rows: $rowsInput.val(),
     columns: $columnsInput.val()
@@ -133,7 +133,7 @@ const handleNewNoteView = function () {
 // If a note's title or text are empty, hide the save button
 // Or else show it
 const handleRenderSaveBtn = function () {
-  if (!$noteTitle.val().trim() || !$titleDiv.val().trim()) {
+  if (!$plotName.val().trim() || !$titleDiv.val().trim()) {
     $saveNoteBtn.hide();
   } else {
     $saveNoteBtn.show();
@@ -179,7 +179,7 @@ const renderNoteList = (notes) => {
 // Added custom functions
 const handleTableRender = function () {
   const newNote = {
-    title: $noteTitle.val(),
+    title: $plotName.val(),
     text: $columnsInput.val(),
     // rows: $rowsInput.val(),
     // columns: 
@@ -217,7 +217,7 @@ const getAndRenderNotes = () => {
 $noteList.on("click", ".list-group-item", handleNoteView);
 $returnBtn.on("click", handleNewNoteView);
 $noteList.on("click", ".delete-note", handleNoteDelete);
-$noteTitle.on("keyup", handleRenderSaveBtn);
+$plotName.on("keyup", handleRenderSaveBtn);
 $noteText.on("keyup", handleRenderSaveBtn);
 
 // Custom event listeners (copied from existing code in this file)
@@ -250,7 +250,7 @@ const createTable = () => {
         // y.innerHTML = "Row-" + r + " Column-" + c; 
         
         
-        y.innerHTML = "<img src='../assets/tomato.png'>"
+        y.innerHTML = "<img class ='image' src='../assets/tomato.png'>"
         //Img pops up when launching in default browser, but not when using nodemon
 
       };

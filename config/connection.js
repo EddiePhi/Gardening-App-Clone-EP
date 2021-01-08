@@ -1,23 +1,25 @@
 // Reference from Week 13 Activity 16: MvcExample
 // Set up MySQL connection.
-var mysql = require("mysql");
+var Sequelize = require("sequelize")
 
-var connection = mysql.createConnection({
+var sequelize = new Sequelize("gardening_DB", "root", "Password123", {
   host: "localhost",
   port: 3306,
-  user: "root",
-  password: "Password123",
-  database: "gardening_DB"
+  dialect: "mysql",
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  }
 });
 
-// Make connection.
-connection.connect(function(err) {
-  if (err) {
-    console.error("error connecting: " + err.stack);
-    return;
-  }
-  console.log("connected as id " + connection.threadId);
-});
+// Example copied from activity for Wk 14
+// const query = "INSERT INTO department SET ?";
+// connection.query(query, function(err, results, fields){
+//   if (err) throw err;
+//   console.log(results);
+//   res.end();
+// });
 
 // Export connection for our ORM to use.
-module.exports = connection;
+module.exports = sequelize;

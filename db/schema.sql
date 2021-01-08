@@ -5,9 +5,9 @@ CREATE database gardening_DB;
 
 USE gardening_DB;
 
-CREATE TABLE plants (
+CREATE TABLE plots (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  plant_name VARCHAR(30) NOT NULL,
-  price DECIMAL(10, 2) NOT NULL,
-  seed_ct INT (10) NOT NULL
+  plot_name VARCHAR(30) NOT NULL,
+  plot_rows INT(10) NOT NULL,
+  plot_columns INT (10) NOT NULL
 );
