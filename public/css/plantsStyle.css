@@ -83,3 +83,7 @@ html, body {
   .image {
     height: 2%;
   }
+
+  .forecast-spacing {
+    margin: 10px 40px 10px;
+  }

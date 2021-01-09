@@ -21,11 +21,11 @@ function forecastRender() {
         let date5 = $("#date5");
 
         //Grab date data from Forecast API
-        let dateA = response.list[0].dt_txt;
-        let dateB = response.list[8].dt_txt;
-        let dateC = response.list[16].dt_txt;
-        let dateD = response.list[24].dt_txt;
-        let dateE = response.list[32].dt_txt;
+        let dateA = dayjs(`${response.list[0].dt_txt}`).format('MM/DD/YYYY');
+        let dateB = dayjs(`${response.list[8].dt_txt}`).format('MM/DD/YYYY');
+        let dateC = dayjs(`${response.list[16].dt_txt}`).format('MM/DD/YYYY');
+        let dateD = dayjs(`${response.list[24].dt_txt}`).format('MM/DD/YYYY');
+        let dateE = dayjs(`${response.list[32].dt_txt}`).format('MM/DD/YYYY');
 
         //Grab icon data from Forecast API
         let iconA = response.list[0].weather[0].icon;

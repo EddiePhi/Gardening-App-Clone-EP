@@ -21,3 +21,10 @@ CREATE TABLE plants (
   createdAt DATETIME NOT NULL,
   updatedAt DATETIME NOT NULL
 );
+
+CREATE TABLE zip_codes (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  zip_code VARCHAR(5) NOT NULL,
+  createdAt DATETIME NOT NULL,
+  updatedAt DATETIME NOT NULL
+);
