@@ -6,12 +6,12 @@
 // These data sources hold arrays of information on table-data, waitinglist, etc.
 // ===============================================================================
 
-const weatherDB = require('../db/weatherDB.json');
-const fs = require('fs');
-const shortId = require('shortid'); // Assitance from Tutor Mazin Abed
-var plotModel = require("../models/plotModel.js")
-var plantModel = require("../models/plantModel.js")
-var zipCodeModel = require("../models/zipCodeModel.js")
+const weatherDB = require("../db/weatherDB.json");
+const fs = require("fs");
+const shortId = require("shortid"); // Assitance from Tutor Mazin Abed
+// var plotModel = require("../models/plotModel.js")
+// var plantModel = require("../models/plantModel.js")
+// var zipCodeModel = require("../models/zipCodeModel.js")
 
 // ===============================================================================
 // ROUTING
@@ -25,147 +25,148 @@ module.exports = function (app) {
   // ---------------------------------------------------------------------------
 
   // duplicate GET, POST, and DELETE method for /plants
-  app.get("/api/plants", function(req, res) {
-    plantModel.findAll({})
-    .then(function(results) {
-    // results are available to us inside the .then
-    res.json(results);
-    })
-    .catch((error) => {
-      throw error;
-    });
+  app.get("/api/plants", function (req, res) {
+    plantModel
+      .findAll({})
+      .then(function (results) {
+        // results are available to us inside the .then
+        res.json(results);
+      })
+      .catch((error) => {
+        throw error;
+      });
   });
 
   app.post("/api/plants", function (req, res) {
-    console.log(req.body)
+    console.log(req.body);
 
-    plantModel.create({
-      plant_name: req.body.plant_name,
-      plant_facts: req.body.plant_facts,
-    })
-    .then(function(results) {
-      // results are available to us inside the .then
-      res.json(results);
-    })
-    .catch((error) => {
-      throw error;
-    });
+    plantModel
+      .create({
+        plant_name: req.body.plant_name,
+        plant_facts: req.body.plant_facts,
+      })
+      .then(function (results) {
+        // results are available to us inside the .then
+        res.json(results);
+      })
+      .catch((error) => {
+        throw error;
+      });
   });
 
   // Express Route Params: https://www.youtube.com/watch?v=MuMs1pLuT7I
   app.delete("/api/plants/:id", function (req, res) {
-    plantModel.destroy({
-      where: {
-        id: req.params.id
-      }
-    })
-    .then(function(results) {
-      // results are available to us inside the .then
-      res.json(results);
-    })
-    .catch((error) => {
-      throw error;
-    });
-
+    plantModel
+      .destroy({
+        where: {
+          id: req.params.id,
+        },
+      })
+      .then(function (results) {
+        // results are available to us inside the .then
+        res.json(results);
+      })
+      .catch((error) => {
+        throw error;
+      });
   });
   // duplicate for /plants end
 
-
-
-
-
-// duplicate GET, POST, and DELETE method for /plot
-app.get("/api/plot", function(req, res) {
-  plotModel.findAll({})
-  .then(function(results) {
-    // results are available to us inside the .then
-    res.json(results);
-  })
-  .catch((error) => {
-    throw error;
+  // duplicate GET, POST, and DELETE method for /plot
+  app.get("/api/plot", function (req, res) {
+    plotModel
+      .findAll({})
+      .then(function (results) {
+        // results are available to us inside the .then
+        res.json(results);
+      })
+      .catch((error) => {
+        throw error;
+      });
   });
-});
 
-app.post("/api/plot", function (req, res) {
-    console.log(req.body)
+  app.post("/api/plot", function (req, res) {
+    console.log(req.body);
 
-    plotModel.create({
-      plot_name: req.body.plot_name,
-      plot_rows: req.body.plot_rows,
-      plot_columns: req.body.plot_columns,
-    })
-    .then(function(results) {
-      // results are available to us inside the .then
-      res.json(results);
-    })
-    .catch((error) => {
-      throw error;
-    });
-});
-
-// Express Route Params: https://www.youtube.com/watch?v=MuMs1pLuT7I
-app.delete("/api/plot/:id", function (req, res) {
-  plotModel.destroy({
-    where: {
-      id: req.params.id
-    }
-  })
-  .then(function(results) {
-    // results are available to us inside the .then
-    res.json(results);
-  })
-  .catch((error) => {
-    throw error;
+    plotModel
+      .create({
+        plot_name: req.body.plot_name,
+        plot_rows: req.body.plot_rows,
+        plot_columns: req.body.plot_columns,
+      })
+      .then(function (results) {
+        // results are available to us inside the .then
+        res.json(results);
+      })
+      .catch((error) => {
+        throw error;
+      });
   });
-});
-// duplicate for /plot end
 
-
-
-
-// duplicate GET, POST, and DELETE method for /weather
-app.get("/api/forecast", function(req, res) {
-  zipCodeModel.findAll({})
-  .then(function(results) {
-    // results are available to us inside the .then
-    res.json(results);
-  })
-  .catch((error) => {
-    throw error;
+  // Express Route Params: https://www.youtube.com/watch?v=MuMs1pLuT7I
+  app.delete("/api/plot/:id", function (req, res) {
+    plotModel
+      .destroy({
+        where: {
+          id: req.params.id,
+        },
+      })
+      .then(function (results) {
+        // results are available to us inside the .then
+        res.json(results);
+      })
+      .catch((error) => {
+        throw error;
+      });
   });
-});
+  // duplicate for /plot end
 
-app.post("/api/forecast", function (req, res) {
-  console.log(req.body)
-
-    zipCodeModel.create({
-      zip_code: req.body.zip_code
-    })
-    .then(function(results) {
-      // results are available to us inside the .then
-      res.json(results);
-    })
-    .catch((error) => {
-      throw error;
-    });
-});
-
-// Express Route Params: https://www.youtube.com/watch?v=MuMs1pLuT7I
-app.delete("/api/forecast/:id", function (req, res) {
-  zipCodeModel.destroy({
-    where: {
-      id: req.params.id
-    }
-  })
-  .then(function(results) {
-    // results are available to us inside the .then
-    res.json(results);
-  })
-  .catch((error) => {
-    throw error;
+  // duplicate GET, POST, and DELETE method for /weather
+  app.get("/api/forecast", function (req, res) {
+    zipCodeModel
+      .findAll({})
+      .then(function (results) {
+        // results are available to us inside the .then
+        res.json(results);
+      })
+      .catch((error) => {
+        throw error;
+      });
   });
-});
-// duplicate for /weather end
 
-// end of module.exports  
+  app.post("/api/forecast", function (req, res) {
+    console.log(req.body);
+
+    zipCodeModel
+      .create({
+        zip_code: req.body.zip_code,
+      })
+      .then(function (results) {
+        // results are available to us inside the .then
+        res.json(results);
+      })
+      .catch((error) => {
+        throw error;
+      });
+  });
+
+  // Express Route Params: https://www.youtube.com/watch?v=MuMs1pLuT7I
+  app.delete("/api/forecast/:id", function (req, res) {
+    zipCodeModel
+      .destroy({
+        where: {
+          id: req.params.id,
+        },
+      })
+      .then(function (results) {
+        // results are available to us inside the .then
+        res.json(results);
+      })
+      .catch((error) => {
+        throw error;
+      });
+  });
+  // duplicate for /weather end
+
+  // end of module.exports
 };
