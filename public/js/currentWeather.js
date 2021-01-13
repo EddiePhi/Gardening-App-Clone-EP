@@ -11,7 +11,8 @@
 //---------------------------------------------------------------------
 
 // consider https://datatables.net/ for table creation and cell selection OR https://www.ag-grid.com/javascript-grid/ (Very galaxy brain)
-
+require("dotenv").config();
+const api_key = process.env.API_KEY;
 const container = $("#zipcode-container")
 const zipCodeInput = $("#zip-code-input");
 const searchHistory = [];
@@ -42,7 +43,8 @@ function previousSearch() {
 function searchCity() {
   zipCode = zipCodeInput.val();
   //Define URL for AJAX request
-  let currentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=0f848c85d2b3dd23041f7c21a9bd6d0b`;
+  
+  let currentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=${api_key}`;
 
   searchHistory.push(zipCode);
   console.log(searchHistory);
@@ -110,7 +112,7 @@ function getResponse(response) {
   let longitude = response.coord.lon;
 
   //AJAX request of UV Index based on data from currentWeatherURL
-  let uvURL = `https://api.openweathermap.org/data/2.5/uvi?lat=${latitude}&lon=${longitude}&appid=0f848c85d2b3dd23041f7c21a9bd6d0b`;
+  let uvURL = `https://api.openweathermap.org/data/2.5/uvi?lat=${latitude}&lon=${longitude}&appid=${api_key}`;
   $.ajax({
     url: uvURL,
     method: "GET",
