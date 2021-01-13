@@ -50,7 +50,6 @@ module.exports = function (app) {
       height: req.body.height,
     })
       .then(function (results) {
-        // results are available to us inside the .then
         res.json(results);
       })
       .catch((error) => {
@@ -77,8 +76,7 @@ module.exports = function (app) {
 
   // duplicate GET, POST, and DELETE method for /plot
   app.get("/api/plot", function (req, res) {
-    plotModel
-      .findAll({})
+    db.Plots.findAll({})
       .then(function (results) {
         // results are available to us inside the .then
         res.json(results);
@@ -91,12 +89,11 @@ module.exports = function (app) {
   app.post("/api/plot", function (req, res) {
     console.log(req.body);
 
-    plotModel
-      .create({
-        plot_name: req.body.plot_name,
-        plot_rows: req.body.plot_rows,
-        plot_columns: req.body.plot_columns,
-      })
+    db.Plots.create({
+      plot_name: req.body.plot_name,
+      plot_rows: req.body.plot_rows,
+      plot_columns: req.body.plot_columns,
+    })
       .then(function (results) {
         // results are available to us inside the .then
         res.json(results);
@@ -108,12 +105,11 @@ module.exports = function (app) {
 
   // Express Route Params: https://www.youtube.com/watch?v=MuMs1pLuT7I
   app.delete("/api/plot/:id", function (req, res) {
-    plotModel
-      .destroy({
-        where: {
-          id: req.params.id,
-        },
-      })
+    db.Plots.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
       .then(function (results) {
         // results are available to us inside the .then
         res.json(results);
@@ -125,6 +121,7 @@ module.exports = function (app) {
   // duplicate for /plot end
 
   // duplicate GET, POST, and DELETE method for /weather
+
   app.get("/api/forecast", function (req, res) {
     zipCodeModel
       .findAll({})
