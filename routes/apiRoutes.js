@@ -12,6 +12,7 @@ const shortId = require("shortid"); // Assitance from Tutor Mazin Abed
 // var plotModel = require("../models/plotModel.js")
 // var plantModel = require("../models/plantModel.js")
 // var zipCodeModel = require("../models/zipCodeModel.js")
+var db = require("../models");
 
 // ===============================================================================
 // ROUTING
@@ -26,8 +27,7 @@ module.exports = function (app) {
 
   // duplicate GET, POST, and DELETE method for /plants
   app.get("/api/plants", function (req, res) {
-    plantModel
-      .findAll({})
+    db.Plants.findAll({})
       .then(function (results) {
         // results are available to us inside the .then
         res.json(results);
@@ -40,11 +40,15 @@ module.exports = function (app) {
   app.post("/api/plants", function (req, res) {
     console.log(req.body);
 
-    plantModel
-      .create({
-        plant_name: req.body.plant_name,
-        plant_facts: req.body.plant_facts,
-      })
+    db.Plants.create({
+      plant_name: req.body.plant_name,
+      plant_facts: req.body.plant_facts,
+      days_to_maturity: req.body.days_to_maturity,
+      fruit_size_inches: req.body.fruit_size_inches,
+      sun: req.body.sun,
+      spread: req.body.spread,
+      height: req.body.height,
+    })
       .then(function (results) {
         // results are available to us inside the .then
         res.json(results);
@@ -56,12 +60,11 @@ module.exports = function (app) {
 
   // Express Route Params: https://www.youtube.com/watch?v=MuMs1pLuT7I
   app.delete("/api/plants/:id", function (req, res) {
-    plantModel
-      .destroy({
-        where: {
-          id: req.params.id,
-        },
-      })
+    db.Plants.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
       .then(function (results) {
         // results are available to us inside the .then
         res.json(results);
