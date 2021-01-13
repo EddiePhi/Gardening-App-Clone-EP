@@ -9,11 +9,13 @@ var Sequelize = require("sequelize");
 var sequelize = require("../config/connection.js");
 
 // Creates a "Chirp" model that matches up with DB
-var zipCodeModel = sequelize.define("zip_codes", {
-  zip_code: Sequelize.STRING
-},
+var zipCodeModel = sequelize.define(
+  "zip_codes",
+  {
+    zip_code: Sequelize.STRING,
+  },
 
-{freezeTableName: true}
+  { freezeTableName: true }
 );
 
 // Syncs with DB
