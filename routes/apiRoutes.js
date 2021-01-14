@@ -12,24 +12,19 @@ const shortId = require("shortid"); // Assitance from Tutor Mazin Abed
 // var plotModel = require("../models/plotModel.js")
 // var plantModel = require("../models/plantModel.js")
 // var zipCodeModel = require("../models/zipCodeModel.js")
+var db = require("../models");
 
 // ===============================================================================
 // ROUTING
 // ===============================================================================
 
 module.exports = function (app) {
-  // API GET Requests
-  // Below code handles when users "visit" a page.
-  // In each of the below cases when a user visits a link
-  // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
-  // ---------------------------------------------------------------------------
+  // API Requests
 
-  // duplicate GET, POST, and DELETE method for /plants
+  // GET all data from Plants table
   app.get("/api/plants", function (req, res) {
-    plantModel
-      .findAll({})
+    db.Plants.findAll({})
       .then(function (results) {
-        // results are available to us inside the .then
         res.json(results);
       })
       .catch((error) => {
@@ -37,16 +32,20 @@ module.exports = function (app) {
       });
   });
 
+  //Add New plant/column to Plants table
   app.post("/api/plants", function (req, res) {
     console.log(req.body);
 
-    plantModel
-      .create({
-        plant_name: req.body.plant_name,
-        plant_facts: req.body.plant_facts,
-      })
+    db.Plants.create({
+      plant_name: req.body.plant_name,
+      plant_facts: req.body.plant_facts,
+      days_to_maturity: req.body.days_to_maturity,
+      fruit_size_inches: req.body.fruit_size_inches,
+      sun: req.body.sun,
+      spread: req.body.spread,
+      height: req.body.height,
+    })
       .then(function (results) {
-        // results are available to us inside the .then
         res.json(results);
       })
       .catch((error) => {
@@ -54,30 +53,25 @@ module.exports = function (app) {
       });
   });
 
-  // Express Route Params: https://www.youtube.com/watch?v=MuMs1pLuT7I
+  //Delete plant from Plants table
   app.delete("/api/plants/:id", function (req, res) {
-    plantModel
-      .destroy({
-        where: {
-          id: req.params.id,
-        },
-      })
+    db.Plants.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
       .then(function (results) {
-        // results are available to us inside the .then
         res.json(results);
       })
       .catch((error) => {
         throw error;
       });
   });
-  // duplicate for /plants end
 
-  // duplicate GET, POST, and DELETE method for /plot
+  // GET all data from Plots table
   app.get("/api/plot", function (req, res) {
-    plotModel
-      .findAll({})
+    db.Plots.findAll({})
       .then(function (results) {
-        // results are available to us inside the .then
         res.json(results);
       })
       .catch((error) => {
@@ -85,17 +79,16 @@ module.exports = function (app) {
       });
   });
 
+  //Add New plot/column to Plots table
   app.post("/api/plot", function (req, res) {
     console.log(req.body);
 
-    plotModel
-      .create({
-        plot_name: req.body.plot_name,
-        plot_rows: req.body.plot_rows,
-        plot_columns: req.body.plot_columns,
-      })
+    db.Plots.create({
+      plot_name: req.body.plot_name,
+      plot_rows: req.body.plot_rows,
+      plot_columns: req.body.plot_columns,
+    })
       .then(function (results) {
-        // results are available to us inside the .then
         res.json(results);
       })
       .catch((error) => {
@@ -103,30 +96,25 @@ module.exports = function (app) {
       });
   });
 
-  // Express Route Params: https://www.youtube.com/watch?v=MuMs1pLuT7I
+  //Delete user specified plot/column from Plots table
   app.delete("/api/plot/:id", function (req, res) {
-    plotModel
-      .destroy({
-        where: {
-          id: req.params.id,
-        },
-      })
+    db.Plots.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
       .then(function (results) {
-        // results are available to us inside the .then
         res.json(results);
       })
       .catch((error) => {
         throw error;
       });
   });
-  // duplicate for /plot end
 
-  // duplicate GET, POST, and DELETE method for /weather
+  //GET all zip codes from ZipCodes table
   app.get("/api/forecast", function (req, res) {
-    zipCodeModel
-      .findAll({})
+    db.ZipCodes.findAll({})
       .then(function (results) {
-        // results are available to us inside the .then
         res.json(results);
       })
       .catch((error) => {
@@ -134,15 +122,14 @@ module.exports = function (app) {
       });
   });
 
+  //Add zip code to ZipCodes table
   app.post("/api/forecast", function (req, res) {
     console.log(req.body);
 
-    zipCodeModel
-      .create({
-        zip_code: req.body.zip_code,
-      })
+    db.ZipCodes.create({
+      zip_code: req.body.zip_code,
+    })
       .then(function (results) {
-        // results are available to us inside the .then
         res.json(results);
       })
       .catch((error) => {
@@ -150,23 +137,18 @@ module.exports = function (app) {
       });
   });
 
-  // Express Route Params: https://www.youtube.com/watch?v=MuMs1pLuT7I
+  //Delete user specified zip code entery/column from ZipCode table
   app.delete("/api/forecast/:id", function (req, res) {
-    zipCodeModel
-      .destroy({
-        where: {
-          id: req.params.id,
-        },
-      })
+    db.ZipCodes.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
       .then(function (results) {
-        // results are available to us inside the .then
         res.json(results);
       })
       .catch((error) => {
         throw error;
       });
   });
-  // duplicate for /weather end
-
-  // end of module.exports
 };
