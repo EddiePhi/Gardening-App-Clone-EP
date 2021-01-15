@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello Bulma!</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-style has-shadow mb-5">
+      <div class="navbar-brand">
+        <a class="navbar-item has-text-white" href="#">
+          <p>Gardening App</p>
+        </a>
+      </div>
+      <div class="navbar-menu" id="nav-links">
+        <div class="navbar-end mr-3">
+          <div class="level">
+            <div class="level-right">
+              <p class="level-item has-text-white">Thu. January 14, 2021</p>
+              <p class="level-item has-text-white"></p>
+              <p class="level-item has-text-white">Weather</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <section class="section">
+      <div class="container" style="max-width: 100%">
+        <div class="columns">
+          <div class="column is-2">
+            <div class="menu sticky">
+              <ul id="menu" class="menu-list">
+                <li>
+                  <a
+                    id="plants"
+                    class="button has-text-white is-large side-nav-btn is-rounded"
+                    >Plants</a
+                  >
+                </li>
+                <li>
+                  <a
+                    id="forecast"
+                    class="button has-text-white side-nav-btn is-large is-rounded"
+                  >
+                    Forecast
+                  </a>
+                </li>
+                <li>
+                  <a
+                    id="Settings"
+                    class="button has-text-white is-large side-nav-btn is-rounded"
+                  >
+                    Settings
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="side-nav-btn has-text-white button is-large is-rounded"
+                    id="Home"
+                    >Home</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

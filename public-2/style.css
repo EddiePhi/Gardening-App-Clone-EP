@@ -1,0 +1,31 @@
+body {
+  height: 100vh;
+  background-color: #6bac47;
+}
+
+.max-width {
+  max-width: 100%;
+}
+
+.max-height {
+  max-height: 100%;
+}
+
+.menu-text {
+  color: white;
+}
+
+.side-nav-btn {
+  background-color: #a8d05f;
+  margin: 50px;
+  padding: 100px;
+  color: white;
+}
+
+.navbar-style {
+  background-color: #72963b;
+}
+
+.logo {
+  padding-left: 10px;
+}
