@@ -5,10 +5,12 @@
 // We are linking our routes to a series of "data" sources.
 // These data sources hold arrays of information on table-data, waitinglist, etc.
 // ===============================================================================
+require("dotenv").config();
 
+const fetch = require('isomorphic-fetch');
 const weatherDB = require("../db/weatherDB.json");
 const fs = require("fs");
-const shortId = require("shortid"); // Assitance from Tutor Mazin Abed
+// const shortId = require("shortid"); // Assitance from Tutor Mazin Abed
 // var plotModel = require("../models/plotModel.js")
 // var plantModel = require("../models/plantModel.js")
 // var zipCodeModel = require("../models/zipCodeModel.js")
@@ -23,6 +25,22 @@ module.exports = function (app) {
   // In each of the below cases when a user visits a link
   // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
   // ---------------------------------------------------------------------------
+  app.get("/api/forecast", function (req, res) {
+  fetch("https://api.openweathermap.org/data/2.5/weather?zip=03820,us&appid="+ process.env.API_KEY)
+    .then(async function(weatherdata) {
+      const data = await weatherdata.json()
+    console.log(data)
+    res.json(data) 
+  }) // Convert data to json
+ 
+  
+    // catch any errors
+  // .then(res =>  {return res.json()})
+  // .then(json => console.log(json))
+  // .then();
+  });
+  
+
 
   // duplicate GET, POST, and DELETE method for /plants
   app.get("/api/plants", function (req, res) {
