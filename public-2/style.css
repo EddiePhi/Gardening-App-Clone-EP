@@ -29,3 +29,56 @@ body {
 .logo {
   padding-left: 10px;
 }
+
+.plant-button {
+  font-family: 'Press Start 2P', cursive;
+  color: black;
+  height: 200px;
+  width: 150px;
+}
+
+#tomato {
+  background-image: url(../public-2/plant-images/tomato.jpg);
+}
+
+#cucumber {
+  background-image: url(../public-2/plant-images/cucumber.jpg);
+}
+
+#dill {
+  background-image: url(../public-2/plant-images/dill.jpg);
+
+}
+
+#lettuce {
+  background-image: url(../public-2/plant-images/lettuce.jpg);
+
+}
+
+#pepper {
+  background-image: url(../public-2/plant-images/peppers.jpg);
+
+}
+
+#thyme {
+  background-image: url(../public-2/plant-images/thyme.jpg);
+
+}
+
+#dill {
+background-image: url(../public-2/plant-images/dill.jpg);
+}
+
+#spinach {
+  background-image: url(../public-2/plant-images/spinach.jpg);
+
+}
+
+#sage {
+  background-image: url(../public-2/plant-images/sage.jpg);
+
+}
+
+#rosemary {
+  background-image: url(../public-2/plant-images/rosemary.jpg);
+}
