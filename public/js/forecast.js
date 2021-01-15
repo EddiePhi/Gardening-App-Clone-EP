@@ -1,12 +1,10 @@
-forecastRender();
-
 function forecastRender() {
     // must be locally saved for now until we can save in database from plot.js input
-    let zipCode = "03857"
+    // let zipCode = "03820"
 
 
     //AJAX request for 5 day forecast
-    let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?zip=${zipCode},us&appid=0f848c85d2b3dd23041f7c21a9bd6d0b`;
+    let forecastURL = `http://localhost:8080/api/forecast`;
     $.ajax({
     url: forecastURL,
     method: "GET",
@@ -94,3 +92,4 @@ function forecastRender() {
         `);
     });
 };
+forecastRender();
