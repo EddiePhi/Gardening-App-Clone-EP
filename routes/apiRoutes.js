@@ -7,7 +7,7 @@
 // ===============================================================================
 require("dotenv").config();
 
-const fetch = require('isomorphic-fetch');
+const fetch = require("isomorphic-fetch");
 const weatherDB = require("../db/weatherDB.json");
 const fs = require("fs");
 // const shortId = require("shortid"); // Assitance from Tutor Mazin Abed
@@ -26,22 +26,24 @@ module.exports = function (app) {
   // In each of the below cases when a user visits a link
   // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
   // ---------------------------------------------------------------------------
+
+  //THIRD PARTY API ROUTE//
   app.get("/api/forecast", function (req, res) {
-  fetch("https://api.openweathermap.org/data/2.5/weather?zip=03820,us&appid="+ process.env.API_KEY)
-    .then(async function(weatherdata) {
-      const data = await weatherdata.json()
-    console.log(data)
-    res.json(data) 
-  }) // Convert data to json
- 
-  
-    // catch any errors
-  // .then(res =>  {return res.json()})
-  // .then(json => console.log(json))
-  // .then();
+    fetch(
+      "https://api.openweathermap.org/data/2.5/weather?zip=03820,us&appid=" +
+        process.env.API_KEY
+    ).then(async function (weatherdata) {
+      const data = await weatherdata.json();
+      console.log(data);
+      res.json(data);
+    });
   });
 
-  // GET all data from Plants table
+  //PLANTS TABLE API ROUTES
+
+  //GET REQUESTS//
+
+  // get all data from Plants table//
   app.get("/api/plants", function (req, res) {
     db.Plants.findAll({})
       .then(function (results) {
@@ -51,6 +53,8 @@ module.exports = function (app) {
         throw error;
       });
   });
+
+  //POST REQUESTS
 
   //Add New plant/column to Plants table
   app.post("/api/plants", function (req, res) {
@@ -73,6 +77,8 @@ module.exports = function (app) {
       });
   });
 
+  //DELETE REQUESTS//
+
   //Delete plant from Plants table
   app.delete("/api/plants/:id", function (req, res) {
     db.Plants.destroy({
@@ -87,6 +93,8 @@ module.exports = function (app) {
         throw error;
       });
   });
+
+  //PLOT TABLE API REQUESTS//
 
   // GET all data from Plots table
   app.get("/api/plot", function (req, res) {
@@ -116,7 +124,7 @@ module.exports = function (app) {
       });
   });
 
-  //Delete user specified plot/column from Plots table
+  //Delete user specified plot/row from Plots table
   app.delete("/api/plot/:id", function (req, res) {
     db.Plots.destroy({
       where: {
@@ -132,7 +140,7 @@ module.exports = function (app) {
   });
 
   //GET all zip codes from ZipCodes table
-  app.get("/api/forecast", function (req, res) {
+  app.get("/api/zipcode", function (req, res) {
     db.ZipCodes.findAll({})
       .then(function (results) {
         res.json(results);
@@ -143,11 +151,11 @@ module.exports = function (app) {
   });
 
   //Add zip code to ZipCodes table
-  app.post("/api/forecast", function (req, res) {
+  app.post("/api/zipcode", function (req, res) {
     console.log(req.body);
 
     db.ZipCodes.create({
-      zip_code: req.body.zip_code,
+      zip_codes: req.body.zip_codes,
     })
       .then(function (results) {
         res.json(results);
@@ -158,7 +166,7 @@ module.exports = function (app) {
   });
 
   //Delete user specified zip code entery/column from ZipCode table
-  app.delete("/api/forecast/:id", function (req, res) {
+  app.delete("/api/zipcode/:id", function (req, res) {
     db.ZipCodes.destroy({
       where: {
         id: req.params.id,
