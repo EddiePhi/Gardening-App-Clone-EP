@@ -1,6 +1,7 @@
 body {
-  height: 100vh;
+  /* height: 100vh; */
   background-color: #6bac47;
+  font-family: "Press Start 2P", cursive;
 }
 
 .max-width {
@@ -28,4 +29,97 @@ body {
 
 .logo {
   padding-left: 10px;
+}
+
+.plant-button {
+  font-family: "Press Start 2P", cursive;
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  height: 200px;
+  width: 150px;
+  border-color: #000;
+  border-width: medium;
+  box-shadow: 20px 20px 15px rgba(0, 0, 0, 7);
+}
+
+.button:hover {
+  transform: translateY(-20px);
+}
+
+
+/* button photo backgrounds */
+#tomato {
+  background-image: url(../public-2/plant-images/tomato.jpg);
+}
+
+#cucumber {
+  background-image: url(../public-2/plant-images/cucumber.jpg);
+}
+
+#dill {
+  background-image: url(../public-2/plant-images/dill.jpg);
+}
+
+#lettuce {
+  background-image: url(../public-2/plant-images/lettuce.jpg);
+}
+
+#peppers {
+  background-image: url(../public-2/plant-images/peppers.jpg);
+}
+
+#thyme {
+  background-image: url(../public-2/plant-images/thyme.jpg);
+}
+
+#dill {
+  background-image: url(../public-2/plant-images/dill.jpg);
+}
+
+#spinach {
+  background-image: url(../public-2/plant-images/spinach.jpg);
+}
+
+#sage {
+  background-image: url(../public-2/plant-images/sage.png);
+}
+
+#rosemary {
+  background-image: url(../public-2/plant-images/rosemary.jpg);
+}
+
+/* Modal CSS template copied and pasted from w3schools with some minor edits*/
+
+/* The Modal (background) */
+#modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  /* padding-top: 50px; Location of the box */
+  overflow: auto; /* Enable scroll if needed */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: beige;
+  margin-top: 100px;
+  padding: 200px;
+  border: 1px solid #888;
+  width: 60%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
