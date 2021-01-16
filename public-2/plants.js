@@ -1,4 +1,5 @@
 // Buttons Variables
+// const plantBtn = document.getElementsByClassName("plant-button")
 const tomBtn = document.getElementById("tomato");
 const letBtn = document.getElementById("lettuce");
 const spinBtn = document.getElementById("spinach");
@@ -11,88 +12,49 @@ const roseBtn = document.getElementById("rosemary");
 
 // Copied and pasted from w3 schools
 // Get the Modal
-const tomModal = document.getElementById("tom-modal");
-const letModal = document.getElementById("let-modal");
-const spinModal = document.getElementById("spin-modal");
-const cucModal = document.getElementById("cuc-modal");
-const pepModal = document.getElementById("pep-modal");
-const thyModal = document.getElementById("thy-modal");
-const dillModal = document.getElementById("dill-modal");
-const sageModal = document.getElementById("sage-modal");
-const roseModal = document.getElementById("rose-modal");
+const modal = document.getElementById("modal");
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+const span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
-tomBtn.onclick = function () {
-  tomModal.style.display = "block";
+tomBtn.onclick = () => {
+  modal.style.display = "block";
 };
-letBtn.onclick = function () {
-  letModal.style.display = "block";
+letBtn.onclick = () => {
+  modal.style.display = "block";
 }
-spinBtn.onclick = function () {
-  spinModal.style.display = "block";
+spinBtn.onclick = () => {
+  modal.style.display = "block";
 }
-cucBtn.onclick = function () {
-  cucModal.style.display = "block";
+cucBtn.onclick = () => {
+  modal.style.display = "block";
 }
-pepBtn.onclick = function () {
-  pepModal.style.display = "block";
+pepBtn.onclick = () => {
+  modal.style.display = "block";
 }
-thyBtn.onclick = function () {
-  thyModal.style.display = "block";
+thyBtn.onclick = () => {
+  modal.style.display = "block";
 }
-dillBtn.onclick = function () {
-  dillModal.style.display = "block";
+dillBtn.onclick = () => {
+  modal.style.display = "block";
 }
-sageBtn.onclick = function () {
-  sageModal.style.display = "block";
+sageBtn.onclick = () => {
+  modal.style.display = "block";
 }
-roseBtn.onclick = function () {
-  roseModal.style.display = "block";
+roseBtn.onclick = () => {
+  modal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  tomModal.style.display = "none";
-  letModal.style.display = "none";
-  spinModal.style.display = "none";
-  cucModal.style.display = "none";
-  pepModal.style.display = "none";
-  thyModal.style.display = "none";
-  dillModal.style.display = "none";
-  sageModal.style.display = "none";
-  roseModal.style.display = "none";
+span.onclick = () => {
+  modal.style.display = "none";
 }
 
+
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-  if (event.target == tomModal) {
-    tomModal.style.display = "none";
-  }
-  if (event.target == letModal) {
-    letModal.style.display = "none";
-  }
-  if (event.target == spinModal) {
-    spinModal.style.display = "none";
-  }
-  if (event.target == cucModal) {
-    cucModal.style.display = "none";
-  }
-  if (event.target == pepModal) {
-    pepModal.style.display = "none";
-  }
-  if (event.target == thyModal) {
-    thyModal.style.display = "none";
-  }
-  if (event.target == dillModal) {
-    dillModal.style.display = "none";
-  }
-  if (event.target == sageModal) {
-    sageModal.style.display = "none";
-  }
-  if (event.target == roseModal) {
-    roseModal.style.display = "none";
+window.onclick = (event) => {
+  if (event.target == modal) {
+    modal.style.display = "none";
   }
 };
