@@ -4,11 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Plants!</title>
+    <!-- Bulma -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
     />
-    <!-- <link rel="stylesheet" href="./node_modules/nes.css/css/nes.min.css"> -->
+    <!-- NES -->
+    <link rel="stylesheet" href="./node_modules/nes.css/css/nes.min.css">
+    <!-- NES FONTS -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
@@ -17,6 +20,7 @@
     <link rel="stylesheet" href="plant-style.css" />
   </head>
   <body>
+    <!-- NAVBAR -->
     <nav class="navbar navbar-style has-shadow mb-5">
       <div class="navbar-brand">
         <a class="navbar-item has-text-white" href="#">
@@ -83,11 +87,18 @@
               >
                 Tomato
               </button>
-              <!-- Modal content -->
-              <div class="modal" id="modal">
+              <!-- TOMATO MODAl -->
+              <div class="modal" id="tom-modal">
               <div class="modal-content">
                 <span class="close">&times;</span>
-                <p>Tomatoes: technically a fruit.</p>
+                <h1>Tomatoes: technically a fruit.</h1>
+                <p>Attack: 50pp</p>
+                <br>
+                <p>Defense: 0pp</p>
+                <br>
+                <p>Type: Water</p>
+                <br>
+                <p>Weakness: Italians</p>
             </div>
             </div>
             <button
@@ -96,12 +107,40 @@
             >
               Lettuce
             </button>
+            <!-- LETTUCE MODAL -->
+            <div class="modal" id="let-modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <h1>Lettuce: crunchy water.</h1>
+                <p>Attack: 50pp</p>
+                <br>
+                <p>Defense: 0pp</p>
+                <br>
+                <p>Type: Water</p>
+                <br>
+                <p>Weakness: Salads</p>
+            </div>
+            </div>
             <button
               class="button mx-6 my-6 plant-button"
               id="spinach"
             >
               Spinach
             </button>
+            <!-- SPINACH MODAL -->
+            <div class="modal" id="spin-modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <h1>Spinach: cartoon steroids.</h1>
+                <p>Attack: 50pp</p>
+                <br>
+                <p>Defense: 0pp</p>
+                <br>
+                <p>Type: Water</p>
+                <br>
+                <p>Weakness: Popeye the Sailor Man</p>
+            </div>
+            </div>
           </div>
 
           <div class="button-row is-vcentered">
@@ -111,12 +150,39 @@
             >
               Cucumber
             </button>
+            <!-- CUCUMBER MODAL -->
+            <div class="modal" id="cuc-modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <h1>Cucumber: potential pickles.</h1>
+                <p>Attack: 50pp</p>
+                <br>
+                <p>Defense: 0pp</p>
+                <br>
+                <p>Type: Water</p>
+                <br>
+                <p>Weakness: Vinegar</p>
+            </div>
+            </div>
             <button
               class="button mx-6 my-6 plant-button"
               id="peppers"
             >
               Peppers
             </button>
+            <div class="modal" id="pep-modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <h1>Pepper: sometimes they're good.</h1>
+                <p>Attack: 50pp</p>
+                <br>
+                <p>Defense: 0pp</p>
+                <br>
+                <p>Type: Water</p>
+                <br>
+                <p>Weakness: Polly, who packed a bunch of pickled peppers</p>
+            </div>
+            </div>
             <button class="button mx-6 my-6 plant-button" id="thyme">
               Thyme
             </button>
