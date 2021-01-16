@@ -1,47 +1,35 @@
-var tomatoButton = document.getElementById("tomato");
-var lettuceButton = document.getElementById("lettuce");
-var spinachButton = document.getElementById("spinach");
-var cucumberButton = document.getElementById("cucumber");
-var peppersButton = document.getElementById("peppers");
-var thymeButton = document.getElementById("thyme");
-var dillButton = document.getElementById("dill");
-var sageButton = document.getElementById("sage");
-var rosemaryButton = document.getElementById("rosemary");
+// Buttons Variables
+const tomBtn = document.getElementById("tomato");
 
+const lettuceButton = document.getElementById("lettuce");
+const spinachButton = document.getElementById("spinach");
+const cucumberButton = document.getElementById("cucumber");
+const peppersButton = document.getElementById("peppers");
+const thymeButton = document.getElementById("thyme");
+const dillButton = document.getElementById("dill");
+const sageButton = document.getElementById("sage");
+const rosemaryButton = document.getElementById("rosemary");
 
+// Copied and pasted from w3 schools
+// Get the Modal
+const modal = document.getElementById("modal");
 
-tomatoButton.onclick = function() {
-    alert("clicked tomato")
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+tomBtn.onclick = function () {
+  modal.style.display = "block";
 };
 
-lettuceButton.onclick = function() {
-    alert("clicked lettuce")
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+  modal.style.display = "none";
 };
 
-spinachButton.onclick = function() {
-    alert("clicked spinach")
-}
-
-cucumberButton.onclick = function() {
-    alert("clicked cucumber")
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    tomatoStats.style.display = "none";
+  }
 };
-
-peppersButton.onclick = function() {
-    alert("clicked peppers")
-};
-
-thymeButton.onclick = function() {
-    alert("clicked thyme")
-};
-
-dillButton.onclick = function() {
-    alert("clicked dill")
-}
-
-sageButton.onclick = function() {
-    alert("clicked sage")
-};
-
-rosemaryButton.onclick = function() {
-    alert("clicked rosemary")
-}

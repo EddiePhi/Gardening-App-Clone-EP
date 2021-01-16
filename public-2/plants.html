@@ -8,8 +8,12 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
     />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="./node_modules/nes.css/css/nes.min.css"> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -70,23 +74,69 @@
               </ul>
             </div>
           </div>
-         <div class="button-row is-vcentered">
-            <button class="button is-rounded mx-6 my-6 plant-button" id="tomato">Tomato</button>
-            <button class="button is-rounded mx-6 my-6 plant-button" id="lettuce">Lettuce</button>
-            <button class="button is-rounded mx-6 my-6 plant-button" id="spinach">Spinach</button>
+          <div class="column is-9 is-offset-2">
+            <!-- Buttons  -->
+            <div class="button-row is-vcentered">
+              <button
+                class="button is-rounded mx-6 my-6 plant-button"
+                id="tomato"
+              >
+                Tomato
+              </button>
+              <!-- Modal content -->
+              <div class="modal" id="modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Tomatoes: technically a fruit.</p>
+            </div>
+        </div>
+            <button
+              class="button is-rounded mx-6 my-6 plant-button"
+              id="lettuce"
+            >
+              Lettuce
+            </button>
+            <button
+              class="button is-rounded mx-6 my-6 plant-button"
+              id="spinach"
+            >
+              Spinach
+            </button>
           </div>
-          
+
           <div class="button-row is-vcentered">
-            <button class="button is-rounded mx-6 my-6 plant-button" id="cucumber">Cucumber</button>
-            <button class="button is-rounded mx-6 my-6 plant-button" id="peppers">Peppers</button>
-            <button class="button is-rounded mx-6 my-6 plant-button" id="thyme">Thyme</button>
+            <button
+              class="button is-rounded mx-6 my-6 plant-button"
+              id="cucumber"
+            >
+              Cucumber
+            </button>
+            <button
+              class="button is-rounded mx-6 my-6 plant-button"
+              id="peppers"
+            >
+              Peppers
+            </button>
+            <button class="button is-rounded mx-6 my-6 plant-button" id="thyme">
+              Thyme
+            </button>
           </div>
-          
+
           <div class="button-row is-vcentered">
-            <button class="button is-rounded mx-6 my-6 plant-button" id="dill">Dill</button>
-            <button class="button is-rounded mx-6 my-6 plant-button" id="sage">Sage</button>
-            <button class="button is-rounded mx-6 my-6 plant-button" id="rosemary">Rosemary</button>
+            <button class="button is-rounded mx-6 my-6 plant-button" id="dill">
+              Dill
+            </button>
+            <button class="button is-rounded mx-6 my-6 plant-button" id="sage">
+              Sage
+            </button>
+            <button
+              class="button is-rounded mx-6 my-6 plant-button"
+              id="rosemary"
+            >
+              Rosemary
+            </button>
           </div>
+        </div>
       </div>
     </section>
     <script src="plants.js"></script>
