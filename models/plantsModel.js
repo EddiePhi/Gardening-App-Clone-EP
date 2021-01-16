@@ -11,7 +11,7 @@ module.exports = function (sequelize, DataTypes) {
     plant_facts: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: { len: [1, 30] },
+      validate: { len: [1, 150] },
     },
     days_to_maturity: {
       type: DataTypes.INTEGER,
@@ -31,7 +31,7 @@ module.exports = function (sequelize, DataTypes) {
     spread: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      isFloat: true,
+      isNumeric: true,
     },
     height: {
       type: DataTypes.INTEGER,

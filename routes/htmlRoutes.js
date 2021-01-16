@@ -6,39 +6,33 @@
 // ===============================================================================
 const path = require("path");
 
-
 // ===============================================================================
 // ROUTING
 // ===============================================================================
 
-module.exports = function(app) {
+module.exports = function (app) {
   // HTML GET Requests
   // Below code handles when users "visit" a page.
   // In each of the below cases the user is shown an HTML page of content
   // ---------------------------------------------------------------------------
 
-  app.get("/notes", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/html/notes.html"));
-  });
-
-
   // Custom html routes
-  app.get("/plants", function(req, res) {
+  app.get("/plants", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/html/plants.html"));
   });
 
-  app.get("/plot", function(req, res) {
+  app.get("/plot", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/html/plot.html"));
   });
 
-  app.get("/forecast", function(req, res) {
+  app.get("/forecast", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/html/forecast.html"));
   });
+
   // Custom routes end
 
-
   // If no matching route is found default to home
-  app.get("*", function(req, res) {
+  app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/html/index.html"));
   });
 };
