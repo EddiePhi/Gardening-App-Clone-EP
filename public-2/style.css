@@ -39,7 +39,12 @@ body {
   height: 200px;
   width: 150px;
   border-color: #000;
-  border-width: thin;
+  border-width: medium;
+  box-shadow: 20px 20px 15px rgba(0, 0, 0, 7);
+}
+
+.button:hover {
+  transform: translateY(-20px);
 }
 
 
@@ -91,15 +96,15 @@ body {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 200px; /* Location of the box */
+  /* padding-top: 50px; Location of the box */
   overflow: auto; /* Enable scroll if needed */
 }
 
 /* Modal Content */
 .modal-content {
   background-color: beige;
-  margin: 100px;
-  padding: 20px;
+  margin-top: 100px;
+  padding: 200px;
   border: 1px solid #888;
   width: 60%;
 }
