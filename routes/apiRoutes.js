@@ -29,8 +29,19 @@ module.exports = function (app) {
 
   //THIRD PARTY API ROUTE//
   app.get("/api/forecast", function (req, res) {
+    let zipCode = "03857";
+    
+    // db.ZipCodes.find({where: {id: req.params.id}})
+    //   .then(function (results) {
+    //     res.json(results);
+    //     return results.zip_codes;
+    //   })
+    //   .catch((error) => {
+    //     throw error;
+    //   });
+
     fetch(
-      "https://api.openweathermap.org/data/2.5/weather?zip=03820,us&appid=" +
+      "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipCode + ",us&appid=" +
         process.env.API_KEY
     ).then(async function (weatherdata) {
       const data = await weatherdata.json();
