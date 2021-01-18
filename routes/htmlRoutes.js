@@ -18,7 +18,7 @@ module.exports = function (app) {
 
   // Custom html routes
   app.get("/plants", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/html/plants.html"));
+    res.sendFile(path.join(__dirname, "../public-2/plants.html"));
   });
 
   app.get("/plot", function (req, res) {

@@ -1,5 +1,11 @@
+//make a fetch call to the API, save the data
+fetch("http://localhost:8080/api/plants"
+).then(response => response.json())
+.then(plantdata => {
+  console.log(plantdata);
+});
+
 // Buttons Variables
-// const plantBtn = document.getElementsByClassName("plant-button")
 const tomBtn = document.getElementById("tomato");
 const letBtn = document.getElementById("lettuce");
 const spinBtn = document.getElementById("spinach");
