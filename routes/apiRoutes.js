@@ -28,15 +28,23 @@ module.exports = function (app) {
   // ---------------------------------------------------------------------------
 
   //THIRD PARTY API ROUTE//
-  app.get("/api/forecast", function (req, res) {
-    fetch(
-      "https://api.openweathermap.org/data/2.5/weather?zip=03820,us&appid=" +
-        process.env.API_KEY
-    ).then(async function (weatherdata) {
-      const data = await weatherdata.json();
-      console.log(data);
-      res.json(data);
-    });
+  app.get("/api/forecast/:id", function (req, res) {
+    db.ZipCodes.findAll({where: {id: req.params.id}})
+      .then(function (results) {
+        fetch(
+          "https://api.openweathermap.org/data/2.5/forecast?zip=" + results[0].zip_codes + ",us&appid=" +
+            process.env.API_KEY
+        ).then(async function (weatherdata) {
+          const data = await weatherdata.json();
+          console.log(data);
+          res.json(data);
+        });
+      })
+      .catch((error) => {
+        throw error;
+      });
+
+    
   });
 
   //PLANTS TABLE API ROUTES

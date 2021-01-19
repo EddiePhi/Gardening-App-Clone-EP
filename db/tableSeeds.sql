@@ -1,6 +1,6 @@
 USE gardening_db;
 
-INSERT INTO plants (plant_name, plant_facts, days_to_maturity, fruit_size_inches, sun, spread, height, createdAt, UpdatedAt)
+INSERT INTO plants (plant_name, plant_facts, days_to_maturity, fruit_size_inches, sun, spread, height, createdAt, updatedAt)
 
 VALUES ("Tomato", "Tomatoes are rich in lycopene, an antioxidant that is good for the heart and effective against certain cancers.",
  49, 3, "Full Sun", 55, 38, NOW(), NOW()),
@@ -21,3 +21,4 @@ VALUES ("Test plot", 1, 1, NOW(), NOW() )
 
 INSERT INTO zipcodes (zip_code, createdAt, updatedAt)
 VALUES ("03857", NOW(), NOW());
+
