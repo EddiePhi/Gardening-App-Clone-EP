@@ -105,14 +105,14 @@ body {
 /* Modal Content */
 .modal-content {
   background-color: beige;
-  margin-top: 90px;
+  margin-top: 10px;
   padding: 90px;
   border: 1px solid #888;
   width: 60%;
 }
 
 .modal-content h1 {
-  padding: 20px;
+  padding: 10px;
   font-size: large;
 }
 
