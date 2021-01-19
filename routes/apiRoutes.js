@@ -29,8 +29,11 @@ module.exports = function (app) {
 
   //THIRD PARTY API ROUTE//
   app.get("/api/forecast", function (req, res) {
+    let zipCode = "03820";
     fetch(
-      "https://api.openweathermap.org/data/2.5/weather?zip=03820,us&appid=" +
+      "https://api.openweathermap.org/data/2.5/weather?zip=" +
+        zipCode +
+        ",us&appid=" +
         process.env.API_KEY
     ).then(async function (weatherdata) {
       const data = await weatherdata.json();
@@ -142,6 +145,21 @@ module.exports = function (app) {
   //GET all zip codes from ZipCodes table
   app.get("/api/zipcode", function (req, res) {
     db.ZipCodes.findAll({})
+      .then(function (results) {
+        res.json(results);
+      })
+      .catch((error) => {
+        throw error;
+      });
+  });
+
+  //get a specific zip for
+  app.get("/api/forcast/:zip_codes", function (req, res) {
+    db.ZipCodes.findAll({
+      where: {
+        zip_codes: req.params.zip_codes,
+      },
+    })
       .then(function (results) {
         res.json(results);
       })

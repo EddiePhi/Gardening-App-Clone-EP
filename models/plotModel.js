@@ -8,12 +8,12 @@ module.exports = function (sequelize, DataTypes) {
     plot_rows: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validate: { min: 1, max: 10 },
+      validate: { min: 1, max: 5 },
     },
     plot_columns: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validate: { min: 1, max: 10 },
+      validate: { min: 1, max: 5 },
     },
   });
   return Plots;
