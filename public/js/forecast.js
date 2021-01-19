@@ -1,12 +1,11 @@
 function forecastRender() {
-    // must be locally saved for now until we can save in database from plot.js input
-    // let zipCode = "03857"
+    // Variables for hard coded zipcode
+        // let zipCode = "03857"
+        // let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${zipCode}&appid=0f848c85d2b3dd23041f7c21a9bd6d0b`;
 
 
 
-    //AJAX request for 5 day forecast
-    // let forecastURL = `http://localhost:8080/api/forecast`;
-    // let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${zipCode}&appid=0f848c85d2b3dd23041f7c21a9bd6d0b`;
+    //AJAX request for 5 day forecast, using id in Zip Code database
     $.get("/api/forecast/1").then(function (response) {
 
         
@@ -63,31 +62,31 @@ function forecastRender() {
         //Create <div> elements to append date text
         date1.html(`
             <div class="mt-6 text">${dateA}</div>
-            <img id="icon" class="mt-6" alt="weather-icon" src="http://openweathermap.org/img/wn/${iconA}@2x.png"/>
+            <img id="icon" class="mt-6 pixelate" alt="weather-icon" src="http://openweathermap.org/img/wn/${iconA}@2x.png"/>
             <section class="mt-6">Temp: ${tempAF}°F</section>
             <section class="mt-6">Humidity: ${humidityA}%</section>
         `);
         date2.html(`
             <div class="mt-6 text">${dateB}</div>
-            <img id="icon" class="mt-6" alt="weather-icon" src="http://openweathermap.org/img/wn/${iconB}@2x.png"/>
+            <img id="icon" class="mt-6 pixelate" alt="weather-icon" src="http://openweathermap.org/img/wn/${iconB}@2x.png"/>
             <section class="mt-6">Temp: ${tempBF}°F</section>
             <section class="mt-6">Humidity: ${humidityB}%</section>
         `);
         date3.html(`
             <div class="mt-6 text">${dateC}</div>
-            <img id="icon" class="mt-6" alt="weather-icon" src="http://openweathermap.org/img/wn/${iconC}@2x.png"/>
+            <img id="icon" class="mt-6 pixelate" alt="weather-icon" src="http://openweathermap.org/img/wn/${iconC}@2x.png"/>
             <section class="mt-6">Temp: ${tempCF}°F</section>
             <section class="mt-6">Humidity: ${humidityC}%</section>
         `);
         date4.html(`
             <div class="mt-6 text">${dateD}</div>
-            <img id="icon" class="mt-6" alt="weather-icon" src="http://openweathermap.org/img/wn/${iconD}@2x.png"/>
+            <img id="icon" class="mt-6 pixelate" alt="weather-icon" src="http://openweathermap.org/img/wn/${iconD}@2x.png"/>
             <section class="mt-6">Temp: ${tempDF}°F</section>
             <section class="mt-6">Humidity: ${humidityD}%</section>
         `);
         date5.html(`
             <div class="mt-6 text">${dateE}</div>
-            <img id="icon" class="mt-6" alt="weather-icon" src="http://openweathermap.org/img/wn/${iconE}@2x.png"/>
+            <img id="icon" class="mt-6 pixelate" alt="weather-icon" src="http://openweathermap.org/img/wn/${iconE}@2x.png"/>
             <section class="mt-6">Temp: ${tempEF}°F</section>
             <section class="mt-6">Humidity: ${humidityE}%</section>
         `);
