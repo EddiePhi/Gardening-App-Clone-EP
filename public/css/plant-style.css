@@ -52,43 +52,43 @@ body {
 
 /* button photo backgrounds */
 #tomato {
-  background-image: url(../public-2/plant-images/tomato.png);
+  background-image: url(../assets/plant-images/tomato.png);
 }
 
 #cucumber {
-  background-image: url(../public-2/plant-images/cucumber.png);
+  background-image: url(../assets/plant-images/cucumber.png);
 }
 
 #dill {
-  background-image: url(../public-2/plant-images/dill.png);
+  background-image: url(../assets/plant-images/dill.png);
 }
 
 #lettuce {
-  background-image: url(../public-2/plant-images/lettuce.png);
+  background-image: url(../assets/plant-images/lettuce.png);
 }
 
 #peppers {
-  background-image: url(../public-2/plant-images/pepper.png);
+  background-image: url(../assets/plant-images/pepper.png);
 }
 
 #thyme {
-  background-image: url(../public-2/plant-images/thyme.png);
+  background-image: url(../assets/plant-images/thyme.png);
 }
 
 #dill {
-  background-image: url(../public-2/plant-images/dill.png);
+  background-image: url(../assets/plant-images/dill.png);
 }
 
 #spinach {
-  background-image: url(../public-2/plant-images/spinach.png);
+  background-image: url(../assets/plant-images/spinach.png);
 }
 
 #sage {
-  background-image: url(../public-2/plant-images/sage.png);
+  background-image: url(../assets/plant-images/sage.png);
 }
 
 #rosemary {
-  background-image: url(../public-2/plant-images/rosemary.png);
+  background-image: url(../assets/plant-images/rosemary.png);
 }
 
 /* Modal CSS template copied and pasted from w3schools with some minor edits*/
