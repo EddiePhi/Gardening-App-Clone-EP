@@ -7,7 +7,9 @@ function forecastRender() {
     //AJAX request for 5 day forecast
     // let forecastURL = `http://localhost:8080/api/forecast`;
     // let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${zipCode}&appid=0f848c85d2b3dd23041f7c21a9bd6d0b`;
-    $.get("/api/forecast").then(function (response) {
+    $.get("/api/forecast/1").then(function (response) {
+
+        
         console.log(response);
 
         //Set forecast dates

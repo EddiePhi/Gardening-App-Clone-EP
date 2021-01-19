@@ -1,6 +1,6 @@
 USE gardening_db;
 
-INSERT INTO plants (plant_name, plant_facts, days_to_maturity, fruit_size_inches, sun, spread, height, createdAt, UpdatedAt)
+INSERT INTO plants (plant_name, plant_facts, days_to_maturity, fruit_size_inches, sun, spread, height, createdAt, updatedAt)
 
 VALUES ("Tomato", "Tomatoes are rich in lycopene, an antioxidant that is good for the heart and effective against certain cancers.",
  49, 3, "Full Sun", 55, 38, now(), now()),
@@ -12,12 +12,12 @@ Use succession planting to maximize and extend harvests", 45, 0, "Full Sun, Part
 ("Rosemary", "Start seed early indoors. Plants tolerate light frost; set outside early", 90, 0, "Full Sun", 18, 28, now(), now()),
 ("Sage", "Sage leaf tea is useful in treating colds and for aiding digestion.", 90, 0, "Full Sun", 20, 18, now(), now()),
 ("Dill", "TUse seeds to flavor pickles and the leaves to brighten salads,
- soups, omelets and vegetables.", 50, 0, "Full Sun", 20, 36, now(), now())
+ soups, omelets and vegetables.", 50, 0, "Full Sun", 20, 36, now(), now());
 
 
 INSERT INTO plots (plot_name, plot_rows, plot_columns, createdAt, updatedAt)
-VALUES ("Test plot", 1, 1, now(), now () )
+VALUES ("Test plot", 1, 1, now(), now () );
 
 
-INSERT INTO zipcodes (zip_code, createdAt, updatedAt)
+INSERT INTO zipcodes (zip_codes, createdAt, updatedAt)
 VALUES ("03857", now(), now());
