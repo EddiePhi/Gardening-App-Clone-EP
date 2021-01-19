@@ -7,8 +7,6 @@ const $saveNoteBtn = $(".save-note");
 const $returnBtn = $("#return");
 const $noteList = $(".list-container .list-group");
 
-
-
 // Custom event listeners
 const $plusPlantBtn = $(".plus-plot");
 const $rowsInput = $("#rows-input");
@@ -50,7 +48,6 @@ const deleteNote = (id) => {
   });
 };
 
-
 // If there is an activeNote, display it, otherwise render empty inputs
 const renderActiveNote = () => {
   $saveNoteBtn.hide();
@@ -63,11 +60,13 @@ const renderActiveNote = () => {
     // $noteText.val(activeNote.text);
 
     $titleDiv.attr("readonly", true);
-    $titleDiv.text(`columns: ${activeNote.plot_columns} \n rows: ${activeNote.plot_rows} \n`);
+    $titleDiv.text(
+      `columns: ${activeNote.plot_columns} \n rows: ${activeNote.plot_rows} \n`
+    );
     // consider .html() method for jquery
     // $titleDiv.html(`<div>Test .html() insert</div>`);
-    
-    $titleDiv.html(createTable)
+
+    $titleDiv.html(createTable);
   } else {
     $plotName.attr("readonly", false);
     // $noteText.attr("readonly", false);
@@ -84,7 +83,7 @@ const handleNoteSave = function () {
   const newNote = {
     plot_name: $plotName.val(),
     plot_rows: $rowsInput.val(),
-    plot_columns: $columnsInput.val()
+    plot_columns: $columnsInput.val(),
   };
 
   saveNote(newNote).then(() => {
@@ -174,14 +173,13 @@ const renderNoteList = (notes) => {
   $noteList.append(noteListItems);
 };
 
-
 // Added custom functions
 const handleTableRender = function () {
   const newNote = {
     plot_name: $plotName.val(),
     plot_columns: $columnsInput.val(),
     // rows: $rowsInput.val(),
-    // columns: 
+    // columns:
   };
   $noteText.val($columnsInput.val());
 
@@ -189,12 +187,12 @@ const handleTableRender = function () {
   //   getAndRenderNotes();
   //   renderActiveNote();
   // });
-  };
+};
 
-  // handleDateSave NOT UTILIZED. UNSURE HOW TO INITIATE.
+// handleDateSave NOT UTILIZED. UNSURE HOW TO INITIATE.
 const handleDateSave = function () {
   const currentDate = {
-    text: dayjs().format('ddd. MMM. DD, YYYY'),
+    text: dayjs().format("ddd. MMM. DD, YYYY"),
   };
 
   saveDate(currentDate).then(() => {
@@ -203,8 +201,8 @@ const handleDateSave = function () {
   });
 };
 
-  //populate current date
-$currentDate.html(dayjs().format('ddd. MMM. DD, YYYY'));
+//populate current date
+$currentDate.html(dayjs().format("ddd. MMM. DD, YYYY"));
 // End of custom functions
 
 // Gets notes from the db and renders them to the sidebar
@@ -220,39 +218,33 @@ $plotName.on("keyup", handleRenderSaveBtn);
 $noteText.on("keyup", handleRenderSaveBtn);
 
 // Custom event listeners (copied from existing code in this file)
-$savePlotBtn.on("click", handleNoteSave)
+$savePlotBtn.on("click", handleNoteSave);
 // End of custom event listeners
-
 
 // Gets and renders the initial list of notes
 getAndRenderNotes();
-
-
 
 // Functionality from external sources
 
 //Table generation:
 // https://www.w3resource.com/javascript-exercises/javascript-dom-exercise-7.php
 // https://stackoverflow.com/questions/8182608/dynamically-creating-table-with-user-input
-// https://stackoverflow.com/questions/171027/add-table-row-in-jquery 
+// https://stackoverflow.com/questions/171027/add-table-row-in-jquery
 const createTable = () => {
   let rn = activeNote.plot_rows;
   let cn = activeNote.plot_columns;
 
-  for(let r = 0; r < parseInt(rn); r++){
-      let x = document.getElementById('myTable').insertRow(r);
-      for (let c = 0; c < parseInt(cn); c++){
-        let y = x.insertCell(c);
-        // y.innerHTML = "Row-" + r + " Column-" + c; 
-        
-        
-        y.innerHTML = "<img class ='image' src='../assets/tomato.png'>"
-        //Img pops up when launching in default browser, but not when using nodemon
+  for (let r = 0; r < parseInt(rn); r++) {
+    let x = document.getElementById("myTable").insertRow(r);
+    for (let c = 0; c < parseInt(cn); c++) {
+      let y = x.insertCell(c);
+      // y.innerHTML = "Row-" + r + " Column-" + c;
 
-      };
-    };
+      y.innerHTML = "<img class ='image' src='../assets/tomato.png'>";
+      //Img pops up when launching in default browser, but not when using nodemon
+    }
+  }
 };
 
-
 // Click and drag selection: https://simonwep.github.io/selection/
-    // Included via script tag per https://github.com/Simonwep/selection - NOT UTILIZED YET
+// Included via script tag per https://github.com/Simonwep/selection - NOT UTILIZED YET
