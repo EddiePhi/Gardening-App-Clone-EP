@@ -1,12 +1,11 @@
 //make a fetch call to the API, save the data
-fetch("http://localhost:8080/api/plants")
+fetch("/api/plants")
   .then((response) => response.json())
   .then((plantdata) => {
     //console log the results
     console.log(plantdata);
     //console log the results with parameters
     console.log(plantdata[0].plant_facts);
-
     //narrow parameters further
     for (let i = 0; i < plantdata.length; i++) {
       // create variables
