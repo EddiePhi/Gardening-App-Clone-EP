@@ -41,10 +41,10 @@ $(document).ready(function () {
     document.getElementById("plotTable").innerHTML = theader + tbody + tfooter;
 
     //Edit Cell Data
-    //var td = $("td");
+    var td = $("td");
 
-    //td.click(function () {
-    //  $plantModal.addClass("is-active");
-    //});
+    td.click(function () {
+      $plantModal.addClass("is-active");
+    });
   }
 });
