@@ -202,7 +202,7 @@
       </div>
     </section>
     <!-- Create Plot Modal -->
-    <div class="modal">
+    <div class="modal" id="plotModal">
       <div class="modal-background"></div>
       <div class="modal-content">
         <div class="modal-title level">
@@ -223,13 +223,13 @@
         <div class="field">
           <label class="label">Rows</label>
           <div class="control">
-            <input class="rowInput" type="number" />
+            <input id="rowInput" type="number" />
           </div>
         </div>
         <div class="field">
           <label class="label">Columns</label>
           <div class="control">
-            <input class="columnInput" type="number" />
+            <input id="columnInput" type="number" />
           </div>
         </div>
         <div class="level">
@@ -243,6 +243,7 @@
       </div>
       <button class="modal-close is-large" aria-label="close"></button>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="../js/createPlot.js"></script>
   </body>
