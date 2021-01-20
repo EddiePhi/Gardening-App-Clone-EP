@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plot</title>
+    <!--NES CSS-->
+
+    <link
+      href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://unpkg.com/nes.css@latest/css/nes.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://unpkg.com/nes.css/css/nes-core.min.css"
+      rel="stylesheet"
+    />
+    <!--Bulma-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
+    />
+    <!--StyleSheet-->
+    <link rel="stylesheet" href="../css/plotStyle.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!--Navbar-->
+    <nav class="navbar navbar-style has-shadow mb-5">
+      <div class="navbar-brand">
+        <a class="navbar-item has-text-white" href="#">
+          <p>Gardening App</p>
+        </a>
+      </div>
+      <div class="navbar-menu" id="nav-links">
+        <div class="navbar-end mr-3">
+          <div class="level">
+            <div class="level-right">
+              <p class="level-item has-text-white">
+                <img src="https://img.icons8.com/color/48/000000/sun--v2.png" />
+              </p>
+              <p class="level-item has-text-white"></p>
+              <p class="level-item has-text-white">Thu. January 14, 2021</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!--SideBar-->
+    <section class="main-section section">
+      <div class="container" style="max-width: 100%">
+        <div class="columns">
+          <div class="column is-2">
+            <div class="menu sticky">
+              <ul id="menu" class="side-nav menu-list">
+                <li>
+                  <a id="plants" class="has-text-white is-large side-nav-btn"
+                    >Plants</a
+                  >
+                </li>
+                <li>
+                  <a
+                    id="createPlot"
+                    class="has-text-white side-nav-btn is-large"
+                    >Create Plot</a
+                  >
+                </li>
+                <li>
+                  <a id="forecast" class="has-text-white side-nav-btn is-large">
+                    Forecast
+                  </a>
+                </li>
+                <li>
+                  <a id="Settings" class="has-text-white is-large side-nav-btn">
+                    Settings
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="side-nav-btn has-text-white is-large"
+                    id="Home"
+                    href="./plotHomePage.html"
+                    >Home</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="column is-2"></div>
+          <!--Plot-->
+          <div class="column is-6">
+            <div class="level">
+              <p class="level-item has-text-centered plot-title">Front Yard</p>
+            </div>
+            <div class="columns">
+              <div class="column">
+                <table class="plot table" id="plotTable">
+                  <!-- -
+                  <tr>
+                    <td class="td">
+                      <img
+                        src="https://img.icons8.com/cotton/64/000000/lotus--v1.png"
+                      />
+                    </td>
+                    <td>
+                      <img
+                        src="https://img.icons8.com/cotton/64/000000/lotus--v1.png"
+                      />
+                    </td>
+                    <td>
+                      <img
+                        src="https://img.icons8.com/cotton/64/000000/lotus--v1.png"
+                      />
+                    </td>
+                    <td>
+                      <img
+                        src="https://img.icons8.com/cotton/64/000000/lotus--v1.png"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <img
+                        src="https://img.icons8.com/cotton/64/000000/lettuce-1--v1.png"
+                      />
+                    </td>
+                    <td>
+                      <img
+                        src="https://img.icons8.com/cotton/64/000000/lettuce-1--v1.png"
+                      />
+                    </td>
+                    <td>
+                      <img
+                        src="https://img.icons8.com/cotton/64/000000/lettuce-1--v1.png"
+                      />
+                    </td>
+                    <td>
+                      <img
+                        src="https://img.icons8.com/cotton/64/000000/lettuce-1--v1.png"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <img
+                        src="https://img.icons8.com/cotton/64/000000/tomato--v1.png"
+                      />
+                    </td>
+                    <td>
+                      <img
+                        src="https://img.icons8.com/cotton/64/000000/tomato--v1.png"
+                      />
+                    </td>
+                    <td>
+                      <img
+                        src="https://img.icons8.com/cotton/64/000000/tomato--v1.png"
+                      />
+                    </td>
+                    <td>
+                      <img
+                        src="https://img.icons8.com/cotton/64/000000/tomato--v1.png"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <img
+                        src="https://img.icons8.com/cotton/64/000000/asparagus--v1.png"
+                      />
+                    </td>
+                    <td>
+                      <img
+                        src="https://img.icons8.com/cotton/64/000000/asparagus--v1.png"
+                      />
+                    </td>
+                    <td>
+                      <img
+                        src="https://img.icons8.com/cotton/64/000000/asparagus--v1.png"
+                      />
+                    </td>
+                    <td>
+                      <img
+                        src="https://img.icons8.com/cotton/64/000000/asparagus--v1.png"
+                      />
+                    </td>
+                  </tr>
+                --></table>
+              </div>
+            </div>
+          </div>
+          <div class="column is-2"></div>
+        </div>
+      </div>
+    </section>
+    <!-- Create Plot Modal -->
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="modal-title level">
+          <div class="level-right">
+            <p class="">Plot Specifications</p>
+          </div>
+          <div class="level-left">
+            <span class="close">&times;</span>
+          </div>
+        </div>
+        <div class="container"></div>
+        <div class="field">
+          <label class="label">Plot Name</label>
+          <div class="control">
+            <input class="input" type="text" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Rows</label>
+          <div class="control">
+            <input class="rowInput" type="number" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Columns</label>
+          <div class="control">
+            <input class="columnInput" type="number" />
+          </div>
+        </div>
+        <div class="level">
+          <div class="level-right"></div>
+          <div class="level-left">
+            <a id="makePlot" class="has-text-white is-large side-nav-btn"
+              >Create Plot</a
+            >
+          </div>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/createPlot.js"></script>
+  </body>
+</html>
