@@ -26,21 +26,4 @@ INSERT INTO locations (coordinates, createdAt, updatedAt, plantId, plotID)
 VALUES ("1,1", now(), now(), 1, 1),
 ("1,2", now(), now(), 2, 1 ),
 ("2,1", now(), now(), 3, 1 ),
-("2,2", now(), now(), 4, 1 )
-=======
-Use succession planting to maximize and extend harvests", 45, 0, "Full Sun, Part Sun", 6, 12, NOW(), NOW()),
-("Jalepeno Pepper", "Disease-resistant plants yield early and heavy harvests of 4 inch peppers from early to late season",
- 58, 3, "Full Sun", 19, 28, NOW(), NOW()),
-("Cucumber", "Best grown on a fence or our space-saving Trellis Netting", 58, 7, "Full Sun", 56, 7, NOW(), NOW()),
-("Rosemary", "Start seed early indoors. Plants tolerate light frost; set outside early", 90, 0, "Full Sun", 18, 28, NOW(), NOW()),
-("Sage", "Sage leaf tea is useful in treating colds and for aiding digestion.", 90, 0, "Full Sun", 20, 18, NOW(), NOW()),
-("Dill", "TUse seeds to flavor pickles and the leaves to brighten salads,
- soups, omelets and vegetables.", 50, 0, "Full Sun", 20, 36, NOW(), NOW())
-
-
-INSERT INTO plots (plot_name, plot_rows, plot_columns, createdAt, updatedAt)
-VALUES ("Test plot", 1, 1, NOW(), NOW() )
-
-
-INSERT INTO zipcodes (zip_code, createdAt, updatedAt)
-VALUES ("03857", NOW(), NOW());
+("2,2", now(), now(), 4, 1 );
