@@ -21,18 +21,21 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/html/plants.html"));
   });
 
-  app.get("/plot", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/html/plot.html"));
+  app.get("/home", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/html/plothomepage.html"));
   });
 
   app.get("/forecast", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/html/forecast.html"));
   });
 
+  app.get("/plot", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/html/plotpage.html"));
+  });
   // Custom routes end
 
   // If no matching route is found default to home
   app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/html/index.html"));
+    res.sendFile(path.join(__dirname, "../public/html/landingpage.html"));
   });
 };
