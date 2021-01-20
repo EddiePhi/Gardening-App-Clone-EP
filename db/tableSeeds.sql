@@ -16,8 +16,15 @@ Use succession planting to maximize and extend harvests", 45, 0, "Full Sun, Part
 
 
 INSERT INTO plots (plot_name, plot_rows, plot_columns, createdAt, updatedAt)
-VALUES ("Test plot", 1, 1, now(), now () );
+VALUES ("testPlot", 2, 2, now(), now () );
 
 
 INSERT INTO zipcodes (zip_code, createdAt, updatedAt)
 VALUES ("03857", now(), now());
+
+INSERT INTO locations (coordinates, createdAt, updatedAt, plantId, plotID)
+VALUES ("1,1", now(), now(), 1, 1),
+("1,2", now(), now(), 2, 1 ),
+("2,1", now(), now(), 3, 1 ),
+("2,2", now(), now(), 4, 1 )
+

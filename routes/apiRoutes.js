@@ -15,6 +15,7 @@ const fs = require("fs");
 // var plantModel = require("../models/plantModel.js")
 // var zipCodeModel = require("../models/zipCodeModel.js")
 var db = require("../models");
+const { query } = require("express");
 
 // ===============================================================================
 // ROUTING
@@ -22,12 +23,10 @@ var db = require("../models");
 
 module.exports = function (app) {
   // API GET Requests
-  // Below code handles when users "visit" a page.
-  // In each of the below cases when a user visits a link
-  // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
-  // ---------------------------------------------------------------------------
 
   //THIRD PARTY API ROUTE//
+  //get a zipcode from the ZipCodes table then fetch the weather API and plug in the results from the zip
+  //code get request
   app.get("/api/forecast/:id", function (req, res) {
     db.ZipCodes.findAll({ where: { id: req.params.id } })
       .then(function (results) {
@@ -106,7 +105,18 @@ module.exports = function (app) {
 
   // GET all data from Plots table
   app.get("/api/plot", function (req, res) {
-    db.Plots.findAll({})
+    db.Plots.findAll({
+      include: [
+        {
+          model: db.Locations,
+          include: [
+            {
+              model: db.Plants,
+            },
+          ],
+        },
+      ],
+    })
       .then(function (results) {
         res.json(results);
       })
@@ -138,6 +148,11 @@ module.exports = function (app) {
       where: {
         id: req.params.id,
       },
+      include: [
+        {
+          model: db.Locations,
+        },
+      ],
     })
       .then(function (results) {
         res.json(results);
@@ -146,6 +161,25 @@ module.exports = function (app) {
         throw error;
       });
   });
+
+  //Locations/Plots/plants Joins
+
+  // app.get("/api/locations/:id", function (req, res) {
+  //   db.Plots.findOne({
+  //     where: {
+  //       id: req.params.id,
+  //     },
+  //     include: [db.Locations],
+  //   })
+  //     .then(function (dbPlots) {
+  //       res.json(dbPlots);
+  //     })
+  //     .catch((error) => {
+  //       throw error;
+  //     });
+  // });
+
+  //ZipCodes API Requests
 
   //GET all zip codes from ZipCodes table
   app.get("/api/zipcode", function (req, res) {

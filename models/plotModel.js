@@ -16,5 +16,10 @@ module.exports = function (sequelize, DataTypes) {
       validate: { min: 1, max: 5 },
     },
   });
+  //associate Plots with Locations
+  Plots.associate = function (models) {
+    Plots.hasMany(models.Locations);
+  };
+
   return Plots;
 };

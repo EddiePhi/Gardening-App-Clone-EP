@@ -39,5 +39,10 @@ module.exports = function (sequelize, DataTypes) {
       isFloat: true,
     },
   });
+
+  Plants.associate = function (models) {
+    Plants.hasMany(models.Locations);
+  };
+
   return Plants;
 };
