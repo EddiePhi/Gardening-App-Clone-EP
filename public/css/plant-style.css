@@ -45,7 +45,7 @@ body {
   background-position: center;
 }
 
-.button:hover {
+.plant-button:hover {
   transform: translateY(-20px);
 }
 
