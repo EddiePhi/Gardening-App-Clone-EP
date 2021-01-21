@@ -5,8 +5,6 @@ fetch("/api/plants")
     //console log the results
     console.log(plantdata);
     //console log the results with parameters
-    // console.log(plantdata[0].plant_facts);
-
     //narrow parameters further
     for (let i = 0; i < plantdata.length; i++) {
       // create variables
