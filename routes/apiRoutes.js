@@ -22,10 +22,8 @@ const { query } = require("express");
 // ===============================================================================
 
 module.exports = function (app) {
-  // API GET Requests
-
-  //THIRD PARTY API ROUTE//
-  //get a zipcode from the ZipCodes table then fetch the weather API and plug in the results from the zip
+  //THIRD PARTY WEATHER FORECAST API ROUTE//
+  //get a zipcode from the ZipCodes table then fetch the foorecast weather API and plug in the results from the zip
   //code get request
   app.get("/api/forecast/:id", function (req, res) {
     db.ZipCodes.findAll({ where: { id: req.params.id } })
@@ -46,7 +44,9 @@ module.exports = function (app) {
       });
   });
 
-  // Duplicate GET request for current weather icon.
+  //THIRD PARTY WEATHER CURRENT API ROUTE//
+  //get a zipcode from the ZipCodes table then fetch the current weather API and plug in the results from the zip
+  //code get request
   app.get("/api/currentweather/:id", function (req, res) {
     db.ZipCodes.findAll({ where: { id: req.params.id } })
       .then(function (results) {
@@ -66,11 +66,9 @@ module.exports = function (app) {
       });
   });
 
-  //PLANTS TABLE API ROUTES
+  //PLANTS TABLE API ROUTES//
 
-  //GET REQUESTS//
-
-  // get all data from Plants table//
+  //GET: Retrive all data from Plants table
   app.get("/api/plants", function (req, res) {
     db.Plants.findAll({})
       .then(function (results) {
@@ -81,9 +79,7 @@ module.exports = function (app) {
       });
   });
 
-  //POST REQUESTS
-
-  //Add New plant/column to Plants table.... NOT MVP
+  //POST: Add New plant/column to Plants table
   app.post("/api/plants", function (req, res) {
     console.log(req.body);
 
@@ -104,9 +100,7 @@ module.exports = function (app) {
       });
   });
 
-  //DELETE REQUESTS//
-
-  //Delete plant from Plants table...NOT MVP
+  //Delete: Revome a plant/row from Plants table
   app.delete("/api/plants/:id", function (req, res) {
     db.Plants.destroy({
       where: {
@@ -123,7 +117,7 @@ module.exports = function (app) {
 
   //PLOT TABLE API REQUESTS//
 
-  // GET all Plots data
+  //GET: Retrive all Plots data. This includes associated locations and the plantsi n those locations
   app.get("/api/plot", function (req, res) {
     db.Plots.findAll({
       include: [
@@ -145,9 +139,7 @@ module.exports = function (app) {
       });
   });
 
-  //POST requests for Plots Table
-
-  //Add New empty plot/column to Plots table
+  //POST: This adds a new plot ot he Plots table. This plot will be empty.
   app.post("/api/plot", function (req, res) {
     console.log(req.body);
 
@@ -164,9 +156,10 @@ module.exports = function (app) {
       });
   });
 
-  //Add Plant to Plot Location
+  //TODO: Add Plant to Plot Location
 
-  //Delete user specified plot/row from Plots table
+  //DELETE: Removes selected plot/row from Plots table. Will also remove any locations assiciated
+  // to the selected plot.
   app.delete("/api/plot/:id", function (req, res) {
     db.Plots.destroy({
       where: {
@@ -191,9 +184,7 @@ module.exports = function (app) {
       });
   });
 
-  //Locations/Plots/plants Joins
-
-  //get one plot data
+  //GET: Retreive all data for one specified plot
   app.get("/api/plot/:id", function (req, res) {
     db.Plots.findOne({
       where: {
@@ -218,9 +209,9 @@ module.exports = function (app) {
       });
   });
 
-  //ZipCodes API Requests
+  //ZIPCODES TABLE API REQUESTS//
 
-  //GET all zip codes from ZipCodes table
+  //GET: Retrieve all zip codes data from ZipCodes table
   app.get("/api/zipcode", function (req, res) {
     db.ZipCodes.findAll({})
       .then(function (results) {
@@ -231,7 +222,7 @@ module.exports = function (app) {
       });
   });
 
-  //get a specific zip for
+  //GET: Retreive a specified zip code
   app.get("/api/forcast/:zip_codes", function (req, res) {
     db.ZipCodes.findAll({
       where: {
@@ -246,7 +237,7 @@ module.exports = function (app) {
       });
   });
 
-  //Add zip code to ZipCodes table
+  //POST: Add zip code to ZipCodes table
   app.post("/api/zipcode", function (req, res) {
     console.log(req.body);
 
@@ -261,7 +252,7 @@ module.exports = function (app) {
       });
   });
 
-  //Delete user specified zip code entery/column from ZipCode table
+  //DELETE: Remove user specified zip code entery/column from ZipCode table
   app.delete("/api/zipcode/:id", function (req, res) {
     db.ZipCodes.destroy({
       where: {
@@ -275,7 +266,4 @@ module.exports = function (app) {
         throw error;
       });
   });
-  // duplicate for /zipcode end
-
-  // end of module.exports
 };
