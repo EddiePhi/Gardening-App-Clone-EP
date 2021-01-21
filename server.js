@@ -19,7 +19,7 @@ require("dotenv").config();
 const app = express();
 
 // Sets an initial port. We"ll use this later in our listener
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8081;
 var db = require("./models");
 
 // Sets up the Express app to handle data parsing
