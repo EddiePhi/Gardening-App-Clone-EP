@@ -3,9 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-<<<<<<< Updated upstream
-    <title>Gardening App</title>
-=======
     <title>Gardening App</title>    
     <!--Bulma-->
     <link
@@ -15,54 +12,42 @@
       <!-- Bulma Carousel - NOT USING -->
       <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"> -->
 		  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css"> -->
-    
->>>>>>> Stashed changes
+
     <!--NES CSS-->
 
-    <link
+    <!-- <link
       href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css"
-      rel="stylesheet"
-    />
+      rel="stylesheet"/> -->
 
-    <link
+      <link
       href="https://unpkg.com/nes.css@latest/css/nes.min.css"
-      rel="stylesheet"
-    />
+      rel="stylesheet"/>
 
-    <link
+    <!-- <link
       href="https://unpkg.com/nes.css/css/nes-core.min.css"
-      rel="stylesheet"
-    />
-    <!--Bulma-->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
-    />
-    <!--StyleSheet-->
-    <link rel="stylesheet" href="../css/landingpage.css" />
+      rel="stylesheet"/> -->
+
+      <!--StyleSheet-->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/landingpage.css" />
   </head>
   <body>
     <!--Navbar-->
     <nav class="navbar navbar-style has-shadow">
       <div class="navbar-brand">
-        <a class="navbar-item has-text-white" href="plotHomePage.html">
-          <p>Gardening App</p>
+        <a class="navbar-item has-text-white" href="/home">
+          <p>Plot of Gold</p>
         </a>
       </div>
       <div class="navbar-menu" id="nav-links">
         <div class="navbar-end mr-3">
           <div class="level">
             <div class="level-right">
-              <p class="level-item has-text-white">
-                <img src="https://img.icons8.com/color/48/000000/sun--v2.png" />
-              </p>
-              <p class="level-item has-text-white"></p>
-              <p class="level-item has-text-white">Thu. January 14, 2021</p>
+              <div id="currentWeatherImg" style="height: 50px;"></div>
+              <p id="currentDateTime" class="level-item has-text-white">Test</p>
             </div>
           </div>
         </div>
@@ -77,7 +62,10 @@
         </div>
       </div>
     </section>
-    <section class="container mt-5">
+    <section class="container mt-6 mb-6">
+      <p class="hero is-size-4 has-text-centered">What is Plot of Gold?</p>
+    </section>
+    <section class="container">
       <div class="columns">
         <div class="column is-1"></div>
         <div class="column is-4">
@@ -90,19 +78,25 @@
           </p>
           <p class="has-text-centered">(Get it?)</p>
         </div>
+        <div class="column is-2"></div>
+        <div class="column is-4">
+          <img class="mb-6" src="../assets/seedling-pixelated.jpg" />
+        </div>
         <div class="column is-1"></div>
       </div>
     </section>
+    
     <section class="hero has-background-white mt-5">
       <div class="hero-body">
         <div class="level">
           <div class="level-item">
-            <p class="is-size-4 has-text-garden">Why</p>
+            <p class="is-size-4 has-text-garden">Why?</p>
           </div>
         </div>
         <div class="columns">
             <p class="column has-text-garden has-text-centered mt-3 mb-2">
-              With all the uncertainty in the world, it's nice to know where our food comes from and what's included. Plot of Gold keeps what we eat from being a mystery.
+              With all the uncertainty in the world, it's nice to know where our food comes from and what's included. 
+              Plot of Gold keeps what we eat from being a mystery.
             </p>
         </div>
       </div>
@@ -138,7 +132,6 @@
           <div class="level-item">
             <p class="is-size-4 has-text-garden">Say Hi to our Dev Team!</p>
           </div>
-          <div class="column is-2"></div>
         </div>
         <div class="level-item columns is-centered">
           <div class="column is-2 nes-container is-rounded is-centered" style="padding: 0px; margin: 20px;">
@@ -206,7 +199,9 @@
       crossorigin="anonymous">
     </script>
 
+
     <!-- Bulma Carousel - NOT USING -->
+
     <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
   
     <!-- Day.js -->
