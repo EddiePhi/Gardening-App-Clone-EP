@@ -83,7 +83,7 @@ module.exports = function (app) {
 
   //POST REQUESTS
 
-  //Add New plant/column to Plants table
+  //Add New plant/column to Plants table.... NOT MVP
   app.post("/api/plants", function (req, res) {
     console.log(req.body);
 
@@ -106,7 +106,7 @@ module.exports = function (app) {
 
   //DELETE REQUESTS//
 
-  //Delete plant from Plants table
+  //Delete plant from Plants table...NOT MVP
   app.delete("/api/plants/:id", function (req, res) {
     db.Plants.destroy({
       where: {
@@ -123,7 +123,7 @@ module.exports = function (app) {
 
   //PLOT TABLE API REQUESTS//
 
-  // GET all data from Plots table
+  // GET all Plots data
   app.get("/api/plot", function (req, res) {
     db.Plots.findAll({
       include: [
@@ -145,7 +145,9 @@ module.exports = function (app) {
       });
   });
 
-  //Add New plot/column to Plots table
+  //POST requests for Plots Table
+
+  //Add New empty plot/column to Plots table
   app.post("/api/plot", function (req, res) {
     console.log(req.body);
 
@@ -162,6 +164,8 @@ module.exports = function (app) {
       });
   });
 
+  //Add Plant to Plot Location
+
   //Delete user specified plot/row from Plots table
   app.delete("/api/plot/:id", function (req, res) {
     db.Plots.destroy({
@@ -171,6 +175,11 @@ module.exports = function (app) {
       include: [
         {
           model: db.Locations,
+          include: [
+            {
+              model: db.Plants,
+            },
+          ],
         },
       ],
     })
@@ -184,20 +193,30 @@ module.exports = function (app) {
 
   //Locations/Plots/plants Joins
 
-  // app.get("/api/locations/:id", function (req, res) {
-  //   db.Plots.findOne({
-  //     where: {
-  //       id: req.params.id,
-  //     },
-  //     include: [db.Locations],
-  //   })
-  //     .then(function (dbPlots) {
-  //       res.json(dbPlots);
-  //     })
-  //     .catch((error) => {
-  //       throw error;
-  //     });
-  // });
+  //get one plot data
+  app.get("/api/plot/:id", function (req, res) {
+    db.Plots.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [
+        {
+          model: db.Locations,
+          include: [
+            {
+              model: db.Plants,
+            },
+          ],
+        },
+      ],
+    })
+      .then(function (dbPlots) {
+        res.json(dbPlots);
+      })
+      .catch((error) => {
+        throw error;
+      });
+  });
 
   //ZipCodes API Requests
 
