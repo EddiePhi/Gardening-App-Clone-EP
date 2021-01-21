@@ -1,5 +1,5 @@
 //make a fetch call to the API, save the data
-fetch("http://localhost:8080/api/plants")
+fetch("/api/plants")
   .then((response) => response.json())
   .then((plantdata) => {
     //console log the results
