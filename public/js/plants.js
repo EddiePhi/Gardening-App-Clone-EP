@@ -5,8 +5,6 @@ fetch("/api/plants")
     //console log the results
     console.log(plantdata);
     //console log the results with parameters
-    // console.log(plantdata[0].plant_facts);
-
     //narrow parameters further
     for (let i = 0; i < plantdata.length; i++) {
       // create variables
@@ -103,3 +101,19 @@ window.onclick = (event) => {
     modal.style.display = "none";
   }
 };
+
+
+// Weather icon GET request
+function todaysInfo(){
+$.get("/api/currentweather/1").then(function (response) {
+  console.log(response);
+  let currentWeatherIcon = response.weather[0].icon;
+  $("#currentWeatherImg").html(
+      `<img id="icon" class="pixelate level-item mr-3" style="height: 40px;" alt="weather-icon" src="http://openweathermap.org/img/wn/${currentWeatherIcon}@2x.png"/>`
+  );
+
+  $("#currentDateTime").text(dayjs().format('ddd. MMM DD, YYYY'));
+});
+};
+
+todaysInfo();
