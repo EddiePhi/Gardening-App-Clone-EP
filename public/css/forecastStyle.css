@@ -45,3 +45,7 @@ body {
 .pixelate {
   image-rendering: pixelated;
 }
+
+.weather-column:hover {
+  transform: translateY(-20px);
+}

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hello Bulma!</title>
+    <title>Plot of Gold</title>
     
     <!-- Bulma-->
     <link
@@ -26,17 +26,16 @@
   <body>
     <nav class="navbar navbar-style has-shadow mb-5">
       <div class="navbar-brand">
-        <a class="navbar-item has-text-white" href="#">
-          <p>Gardening App</p>
+        <a class="navbar-item has-text-white" href="/home">
+          <p>Plot of Gold</p>
         </a>
       </div>
       <div class="navbar-menu" id="nav-links">
         <div class="navbar-end mr-3">
           <div class="level">
             <div class="level-right">
-              <p class="level-item has-text-white">Thu. January 14, 2021</p>
-              <p class="level-item has-text-white"></p>
-              <p class="level-item has-text-white">Weather</p>
+              <div id="currentWeatherImg" style="height: 50px;"></div>
+              <p id="currentDateTime" class="level-item has-text-white"></p>
             </div>
           </div>
         </div>
@@ -51,32 +50,30 @@
                 <li>
                   <a
                     id="plants"
-                    class="has-text-white is-large side-nav-btn nes-container is-rounded mt-4"
-                    >Plants</a
-                  >
+                    class="has-text-white is-large side-nav-btn nes-container is-rounded mt-4">
+                    Plants
+                  </a>
                 </li>
                 <li>
                   <a
                     id="forecast"
-                    class="has-text-white side-nav-btn is-large nes-container is-rounded mt-4"
-                  >
+                    class="has-text-white side-nav-btn is-large nes-container is-rounded mt-4">
                     Forecast
                   </a>
                 </li>
                 <li>
                   <a
-                    id="settings"
-                    class="has-text-white is-large side-nav-btn nes-container is-rounded mt-4"
-                  >
-                    Settings
+                    id="plots"
+                    class="has-text-white is-large side-nav-btn nes-container is-rounded mt-4">
+                    Plots
                   </a>
                 </li>
                 <li>
                   <a
                     class="has-text-white side-nav-btn is-large nes-container is-rounded mt-4"
-                    id="home"
-                    >Home</a
-                  >
+                    id="home">
+                    Home
+                  </a>
                 </li>
               </ul>
             </div>

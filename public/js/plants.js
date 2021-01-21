@@ -1,27 +1,47 @@
 //make a fetch call to the API, save the data
-fetch("http://localhost:8080/api/plants")
+fetch("/api/plants")
   .then((response) => response.json())
   .then((plantdata) => {
     //console log the results
     console.log(plantdata);
     //console log the results with parameters
-    console.log(plantdata[0].plant_facts);
-
     //narrow parameters further
     for (let i = 0; i < plantdata.length; i++) {
       // create variables
-      let plantFacts = plantdata[i].plant_facts;
+      let id = plantdata[i].id;
       let plantName = plantdata[i].plant_name;
+      let plantFacts = plantdata[i].plant_facts;
       let daysToMaturity = plantdata[i].days_to_maturity;
+      let fruitSize = plantdata[i].fruit_size_inches;
       let sun = plantdata[i].sun;
+      let spread = plantdata[i].spread;
+      let height = plantdata[i].height;
 
-      // test variables
-      // console.log(plantName);
-      console.log(plantFacts);
-      // console.log(daysToMaturity)
-      console.log(`${plantName} is a plant for your garden and it takes ${daysToMaturity} days to mature and it needs ${sun}`);
-    }
+      console.log(`${plantName} is a plant for your garden. ${plantFacts} ${plantName} takes ${daysToMaturity} days to mature and it needs ${sun}. Its fruit can grow to be ${fruitSize} inches. It can grow to be ${spread} inches wide and ${height} inches tall.`);
+
+    };
   });
+
+
+
+  // <!-- MODAL TO BE DYNAMICALLY CREATED -->
+  // <div class="modal" id="modal">
+  //   <div class="modal-content">
+  //     <span class="close">&times;</span>
+  //     <h1>(Description description description description)</h1>
+  //     <p>Sun: </p>
+  //     <br>
+  //     <p>Life cycle:</p>
+  //     <br>
+  //     <p>Spread:</p>
+  //     <br>
+  //     <p>Days to maturity:</p>
+  //     <br>
+  //     <p>Height:</p>
+  //     <br>
+  //     <p>Sow Method:</p>
+  // </div>
+  // </div>
 
 // Buttons Variables
 const tomBtn = document.getElementById("tomato");

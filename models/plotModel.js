@@ -8,13 +8,18 @@ module.exports = function (sequelize, DataTypes) {
     plot_rows: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validate: { min: 1, max: 10 },
+      validate: { min: 1, max: 5 },
     },
     plot_columns: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validate: { min: 1, max: 10 },
+      validate: { min: 1, max: 5 },
     },
   });
+  //associate Plots with Locations
+  Plots.associate = function (models) {
+    Plots.hasMany(models.Locations);
+  };
+
   return Plots;
 };

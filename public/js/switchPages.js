@@ -1,6 +1,6 @@
 let plantsBtn = $('#plants');
 let forecastBtn = $('#forecast');
-let settingsBtn = $('#settings');
+let plotsBtn = $('#plots');
 let homeBtn = $('#home');
 
 function goToPlants(){
@@ -10,7 +10,7 @@ function goToForecast(){
     window.location.replace('/forecast')
 };
 function goToSettings(){
-    window.location.replace('/settings')
+    window.location.replace('/plots')
 };
 function goToHome(){
     window.location.replace('/home')
