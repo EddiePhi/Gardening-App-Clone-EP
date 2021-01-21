@@ -104,7 +104,6 @@ window.onclick = (event) => {
 
 
 // Weather icon GET request
-function todaysInfo(){
 $.get("/api/currentweather/1").then(function (response) {
   console.log(response);
   let currentWeatherIcon = response.weather[0].icon;
@@ -114,6 +113,3 @@ $.get("/api/currentweather/1").then(function (response) {
 
   $("#currentDateTime").text(dayjs().format('ddd. MMM DD, YYYY'));
 });
-};
-
-todaysInfo();
