@@ -33,6 +33,8 @@ $(document).ready(function () {
       tbody += "<tr>";
       for (var j = 0; j < num_cols; j++) {
         tbody += "<td>";
+        tbody +=
+          "<img src=https://img.icons8.com/cotton/64/000000/lotus--v1.png>";
         tbody += "</td>";
       }
       tbody += "</tr>\n";
