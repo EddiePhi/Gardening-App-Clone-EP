@@ -30,6 +30,7 @@ module.exports = function (app) {
   app.get("/api/forecast/:id", function (req, res) {
     db.ZipCodes.findAll({ where: { id: req.params.id } })
       .then(function (results) {
+        console.log(results)
         fetch(
           "https://api.openweathermap.org/data/2.5/forecast?zip=" +
             results[0].zip_codes +
