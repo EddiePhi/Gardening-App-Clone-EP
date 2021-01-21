@@ -46,6 +46,26 @@ module.exports = function (app) {
       });
   });
 
+  // Duplicate GET request for current weather icon.
+  app.get("/api/currentweather/:id", function (req, res) {
+    db.ZipCodes.findAll({ where: { id: req.params.id } })
+      .then(function (results) {
+        fetch(
+          "https://api.openweathermap.org/data/2.5/weather?zip=" +
+            results[0].zip_codes +
+            ",us&appid=" +
+            process.env.API_KEY2
+        ).then(async function (weatherdata) {
+          const data = await weatherdata.json();
+          console.log(data);
+          res.json(data);
+        });
+      })
+      .catch((error) => {
+        throw error;
+      });
+  });
+
   //PLANTS TABLE API ROUTES
 
   //GET REQUESTS//
@@ -236,7 +256,7 @@ module.exports = function (app) {
         throw error;
       });
   });
-  // duplicate for /weather end
+  // duplicate for /zipcode end
 
   // end of module.exports
 };
