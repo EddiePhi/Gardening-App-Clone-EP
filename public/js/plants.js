@@ -19,16 +19,12 @@ fetch("http://localhost:8080/api/plants")
       let spread = plantdata[i].spread;
       let height = plantdata[i].height;
 
-      // test variables
-      // console.log(plantName);
-      // console.log(plantFacts);
-      // console.log(daysToMaturity)
-      console.log(`${plantName} is a plant for your garden. ${plantFacts} ${plantName} takes ${daysToMaturity} days to mature and it needs ${sun}. Its fruit can grow to be ${fruitSize} inches and its spread is ${spread}. It can grow to be ${height} inches high.`);
-
-
+      console.log(`${plantName} is a plant for your garden. ${plantFacts} ${plantName} takes ${daysToMaturity} days to mature and it needs ${sun}. Its fruit can grow to be ${fruitSize} inches. It can grow to be ${spread} inches wide and ${height} inches tall.`);
 
     };
   });
+
+
 
   // <!-- MODAL TO BE DYNAMICALLY CREATED -->
   // <div class="modal" id="modal">
