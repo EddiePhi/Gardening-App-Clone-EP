@@ -85,7 +85,7 @@ function getResponse(response) {
 
   //Append Weather Icon after momentDate
   let currentIcon = response.weather[0].icon;
-  $("#currentCity").append(`<img class="shrink" src="http://openweathermap.org/img/wn/${currentIcon}@2x.png">`);
+  $("#currentCity").append(`<img class="shrink" src="https://openweathermap.org/img/wn/${currentIcon}@2x.png">`);
 
   //Append Temperature after Weather Icon
   let cityTemp = response.main.temp;
