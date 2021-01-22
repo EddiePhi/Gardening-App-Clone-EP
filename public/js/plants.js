@@ -33,13 +33,6 @@ $(document).on("click", ".close", function() {
   modal.css("display", "none");
 });
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = (event) => {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-
 //make a fetch call to the API, save the data
 fetch("/api/plants")
   .then((response) => response.json())
@@ -48,21 +41,63 @@ fetch("/api/plants")
     console.log(plantdata);
     //console log the results with parameters
     //narrow parameters further
-    for (let i = 0; i < plantdata.length; i++) {
-      // create variables
-      let id = plantdata[i].id;
-      let plantName = plantdata[i].plant_name;
-      let plantFacts = plantdata[i].plant_facts;
-      let daysToMaturity = plantdata[i].days_to_maturity;
-      let fruitSize = plantdata[i].fruit_size_inches;
-      let sun = plantdata[i].sun;
-      let spread = plantdata[i].spread;
-      let height = plantdata[i].height;
+    generatePlantCards(plantdata);
+});
 
-      console.log(`${plantName} is a plant for your garden. ${plantFacts} ${plantName} takes ${daysToMaturity} days to mature and it needs ${sun}. Its fruit can grow to be ${fruitSize} inches. It can grow to be ${spread} inches wide and ${height} inches tall.`);
+//maybe change plantdata to plants at some point
+function generatePlantCards (plantdata) {
+  for (let i = 0; i < plantdata.length; i++) {
+    // create variables
+    const {plant_name, plant_facts, days_to_maturity, fruit_size_inches, sun, spread, height} = plantdata[i];
 
-    };
-  });
+    const plantButton = `<button class="mx-6 my-6 nes-container has-background-white plant-button is-rounded"
+    id="${plant_name}"
+    data-plantName="${plant_name}"
+    data-plantFacts="${plant_facts}"
+    data-sun="${sun}"
+    data-fruitSize="${fruit_size_inches}"
+    data-daysToMaturity="${days_to_maturity}"
+    data-spread="${spread}"
+    data-height="${height}"
+    style="background-image: url('../assets/plant-images/${plant_name.split(" ").join("").toLowerCase()}.png')"
+    >
+    ${plant_name}
+  </button>`
+    // console.log(`${plantName} is a plant for your garden. ${plantFacts} ${plantName} takes ${daysToMaturity} days to mature and it needs ${sun}. Its fruit can grow to be ${fruitSize} inches. It can grow to be ${spread} inches wide and ${height} inches tall.`);
+    plantContainer.append(plantButton)
+  };
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = (event) => {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+// //make a fetch call to the API, save the data
+// fetch("/api/plants")
+//   .then((response) => response.json())
+//   .then((plantdata) => {
+//     //console log the results
+//     console.log(plantdata);
+//     //console log the results with parameters
+//     //narrow parameters further
+//     for (let i = 0; i < plantdata.length; i++) {
+//       // create variables
+//       let id = plantdata[i].id;
+//       let plantName = plantdata[i].plant_name;
+//       let plantFacts = plantdata[i].plant_facts;
+//       let daysToMaturity = plantdata[i].days_to_maturity;
+//       let fruitSize = plantdata[i].fruit_size_inches;
+//       let sun = plantdata[i].sun;
+//       let spread = plantdata[i].spread;
+//       let height = plantdata[i].height;
+
+//       console.log(`${plantName} is a plant for your garden. ${plantFacts} ${plantName} takes ${daysToMaturity} days to mature and it needs ${sun}. Its fruit can grow to be ${fruitSize} inches. It can grow to be ${spread} inches wide and ${height} inches tall.`);
+
+//     };
+//   });
 
 
 
@@ -85,23 +120,23 @@ fetch("/api/plants")
   // </div>
   // </div>
 
-// Buttons Variables
-const tomBtn = document.getElementById("tomato");
-const letBtn = document.getElementById("lettuce");
-const spinBtn = document.getElementById("spinach");
-const cucBtn = document.getElementById("cucumber");
-const pepBtn = document.getElementById("peppers");
-const thyBtn = document.getElementById("thyme");
-const dillBtn = document.getElementById("dill");
-const sageBtn = document.getElementById("sage");
-const roseBtn = document.getElementById("rosemary");
+// // Buttons Variables
+// const tomBtn = document.getElementById("tomato");
+// const letBtn = document.getElementById("lettuce");
+// const spinBtn = document.getElementById("spinach");
+// const cucBtn = document.getElementById("cucumber");
+// const pepBtn = document.getElementById("peppers");
+// const thyBtn = document.getElementById("thyme");
+// const dillBtn = document.getElementById("dill");
+// const sageBtn = document.getElementById("sage");
+// const roseBtn = document.getElementById("rosemary");
 
-// Copied and pasted from w3 schools
-// Get the Modal
-// const modal = document.getElementById("modal");
+// // Copied and pasted from w3 schools
+// // Get the Modal
+// // const modal = document.getElementById("modal");
 
-// Get the <span> element that closes the modal
-const span = document.getElementsByClassName("close")[0];
+// // Get the <span> element that closes the modal
+// const span = document.getElementsByClassName("close")[0];
 
 // // When the user clicks the button, open the modal
 // tomBtn.onclick = () => {
@@ -133,9 +168,9 @@ const span = document.getElementsByClassName("close")[0];
 // };
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = () => {
-  modal.style.display = "none";
-};
+// span.onclick = () => {
+//   modal.style.display = "none";
+// };
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = (event) => {
