@@ -1,23 +1,30 @@
-let plantsBtn = $('#plants');
-let forecastBtn = $('#forecast');
-let plotsBtn = $('#plots');
-let homeBtn = $('#home');
+let plantsBtn = $("#plants");
+let forecastBtn = $("#forecast");
+let settingsBtn = $("#settings");
+let homeBtn = $("#home");
+let plotBtn = $("#plot");
+let makePlotBtn = $("makePlot");
 
-function goToPlants(){
-    window.location.replace('/plants')
-};
-function goToForecast(){
-    window.location.replace('/forecast')
-};
-function goToPlots(){
-    window.location.replace('/plots')
-};
-function goToHome(){
-    window.location.replace('/home')
-};
+function goToPlants() {
+  window.location.replace("/plants");
+}
+function goToForecast() {
+  window.location.replace("/forecast");
+}
+function goToSettings() {
+  window.location.replace("/settings");
+}
+function goToHome() {
+  window.location.replace("/home");
+}
+
+function goToPlot() {
+  window.location.replace("/plot");
+}
 
 plantsBtn.click(goToPlants);
 forecastBtn.click(goToForecast);
 plotsBtn.click(goToPlots);
 homeBtn.click(goToHome);
-
+plotBtn.click(goToPlot);
+makePlotBtn.click(goToPlot);

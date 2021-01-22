@@ -38,7 +38,7 @@
     <nav class="navbar navbar-style has-shadow mb-5">
       <div class="navbar-brand">
         <a class="navbar-item has-text-white" href="#">
-          <p>Gardening App</p>
+          <p>Plot Of Gold</p>
         </a>
       </div>
       <div class="navbar-menu" id="nav-links">
@@ -60,7 +60,7 @@
       <div class="container" style="max-width: 100%">
         <div class="columns">
           <div class="column is-3"></div>
-          <!--Plot-->
+          <!--Main Menu-->
           <div class="column is-6">
             <div class="level">
               <p class="level-item has-text-centered plot-title">Welcome!</p>
@@ -69,33 +69,31 @@
               <ul id="menu" class="home-nav menu-list">
                 <li>
                   <a
-                    id="createPlot"
-                    class="has-text-white home-nav-btn is-large"
-                    >Create Plot</a
-                  >
-                </li>
-                <li>
-                  <a id="plants" class="has-text-white is-large home-nav-btn"
+                    id="plot"
+                    class="has-text-white is-large home-nav-btn nes-container is-rounded mt-4"
                     >Check Plots</a
                   >
                 </li>
                 <li>
-                  <a id="forecast" class="has-text-white home-nav-btn is-large">
+                  <a
+                    id="forecast"
+                    class="has-text-white home-nav-btn is-large nes-container is-rounded mt-4"
+                  >
                     Plants
                   </a>
                 </li>
                 <li>
-                  <a id="Settings" class="has-text-white is-large home-nav-btn">
+                  <a
+                    id="forecast"
+                    class="has-text-white is-large home-nav-btn nes-container is-rounded mt-4"
+                  >
                     Forecast
                   </a>
                 </li>
                 <li>
-                  <a id="Settings" class="has-text-white is-large home-nav-btn">
-                    Settings
-                  </a>
-                </li>
-                <li>
-                  <a class="home-nav-btn has-text-white is-large" id="Home"
+                  <a
+                    class="home-nav-btn has-text-white is-large nes-container is-rounded mt-4"
+                    id="Home"
                     >Log Out</a
                   >
                 </li>
@@ -109,7 +107,7 @@
         </div>
       </div>
       <!-- Create Plot Modal -->
-      <div class="modal">
+      <div class="modal" id="plotModal">
         <div class="modal-background"></div>
         <div class="modal-content">
           <div class="modal-title level">
@@ -142,10 +140,7 @@
           <div class="level">
             <div class="level-right"></div>
             <div class="level-left">
-              <a
-                id="plants"
-                class="has-text-white is-large side-nav-btn"
-                href="plotpage.html"
+              <a id="makePlot" class="has-text-white is-large side-nav-btn"
                 >Create Plot</a
               >
             </div>
@@ -155,6 +150,7 @@
       </div>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="../js/createPlot.js"></script>
+      <script src="../js/switchPages.js"></script>
     </section>
   </body>
 </html>

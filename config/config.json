@@ -2,6 +2,7 @@
   "development": {
     "username": "root",
 
+
     "password": "Password123",
 
     "database": "gardening_db",
