@@ -9,7 +9,7 @@ function goToPlants(){
 function goToForecast(){
     window.location.replace('/forecast')
 };
-function goToSettings(){
+function goToPlots(){
     window.location.replace('/plots')
 };
 function goToHome(){
@@ -18,6 +18,6 @@ function goToHome(){
 
 plantsBtn.click(goToPlants);
 forecastBtn.click(goToForecast);
-settingsBtn.click(goToSettings);
+plotsBtn.click(goToPlots);
 homeBtn.click(goToHome);
 
