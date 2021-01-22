@@ -24,7 +24,7 @@ module.exports = function (app) {
   });
   // ?????
   app.get("/home", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/html/plothomepage.html"));
+    res.sendFile(path.join(__dirname, "../public/html/plotHomePage.html"));
   });
   // Route to forecast page
   app.get("/forecast", function (req, res) {
