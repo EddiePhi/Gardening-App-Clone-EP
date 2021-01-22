@@ -62,31 +62,31 @@ function forecastRender() {
         //Create <div> elements to append date text
         date1.html(`
             <div class="mt-6 text">${dateA}</div>
-            <img id="icon" class="mt-6 pixelate" alt="weather-icon" src="http://openweathermap.org/img/wn/${iconA}@2x.png"/>
+            <img id="icon" class="mt-6 pixelate" alt="weather-icon" src="https://openweathermap.org/img/wn/${iconA}@2x.png"/>
             <section class="mt-6">Temp: ${tempAF}°F</section>
             <section class="mt-6">Humidity: ${humidityA}%</section>
         `);
         date2.html(`
             <div class="mt-6 text">${dateB}</div>
-            <img id="icon" class="mt-6 pixelate" alt="weather-icon" src="http://openweathermap.org/img/wn/${iconB}@2x.png"/>
+            <img id="icon" class="mt-6 pixelate" alt="weather-icon" src="https://openweathermap.org/img/wn/${iconB}@2x.png"/>
             <section class="mt-6">Temp: ${tempBF}°F</section>
             <section class="mt-6">Humidity: ${humidityB}%</section>
         `);
         date3.html(`
             <div class="mt-6 text">${dateC}</div>
-            <img id="icon" class="mt-6 pixelate" alt="weather-icon" src="http://openweathermap.org/img/wn/${iconC}@2x.png"/>
+            <img id="icon" class="mt-6 pixelate" alt="weather-icon" src="https://openweathermap.org/img/wn/${iconC}@2x.png"/>
             <section class="mt-6">Temp: ${tempCF}°F</section>
             <section class="mt-6">Humidity: ${humidityC}%</section>
         `);
         date4.html(`
             <div class="mt-6 text">${dateD}</div>
-            <img id="icon" class="mt-6 pixelate" alt="weather-icon" src="http://openweathermap.org/img/wn/${iconD}@2x.png"/>
+            <img id="icon" class="mt-6 pixelate" alt="weather-icon" src="https://openweathermap.org/img/wn/${iconD}@2x.png"/>
             <section class="mt-6">Temp: ${tempDF}°F</section>
             <section class="mt-6">Humidity: ${humidityD}%</section>
         `);
         date5.html(`
             <div class="mt-6 text">${dateE}</div>
-            <img id="icon" class="mt-6 pixelate" alt="weather-icon" src="http://openweathermap.org/img/wn/${iconE}@2x.png"/>
+            <img id="icon" class="mt-6 pixelate" alt="weather-icon" src="https://openweathermap.org/img/wn/${iconE}@2x.png"/>
             <section class="mt-6">Temp: ${tempEF}°F</section>
             <section class="mt-6">Humidity: ${humidityE}%</section>
         `);
@@ -98,7 +98,7 @@ $.get("/api/currentweather/1").then(function (response) {
     console.log(response);
     let currentWeatherIcon = response.weather[0].icon;
     $("#currentWeatherImg").html(
-        `<img id="icon" class="pixelate level-item mr-3" style="height: 40px;" alt="weather-icon" src="http://openweathermap.org/img/wn/${currentWeatherIcon}@2x.png"/>`
+        `<img id="icon" class="pixelate level-item mr-3" style="height: 40px;" alt="weather-icon" src="https://openweathermap.org/img/wn/${currentWeatherIcon}@2x.png"/>`
     );
 
     $("#currentDateTime").text(dayjs().format('ddd. MMM DD, YYYY'));

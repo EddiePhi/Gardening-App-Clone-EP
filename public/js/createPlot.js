@@ -63,17 +63,17 @@ $(document).ready(function () {
           */
     }
 
-    if (notes.length === 0) {
-      noteListItems.push(create$li("No saved Notes"));
-    }
+    // if (notes.length === 0) {
+    //   noteListItems.push(create$li("No saved Notes"));
+    // }
 
-    notes.forEach(function (note) {
-      const $li = create$li(note.name).data(note);
-      plotListItems.push($li);
-      console.log(plotListItems);
-    });
+    // notes.forEach(function (note) {
+    //   const $li = create$li(note.name).data(note);
+    //   plotListItems.push($li);
+    //   console.log(plotListItems);
+    // });
 
-    $noteList.append(noteListItems);
+    // $noteList.append(noteListItems);
   }
 
   //SAVE NEW PLOT
@@ -136,7 +136,7 @@ $(document).ready(function () {
     console.log(response);
     let currentWeatherIcon = response.weather[0].icon;
     $("#currentWeatherImg").html(
-      `<img id="icon" class="pixelate level-item mr-3" style="height: 40px;" alt="weather-icon" src="http://openweathermap.org/img/wn/${currentWeatherIcon}@2x.png"/>`
+      `<img id="icon" class="pixelate level-item mr-3" style="height: 40px;" alt="weather-icon" src="https://openweathermap.org/img/wn/${currentWeatherIcon}@2x.png"/>`
     );
   });
 
