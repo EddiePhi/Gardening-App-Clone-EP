@@ -1,3 +1,45 @@
+const modal = $("#modal");
+const plantContainer = $("#plant-container");
+
+$(document).on("click", ".plant-button", function() { 
+  const plant_name = $(this).attr("data-plantName")
+  const plant_facts = $(this).attr("data-plantFacts")
+  const sun = $(this).attr("data-sun")
+  const fruit_size_inches = $(this).attr("data-fruitSize")
+  const spread = $(this).attr("data-spread")
+  const days_to_maturity = $(this).attr("data-daysToMaturity")
+  const height = $(this).attr("data-height")
+
+  console.log(plant_name); 
+  modal.html(`<div class="modal-content">
+  <span class="close">&times;</span>
+  <h1>${plant_name}</h1>
+  <br>
+  <h1>${plant_facts}</h1>
+  <p>Sun: ${sun}</p>
+  <br>
+  <p>Fruit size: ${fruit_size_inches} inches</p>
+  <br>
+  <p>Spread: ${spread} inches </p>
+  <br>
+  <p>Days to maturity: ${days_to_maturity}</p>
+  <br>
+  <p>Height: ${height} inches</p>
+</div>`);
+  modal.css("display", "block");
+});
+
+$(document).on("click", ".close", function() { 
+  modal.css("display", "none");
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = (event) => {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
 //make a fetch call to the API, save the data
 fetch("/api/plants")
   .then((response) => response.json())
@@ -56,39 +98,39 @@ const roseBtn = document.getElementById("rosemary");
 
 // Copied and pasted from w3 schools
 // Get the Modal
-const modal = document.getElementById("modal");
+// const modal = document.getElementById("modal");
 
 // Get the <span> element that closes the modal
 const span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal
-tomBtn.onclick = () => {
-  modal.style.display = "block";
-};
-letBtn.onclick = () => {
-  modal.style.display = "block";
-};
-spinBtn.onclick = () => {
-  modal.style.display = "block";
-};
-cucBtn.onclick = () => {
-  modal.style.display = "block";
-};
-pepBtn.onclick = () => {
-  modal.style.display = "block";
-};
-thyBtn.onclick = () => {
-  modal.style.display = "block";
-};
-dillBtn.onclick = () => {
-  modal.style.display = "block";
-};
-sageBtn.onclick = () => {
-  modal.style.display = "block";
-};
-roseBtn.onclick = () => {
-  modal.style.display = "block";
-};
+// // When the user clicks the button, open the modal
+// tomBtn.onclick = () => {
+//   modal.style.display = "block";
+// };
+// letBtn.onclick = () => {
+//   modal.style.display = "block";
+// };
+// spinBtn.onclick = () => {
+//   modal.style.display = "block";
+// };
+// cucBtn.onclick = () => {
+//   modal.style.display = "block";
+// };
+// pepBtn.onclick = () => {
+//   modal.style.display = "block";
+// };
+// thyBtn.onclick = () => {
+//   modal.style.display = "block";
+// };
+// dillBtn.onclick = () => {
+//   modal.style.display = "block";
+// };
+// sageBtn.onclick = () => {
+//   modal.style.display = "block";
+// };
+// roseBtn.onclick = () => {
+//   modal.style.display = "block";
+// };
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = () => {
@@ -110,6 +152,6 @@ $.get("/api/currentweather/1").then(function (response) {
   $("#currentWeatherImg").html(
       `<img id="icon" class="pixelate level-item mr-3" style="height: 40px;" alt="weather-icon" src="http://openweathermap.org/img/wn/${currentWeatherIcon}@2x.png"/>`
   );
-
   $("#currentDateTime").text(dayjs().format('ddd. MMM DD, YYYY'));
+  
 });
