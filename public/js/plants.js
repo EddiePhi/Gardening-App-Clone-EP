@@ -66,80 +66,10 @@ function generatePlantCards (plantdata) {
     // console.log(`${plantName} is a plant for your garden. ${plantFacts} ${plantName} takes ${daysToMaturity} days to mature and it needs ${sun}. Its fruit can grow to be ${fruitSize} inches. It can grow to be ${spread} inches wide and ${height} inches tall.`);
     plantContainer.append(plantButton)
   };
-
-
-}
-
-  // <!-- MODAL TO BE DYNAMICALLY CREATED -->
-  // <div class="modal" id="modal">
-  //   <div class="modal-content">
-  //     <span class="close">&times;</span>
-  //     <h1>(Description description description description)</h1>
-  //     <p>Sun: </p>
-  //     <br>
-  //     <p>Life cycle:</p>
-  //     <br>
-  //     <p>Spread:</p>
-  //     <br>
-  //     <p>Days to maturity:</p>
-  //     <br>
-  //     <p>Height:</p>
-  //     <br>
-  //     <p>Sow Method:</p>
-  // </div>
-  // </div>
-
-// Buttons Variables
-const tomBtn = document.getElementById("tomato");
-const letBtn = document.getElementById("lettuce");
-const spinBtn = document.getElementById("spinach");
-const cucBtn = document.getElementById("cucumber");
-const pepBtn = document.getElementById("peppers");
-const thyBtn = document.getElementById("thyme");
-const dillBtn = document.getElementById("dill");
-const sageBtn = document.getElementById("sage");
-const roseBtn = document.getElementById("rosemary");
-
-// Copied and pasted from w3 schools
-// Get the Modal
-
+};
 
 // Get the <span> element that closes the modal
 const span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal
-tomBtn.onclick = () => {
-  modal.style.display = "block";
-};
-letBtn.onclick = () => {
-  modal.style.display = "block";
-};
-spinBtn.onclick = () => {
-  modal.style.display = "block";
-};
-cucBtn.onclick = () => {
-  modal.style.display = "block";
-};
-pepBtn.onclick = () => {
-  modal.style.display = "block";
-};
-thyBtn.onclick = () => {
-  modal.style.display = "block";
-};
-dillBtn.onclick = () => {
-  modal.style.display = "block";
-};
-sageBtn.onclick = () => {
-  modal.style.display = "block";
-};
-roseBtn.onclick = () => {
-  modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = () => {
-  modal.style.display = "none";
-};
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = (event) => {
