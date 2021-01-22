@@ -45,10 +45,10 @@ fetch("/api/plants")
 });
 
 //maybe change plantdata to plants at some point
-function generatePlantCards (plantdata) {
-  for (let i = 0; i < plantdata.length; i++) {
+function generatePlantCards (plants) {
+  for (let i = 0; i < plants.length; i++) {
     // create variables
-    const {plant_name, plant_facts, days_to_maturity, fruit_size_inches, sun, spread, height} = plantdata[i];
+    const {plant_name, plant_facts, days_to_maturity, fruit_size_inches, sun, spread, height} = plants[i];
 
     const plantButton = `<button class="mx-6 my-6 nes-container has-background-white plant-button is-rounded"
     id="${plant_name}"
@@ -172,12 +172,12 @@ window.onclick = (event) => {
 //   modal.style.display = "none";
 // };
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = (event) => {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = (event) => {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// };
 
 
 // Weather icon GET request
