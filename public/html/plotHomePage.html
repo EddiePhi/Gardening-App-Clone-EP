@@ -45,11 +45,11 @@
         <div class="navbar-end mr-3">
           <div class="level">
             <div class="level-right">
-              <p class="level-item has-text-white">
+              <!-- <p class="level-item has-text-white">
                 <img src="https://img.icons8.com/color/48/000000/sun--v2.png" />
-              </p>
-              <p class="level-item has-text-white"></p>
-              <p class="level-item has-text-white">Thu. January 14, 2021</p>
+              </p> -->
+              <div id="currentWeatherImg" style="height: 50px"></div>
+              <p id="currentDateTime" class="level-item has-text-white"></p>
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@
                 </li>
                 <li>
                   <a
-                    id="forecast"
+                    id="plants"
                     class="has-text-white home-nav-btn is-large nes-container is-rounded mt-4"
                   >
                     Plants
@@ -148,6 +148,8 @@
         </div>
         <button class="modal-close is-large" aria-label="close"></button>
       </div>
+      <!-- Day.js -->
+      <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="../js/createPlot.js"></script>
       <script src="../js/switchPages.js"></script>
