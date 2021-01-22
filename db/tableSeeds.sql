@@ -19,7 +19,7 @@ INSERT INTO plots (plot_name, plot_rows, plot_columns, createdAt, updatedAt)
 VALUES ("testPlot", 2, 2, now(), now() );
 
 
-INSERT INTO zipcodes (zip_code, createdAt, updatedAt)
+INSERT INTO zipcodes (zip_codes, createdAt, updatedAt)
 VALUES ("03857", now(), now());
 
 INSERT INTO locations (coordinates, createdAt, updatedAt, plantId, plotID)

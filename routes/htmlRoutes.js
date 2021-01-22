@@ -33,9 +33,6 @@ module.exports = function (app) {
 
   // Route to the Plots page
   app.get("/plot", function (req, res) {
-
-  app.get("/plots", function (req, res) {
-
     res.sendFile(path.join(__dirname, "../public/html/plotpage.html"));
   });
 

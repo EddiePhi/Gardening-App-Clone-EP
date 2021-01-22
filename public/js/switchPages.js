@@ -24,7 +24,7 @@ function goToPlot() {
 
 plantsBtn.click(goToPlants);
 forecastBtn.click(goToForecast);
-plotsBtn.click(goToPlots);
+// plotsBtn.click(goToPlot);
 homeBtn.click(goToHome);
 plotBtn.click(goToPlot);
 makePlotBtn.click(goToPlot);
