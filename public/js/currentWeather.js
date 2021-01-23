@@ -12,6 +12,7 @@ $(document).ready(function () {
   //---------------------------------------------------------------------
 
   // consider https://datatables.net/ for table creation and cell selection OR https://www.ag-grid.com/javascript-grid/ (Very galaxy brain)
+
   require("dotenv").config();
   const api_key = process.env.API_KEY;
   const container = $("#zipcode-container")
@@ -142,4 +143,5 @@ $(document).ready(function () {
       uvIndex.css("backgroundColor", "purple");
     };
   };
+
 });

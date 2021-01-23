@@ -27,4 +27,5 @@ $(document).ready(function () {
 
     $("#currentDateTime").text(dayjs().format("ddd. MMM DD, YYYY"));
   });
+
 });

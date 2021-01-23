@@ -27,7 +27,9 @@ $(document).ready(function () {
     <p>Days to maturity: ${days_to_maturity}</p>
     <br>
     <p>Height: ${height} inches</p>
-    </div>`);
+
+  </div>`);
+
     modal.css("display", "block");
   });
 
@@ -92,3 +94,4 @@ $(document).ready(function () {
       
     });
 });
+

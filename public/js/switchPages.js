@@ -29,4 +29,6 @@ $(document).ready(function () {
   homeBtn.click(goToHome);
   plotBtn.click(goToPlot);
   makePlotBtn.click(goToPlot);
+
 });
+
