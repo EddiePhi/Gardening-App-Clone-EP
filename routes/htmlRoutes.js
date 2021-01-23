@@ -16,7 +16,7 @@ module.exports = function (app) {
 
   // Custom html routes
   app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/html/landingpage.html"));
+    res.sendFile(path.join(__dirname, "../public/html/landingPage.html"));
   });
 
   app.get("/plants", function (req, res) {
@@ -33,11 +33,11 @@ module.exports = function (app) {
 
   // Route to the Plots page
   app.get("/plot", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/html/plotpage.html"));
+    res.sendFile(path.join(__dirname, "../public/html/plotPage.html"));
   });
 
   // If no matching route is found default to landing page/home page
   app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/html/landingpage.html"));
+    res.sendFile(path.join(__dirname, "../public/html/landingPage.html"));
   });
 };
