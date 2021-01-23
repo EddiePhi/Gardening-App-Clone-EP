@@ -31,3 +31,4 @@ $(document).ready(function () {
   makePlotBtn.click(goToPlot);
 
 });
+
