@@ -11,10 +11,18 @@ $(document).ready(function () {
   const $plantModal = $("#plantModal");
   const $noteList = $(".list-container .list-group");
   const $plotNameInput = $("#plotNameInput");
-   const $generated = $(".generated");
+  const $generated = $(".generated");
+
+  //HIDE TABLE ON LAUNCH
+  $plotTable.hide();
+
 
   //CREATE PLOT FUNCTION
   function createPlot() {
+    $rowInput.empty();
+    $columnInput.empty();
+    $plotNameInput.empty();
+    $plotTable.show();
     var num_rows = $rowInput.val();
     var num_cols = $columnInput.val();
 
@@ -36,21 +44,22 @@ $(document).ready(function () {
     document.getElementById("plotTable").innerHTML = theader + tbody + tfooter;
 
     //ADD PLOT TITLE
-    $plotName.append($plotNameInput.val());
+    $plotName.text($plotNameInput.val());
+
   }
 
   // RENDERS LIST WITH PLOT NAMES
-  function renderPlotList(plot) {
-    // console.log(plots);
-    // $noteList.empty();
+  // function renderPlotList(plot) {
+  //   // console.log(plots);
+  //   // $noteList.empty();
 
-    const plotListItems = [];
+  //   const plotListItems = [];
 
-    plotListItems.push($plotNameInput.val());
+  //   plotListItems.push($plotNameInput.val());
 
-    for (i=0; i < plotListItems.length; i++) {
-      $("#plotList2").append(`<button class='generated'>${plotListItems[i]}</button>`);
-    };
+  //   for (i=0; i < plotListItems.length; i++) {
+  //     $("#plotList2").append(`<button class='generated'>${plotListItems[i]}</button>`);
+  //   };
 
     
 
@@ -83,19 +92,19 @@ $(document).ready(function () {
     // });
 
     // $noteList.append(noteListItems);
-  }
+  // }
 
-  $generated.click(retrievePlot());
+  // $generated.click(retrievePlot());
 
   // $generated.innerText
-  function retrievePlot(){
-    let getPlotName = $(this).val();
-    console.log(getPlotName);
-    console.log(getPlotName)
-    // console.log("start");
-     $.get("/api/plot/" + getPlotName, function(response){
-      console.log(response);
-     });
+  // function retrievePlot(){
+  //   let getPlotName = $(this).val();
+  //   console.log(getPlotName);
+  //   console.log(getPlotName)
+  //   // console.log("start");
+  //    $.get("/api/plot/" + getPlotName, function(response){
+  //     console.log(response);
+  //    });
      
     //  .then(function(response){
       
@@ -126,12 +135,9 @@ $(document).ready(function () {
       //     $plotName.append(req.params.plot_name);
       //       }
       //     } 
-  }
-  
-  console.log("end");
+  // };
   
 
-  retrievePlot();
 
   
 
@@ -144,7 +150,8 @@ $(document).ready(function () {
       plot_columns: $columnInput.val(),
     };
     savePlot(newPlot).then(function (plot) {
-      renderPlotList(plot);
+      // renderPlotList(plot);
+      console.log('Success');
     });
   }
 
