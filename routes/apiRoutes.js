@@ -210,6 +210,23 @@ module.exports = function (app) {
       });
   });
 
+
+  app.get("/api/plot/:plot_name", function (req, res) {
+    db.Plots.findOne({
+      where: {
+        plot_name: req.params.plot_name,
+      },
+      include: [db.Locations],
+    })
+      .then(function (response) {
+        res.json(response);
+        console.log(response);
+      })
+      .catch((error) => {
+        throw error;
+      });
+  });
+  
   //ZIPCODES TABLE API REQUESTS//
 
   //GET: Retrieve all zip codes data from ZipCodes table
