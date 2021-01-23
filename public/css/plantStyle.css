@@ -1,5 +1,6 @@
 body {
-  /* height: 100vh; */
+  height: 100vh;
+  width: 100vw;
   background-color: #6bac47;
   font-family: "Press Start 2P", cursive;
 }
