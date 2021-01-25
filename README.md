@@ -22,7 +22,7 @@ Technologies used:
     
     External API: https://openweathermap.org/ 
 
-Screenshot: ![Screenshot of Website](./public/assets/screenshot.png)
+Screenshot: ![Screenshot of Website](public/assets/screenshot.png)
 
 Deployed app link: https://eddiephi-plots-of-gold.herokuapp.com/
 
