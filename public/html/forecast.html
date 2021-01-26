@@ -59,6 +59,14 @@
               <ul id="menu" class="menu-list">
                 <li>
                   <a
+                    id="bee"
+                    class="has-text-white is-large side-nav-btn nes-container is-rounded is-centered mt-4 modal-button" data-target = "#beeModal"
+                    style="padding: 2px">
+                    <img style="height: 50px;" src="../assets/landing-page/bigger-bee.png"/>
+                  </a>
+                </li>
+                <li>
+                  <a
                     id="plants"
                     class="has-text-white is-large side-nav-btn nes-container is-rounded mt-4">
                     Plants
@@ -81,8 +89,37 @@
               </ul>
             </div>
           </div>
+          
+
+          <!-- Bee Modal // https://www.jquery-az.com/bulma-modal/ -->
+          <div class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+              <header class="modal-card-head">
+                <p class="modal-card-title" style="font-size: small;"><img style="height: 50px;" src="../assets/landing-page/bigger-bee.png"/> : Hey there! What would you like to do?</p>
+                <button class="delete" id="closetop" aria-label="close"></button>
+              </header>
+              <section class="modal-card-body">
+              <div class="content">
+                <div id="community" class="nes-container is-rounded is-centered mb-4 side-nav-btn">Post on the community page</div>
+                <div id="locate-market" class="nes-container is-rounded is-centered mb-4 side-nav-btn">Locate a farmer’s market near me</div>
+                <div id="news" class="nes-container is-rounded is-centered mb-4 side-nav-btn">Check out the latest gardening-related news”</div>
+                <div id="social" class="nes-container is-rounded is-centered mb-4 side-nav-btn">Post on Social Media</div>
+                <div id="start-new" class="nes-container is-rounded is-centered mb-4 side-nav-btn">Start growing something new</div>
+                <div id="what-to-grow" class="nes-container is-rounded is-centered mb-4 side-nav-btn">Find out what to grow in my area</div>
+              <div>  
+              </section>
+              <footer class="modal-card-foot">
+                <button class="button is-danger" id="closebtn">Close</button>
+              </footer>
+            </div>
+          
+          </div>
+          
+          <!-- <button class="button is-danger is-large" id="lanuchModal">Show Card Modal</button> -->
+          
+
           <!-- Empty div for spacing -->
-          <!-- <div class="column is-1"></div> -->
           <div class="column"></div>
           <div id="date1" class="column p-1 has-background-white nes-container is-rounded is-centered weather-column shadow"></div>
           <div class="column"></div>
@@ -111,5 +148,6 @@
     </script>
     <script src="../js/forecast.js"></script>
     <script src="../js/switchPages.js"></script>
+    <script src="../js/beeModal.js"></script>
   </body>
 </html>
