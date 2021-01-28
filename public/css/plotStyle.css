@@ -143,3 +143,7 @@ li {
   border-radius: 35px;
   text-align: center;
 }
+
+.has-background-garden{
+  background-color: #a8d05f;
+}
