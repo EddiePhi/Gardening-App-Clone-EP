@@ -1,0 +1,12 @@
+/* Make list look like a grid: https://stackoverflow.com/questions/14885026/how-to-lay-out-list-items-like-a-grid-with-css-and-html */
+
+ul {
+    columns: 3;
+    /* margin: 0 auto;
+    text-align: center; */
+}
+
+li {
+    display: inline-block;
+    vertical-align: top;
+}
