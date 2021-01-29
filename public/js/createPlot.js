@@ -26,25 +26,36 @@ $(document).ready(function () {
     var num_rows = $rowInput.val();
     var num_cols = $columnInput.val();
 
-    var theader = '<table border="1">\n';
+    var theader = `<table id="table" border="1">`;
     var tbody = "";
 
     //CREATE TABLE FOR PLOT BASED ON USER INPUT
     for (var i = 0; i < num_rows; i++) {
-      tbody += "<tr>";
+      tbody += `<tr><ul class="swap-li">`;
       for (var j = 0; j < num_cols; j++) {
-        tbody += 
-        `<td>
-          <img src=https://img.icons8.com/cotton/64/000000/lotus--v1.png>";
-        </td>`;
+        tbody+=
+        `<li class="swap-li"> ${i+1},${j+1}
+          <img src=https://img.icons8.com/cotton/64/000000/lotus--v1.png>
+        </li>`;
       }
-      tbody += "</tr>\n";
+      tbody += `</ul></tr>`;
     }
-    var tfooter = "</table>";
-    document.getElementById("plotTable").innerHTML = theader + tbody + tfooter;
+    var tfooter = `</table>`;
+    document.getElementById("tableContainer").innerHTML = theader + tbody + tfooter;
+    $("#table").hide();
 
     //ADD PLOT TITLE
     $plotName.text($plotNameInput.val());
+
+    // This sample code will make list items draggable and allows you to swap them with other draggable elements:
+    const swappable = new Draggable.Swappable(document.querySelectorAll('ul'), {
+        draggable: 'li'
+      });
+
+    swappable.on('swappable:start', () => console.log('swappable:start'));
+    swappable.on('swappable:swapped', () => console.log('swappable:swapped'));
+    swappable.on('swappable:stop', () => console.log('swappable:stop'));
+    
 
   }
 

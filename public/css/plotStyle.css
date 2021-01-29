@@ -147,3 +147,18 @@ li {
 .has-background-garden{
   background-color: #a8d05f;
 }
+
+
+/* For drag and drop */
+.swap-ul {
+  columns: 3;
+  /* margin: 0 auto;
+  text-align: center; */
+}
+
+.swap-li {
+  display: inline-block;
+  vertical-align: top;
+  border-style: solid;
+  background-color:#6f562a;
+}

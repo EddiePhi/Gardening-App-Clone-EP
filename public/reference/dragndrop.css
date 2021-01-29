@@ -9,4 +9,6 @@ ul {
 li {
     display: inline-block;
     vertical-align: top;
+    border-style: solid;
+    background-color:#6f562a;
 }
