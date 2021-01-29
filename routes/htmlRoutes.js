@@ -28,7 +28,8 @@ module.exports = function (app) {
 
 
 
-  app.get("/plants", function (req, res) {
+  app.get("/plants", isAuthenticated, function (req, res) {
+    
     res.sendFile(path.join(__dirname, "../public/html/plants.html"));
   });
 
@@ -39,12 +40,12 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/html/plotHomePage.html"));
   });
   // Route to forecast page
-  app.get("/forecast", function (req, res) {
+  app.get("/forecast", isAuthenticated, function (req, res) {
     res.sendFile(path.join(__dirname, "../public/html/forecast.html"));
   });
 
   // Route to the Plots page
-  app.get("/plot", function (req, res) {
+  app.get("/plot", isAuthenticated, function (req, res) {
     res.sendFile(path.join(__dirname, "../public/html/plotpage.html"));
   });
 
