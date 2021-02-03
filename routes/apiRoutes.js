@@ -198,11 +198,32 @@ module.exports = function (app) {
       });
   });
 
+  //TODO: Add Plant to Plot Location (From Jonesified)
+  // app.post("/api/plot/update/:plot_name", function (req, res) {
+  //   console.log(req.body);
+  //   db.Plots.update({
+  //     data: req.plot,
+  //     where: {
+  //       name: req.params.plot_name,
+  //     },
+  //   });
+  // });
+
   //TODO: Add Plant to Plot Location
+  app.post("/api/plot/update/:plot_name", function (req, res) {
+    console.log(req.body);
+    db.Plots.update({
+      data: req.plot,
+      where: {
+        name: req.params.plot_name,
+      },
+    });
+  });
 
   //DELETE: Removes selected plot/row from Plots table. Will also remove any locations assiciated
   // to the selected plot.
   app.delete("/api/plot/:id", function (req, res) {
+    console.log("-------------------------------");
     db.Plots.destroy({
       where: {
         id: req.params.id,
@@ -229,9 +250,15 @@ module.exports = function (app) {
   //GET: Retreive all data for one specified plot
   app.get("/api/plot/:id", function (req, res) {
     db.Plots.findOne({
+        /*()
       where: {
         id: req.params.id,
       },
+      */
+      where: {
+        plot_name: req.params.plot_name,
+      },
+      /*
       include: [
         {
           model: db.Locations,
@@ -242,6 +269,7 @@ module.exports = function (app) {
           ],
         },
       ],
+      */
     })
       .then(function (dbPlots) {
         res.json(dbPlots);
@@ -252,21 +280,21 @@ module.exports = function (app) {
   });
 
 
-  app.get("/api/plot/:plot_name", function (req, res) {
-    db.Plots.findOne({
-      where: {
-        plot_name: req.params.plot_name,
-      },
-      include: [db.Locations],
-    })
-      .then(function (response) {
-        res.json(response);
-        console.log(response);
-      })
-      .catch((error) => {
-        throw error;
-      });
-  });
+  // app.get("/api/plot/:plot_name", function (req, res) {
+  //   db.Plots.findOne({
+  //     where: {
+  //       plot_name: req.params.plot_name,
+  //     },
+  //     include: [db.Locations],
+  //   })
+  //     .then(function (response) {
+  //       res.json(response);
+  //       console.log(response);
+  //     })
+  //     .catch((error) => {
+  //       throw error;
+  //     });
+  // });
   
   //ZIPCODES TABLE API REQUESTS//
 

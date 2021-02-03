@@ -1,21 +1,4 @@
 $(document).ready(function () {
-  // Carousel Start
-  // Instructions from https://bulma-carousel.onrender.com/#installation
-
-  // Initialize all elements with carousel class.
-  const carousels = bulmaCarousel.attach(".carousel", { infinite: false });
-
-  // To access to bulmaCarousel instance of an element
-  const element = document.querySelector("#carousel-demo");
-  if (element && element.bulmaCarousel) {
-    // bulmaCarousel instance is available as element.bulmaCarousel
-  }
-
-  bulmaCarousel.attach("#carousel-demo", {
-    slidesToScroll: 1,
-    slidesToShow: 4,
-  });
-  // Carousel End
 
   // Weather icon GET request
   $.get("/api/currentweather/1").then(function (response) {

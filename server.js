@@ -3,6 +3,7 @@
 // Series of npm packages that we will use to give our server useful functionality
 // ==============================================================================
 
+const compression = require('compression')
 const express = require("express");
 require("dotenv").config();
 var session = require("express-session");
@@ -15,6 +16,19 @@ var passport = require("./config/passport");
 
 // Tells node that we are creating an "express" server
 const app = express();
+
+// COMPRESSION
+app.use(compression({ filter: shouldCompress }))
+ 
+function shouldCompress (req, res) {
+  if (req.headers['x-no-compression']) {
+    // don't compress responses with this request header
+    return false
+  }
+ 
+  // fallback to standard filter function
+  return compression.filter(req, res)
+}
 
 // Sets an initial port. We"ll use this later in our listener
 const PORT = process.env.PORT || 8080;

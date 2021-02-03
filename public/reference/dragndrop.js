@@ -35,4 +35,7 @@ $(document).ready(function() {
     swappable.on('swappable:start', () => console.log('swappable:start'));
     swappable.on('swappable:swapped', () => console.log('swappable:swapped'));
     swappable.on('swappable:stop', () => console.log('swappable:stop'));
+
+    // change this to be an update statement
+    swappable.on('swappable:stop', () => console.log('swappable:stop'));
 });

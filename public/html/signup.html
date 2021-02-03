@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google-signin-client_id" content="168465083103-l0b6nbfpghqn475ared5hveb9snpjeef.apps.googleusercontent.com">
+
     <title>Home</title>
     <!--Bulma-->
     <link
@@ -92,6 +94,11 @@
                       Submit
                     </button>
                   </li>
+                  <li>
+                      <div class="nes-field mt-4">
+                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                      </div>
+                  </li>
                 </ul>
               </form>
             </div>
@@ -103,6 +110,9 @@
         </div>
       </div>
       
+
+      <!-- Google Platform Library -->
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
 
       <!-- Day.js -->
       <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>

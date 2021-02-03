@@ -8,14 +8,24 @@ $(document).ready(function () {
   const $plotName = $("#plotName");
   const $plotTable = $("#plotTable");
   const $makePlot = $("#makePlot");
-  const $plantModal = $("#plantModal");
+  const $plantChoiceModal = $("#plantChoiceModal");
   const $noteList = $(".list-container .list-group");
   const $plotNameInput = $("#plotNameInput");
   const $generated = $(".generated");
+  const $plantTypeInput = $("#plantTypeInput");
+  const $sowDateInput = $("#sowDateInput");
+  const $noteInput = $("#noteInput");
+  const $asparagusImg = $("#asparagusImg");
+  const $tomatoImg = $("#tomatoImg");
+  const $lotusImg = $("#lotusImg");
+  const $lettuceImg = $("#lettuceImg");
+  const $updatePlant = $("#updatePlant");
+  const $chosenPlant = $(".chosen");
+  let plant;
+  let cell;
 
   //HIDE TABLE ON LAUNCH
   $plotTable.hide();
-
 
   //CREATE PLOT FUNCTION
   function createPlot() {
@@ -26,62 +36,77 @@ $(document).ready(function () {
     var num_rows = $rowInput.val();
     var num_cols = $columnInput.val();
 
-    var theader = `<table id="table" border="1">`;
+    var theader = '<table border="1">\n';
     var tbody = "";
 
     //CREATE TABLE FOR PLOT BASED ON USER INPUT
     for (var i = 0; i < num_rows; i++) {
-      tbody += `<tr><ul class="swap-li">`;
+      tbody += "<tr>";
       for (var j = 0; j < num_cols; j++) {
-        tbody+=
-        `<li class="swap-li"> ${i+1},${j+1}
-          <img src=https://img.icons8.com/cotton/64/000000/lotus--v1.png>
-        </li>`;
+        tbody += "<td>";
+        //tbody +=
+        //"<img src=https://img.icons8.com/cotton/64/000000/lotus--v1.png>";
+        tbody += "</td>";
       }
-      tbody += `</ul></tr>`;
+      tbody += "</tr>\n";
     }
-    var tfooter = `</table>`;
-    document.getElementById("tableContainer").innerHTML = theader + tbody + tfooter;
-    $("#table").hide();
+    var tfooter = "</table>";
+    document.getElementById("plotTable").innerHTML = theader + tbody + tfooter;
 
     //ADD PLOT TITLE
     $plotName.text($plotNameInput.val());
-
-    // This sample code will make list items draggable and allows you to swap them with other draggable elements:
-    const swappable = new Draggable.Swappable(document.querySelectorAll('ul'), {
-        draggable: 'li'
-      });
-
-    swappable.on('swappable:start', () => console.log('swappable:start'));
-    swappable.on('swappable:swapped', () => console.log('swappable:swapped'));
-    swappable.on('swappable:stop', () => console.log('swappable:stop'));
-    
-
   }
 
-  // RENDERS LIST WITH PLOT NAMES
-  // function renderPlotList(plot) {
-  //   // console.log(plots);
-  //   // $noteList.empty();
+  //ATTEMPT TO CHANGE TABLE DATA COLOR
+  $("#plotTable").on("click", "td", function () {
+    alert(
+      "My position in table is: " +
+        this.cellIndex +
+        "x" +
+        this.parentNode.rowIndex
+    );
+  });
 
-  //   const plotListItems = [];
+  //OPENS PLANT CHOICE MODAL DATA
+  $("#plotTable").on("click", "td", (e) => {
+    console.log(e.currentTarget);
+    cell = $(e.currentTarget);
+    $plantChoiceModal.addClass("is-active");
+  });
 
-  //   plotListItems.push($plotNameInput.val());
+  //HIGHLIGHTS ONE PLANT
+  $(".plant_img").on("click", function () {
+    console.log($(this));
+    console.log(cell.children.length);
+    cell.empty();
+    $(this).clone().appendTo(cell);
+    $(".plant_img").removeClass("chosen");
+    $(this).addClass("chosen");
+  });
 
-  //   for (i=0; i < plotListItems.length; i++) {
-  //     $("#plotList2").append(`<button class='generated'>${plotListItems[i]}</button>`);
-  //   };
+  /*
+  //ADDS PLANT IMAGE TO CELL
+  $("#updatePlant").click(function () {
+    // Grab the needed info from then Chosen Class element
+    let body = {
+      chosenPlantIcon: $(".chosen")[0],
+    };
+    // This is the api Call
 
-    
+    addPlant(body).then(function (plantImg) {
+      console.log(plantImg);
+    });
+  });
+  */
 
-    // Returns jquery object for li with given text and delete button
-    // unless withDeleteButton argument is provided as false
-    // function create$li(text) {
-    //   const $li = $("<li class='list-group-item'>");
-    //   const $span = $("<span>").text(text);
-    //   $li.append($span);
-
-      /*
+  //Returns jquery object for li with given text and delete button
+  //unless withDeleteButton argument is provided as false
+  /*function create$li(text) {
+  const $li = $("<li class='list-group-item'>");
+   const $span = $("<span>").text(text);
+   $li.append($span);
+*/
+  /*
           if (withDeleteButton) {
             const $delBtn = $(
               "<i class='fas fa-trash-alt float-right text-danger delete-note'>"
@@ -90,19 +115,19 @@ $(document).ready(function () {
           }
           return $li;
           */
-    // }
+  // }
 
-    // if (notes.length === 0) {
-    //   noteListItems.push(create$li("No saved Notes"));
-    // }
+  // if (notes.length === 0) {
+  //   noteListItems.push(create$li("No saved Notes"));
+  // }
 
-    // notes.forEach(function (note) {
-    //   const $li = create$li(note.name).data(note);
-    //   plotListItems.push($li);
-    //   console.log(plotListItems);
-    // });
+  // notes.forEach(function (note) {
+  //   const $li = create$li(note.name).data(note);
+  //   plotListItems.push($li);
+  //   console.log(plotListItems);
+  // });
 
-    // $noteList.append(noteListItems);
+  // $noteList.append(noteListItems);
   // }
 
   // $generated.click(retrievePlot());
@@ -116,41 +141,37 @@ $(document).ready(function () {
   //    $.get("/api/plot/" + getPlotName, function(response){
   //     console.log(response);
   //    });
-     
-    //  .then(function(response){
-      
-    //   console.log(response)
-      // for (i=0; i < WHATEVER.length; i++){
-      //   if ( $generated.innerText === req.params.plot_name){
-      //     var num_rows = req.params.plot_rows;
-      //     var num_cols = req.params.plot_columns;
-  
-      //     var theader = '<table border="1">\n';
-      //     var tbody = "";
-  
-      //     //CREATE TABLE FOR PLOT BASED ON USER INPUT
-      //     for (var i = 0; i < num_rows; i++) {
-      //       tbody += "<tr>";
-      //       for (var j = 0; j < num_cols; j++) {
-      //         tbody += "<td>";
-      //         tbody +=
-      //           "<img src=https://img.icons8.com/cotton/64/000000/lotus--v1.png>";
-      //         tbody += "</td>";
-      //       }
-      //       tbody += "</tr>\n";
-      //     }
-      //     var tfooter = "</table>";
-      //     document.getElementById("plotTable").innerHTML = theader + tbody + tfooter;
-  
-      //     //ADD PLOT TITLE
-      //     $plotName.append(req.params.plot_name);
-      //       }
-      //     } 
+
+  //  .then(function(response){
+
+  //   console.log(response)
+  // for (i=0; i < WHATEVER.length; i++){
+  //   if ( $generated.innerText === req.params.plot_name){
+  //     var num_rows = req.params.plot_rows;
+  //     var num_cols = req.params.plot_columns;
+
+  //     var theader = '<table border="1">\n';
+  //     var tbody = "";
+
+  //     //CREATE TABLE FOR PLOT BASED ON USER INPUT
+  //     for (var i = 0; i < num_rows; i++) {
+  //       tbody += "<tr>";
+  //       for (var j = 0; j < num_cols; j++) {
+  //         tbody += "<td>";
+  //         tbody +=
+  //           "<img src=https://img.icons8.com/cotton/64/000000/lotus--v1.png>";
+  //         tbody += "</td>";
+  //       }
+  //       tbody += "</tr>\n";
+  //     }
+  //     var tfooter = "</table>";
+  //     document.getElementById("plotTable").innerHTML = theader + tbody + tfooter;
+
+  //     //ADD PLOT TITLE
+  //     $plotName.append(req.params.plot_name);
+  //       }
+  //     }
   // };
-  
-
-
-  
 
   //SAVE NEW PLOT
   function handleNoteSave() {
@@ -162,15 +183,42 @@ $(document).ready(function () {
     };
     savePlot(newPlot).then(function (plot) {
       // renderPlotList(plot);
-      console.log('Success');
+      console.log("Success");
     });
   }
 
-  //EDIT CELL DATA
-  var td = $("td");
+  //SAVE NEW PLANT DATA
+  function newPlantData() {
+    //TURN DATA INTO OBJECT
+    const newPlant = {
+      plant_type: $plantTypeInput.val(),
+      sow_date: $sowDateInput.val(),
+      notes_input: $noteInput.val(),
+      //xCoordinate: this.cellIndex,
+      //yCoordinate: this.rowIndex,
+      //chosenPlantIcon: $(".chosen"),
+    };
+    addPlant(newPlant).then(function (plant) {
+      // renderPlotList(plot);
+      console.log(plant);
+    });
+  }
 
-  td.click(function () {
-    $plantModal.addClass("is-active");
+  //RENDERS LIST WITH PLOT NAMES
+  function renderPlotList() {
+    // $noteList.empty();
+    //const plotListItems = [];
+    //plotListItems.push($plotNameInput.val());
+    //   for (i=0; i < plotListItems.length; i++) {
+    //    $("#plotList2").append(`<button class='generated'>${plotListItems[i]}</button>`);
+  }
+
+  //SAVES PLANT DATA AS OBJECT
+  $updatePlant.click(function () {
+    $(this).addClass("updated");
+    newPlantData();
+    renderPlotList();
+    //$plantTypeInput.val();
   });
 
   //WHEN CREATE PLOT BUTTON IS CLICKED OPEN CREATE PLOT MODAL
@@ -181,7 +229,7 @@ $(document).ready(function () {
   //CLOSE CREATE PLOT MODEL
   $close.click(function () {
     $modal.removeClass("is-active");
-    $plantModal.removeClass("is-active");
+    $plantChoiceModal.removeClass("is-active");
   });
 
   //OPEN PLOT
@@ -190,6 +238,15 @@ $(document).ready(function () {
     createPlot();
     handleNoteSave();
   });
+
+  //FUNCTION FOR SAVING PLANT TO PLOT LOCATION
+  function addPlant(plant) {
+    return $.ajax({
+      url: "/api/plot/update/:plot_name",
+      data: plant,
+      method: "POST",
+    });
+  }
 
   //FUNCTION FOR SAVING PLOT TO DATABASE
   function savePlot(note) {
@@ -201,15 +258,13 @@ $(document).ready(function () {
   }
 
   //FUNCTION FOR GETTING PLOTS FROM DATABASE
-  // function getPlot() {
-  //     console.log("start");
-  //    $.get("/api/plot/:plot_name").then(function(response){
-      
-  //     console.log(response)
-  //    });
-  //    console.log("end");
-  // };
-  // getPlot();
+  function getPlot(plotName) {
+    $.get("/api/plot/" + plotName).then(function (response) {
+      console.log(response);
+      console.log("GOT RESPONSE ^^^");
+    });
+  }
+  getPlot();
 
   //WEATHER ICON AND CURRENT DATE GET REQUEST
   $.get("/api/currentweather/1").then(function (response) {
@@ -219,6 +274,5 @@ $(document).ready(function () {
       `<img id="icon" class="pixelate level-item mr-3" style="height: 40px;" alt="weather-icon" src="https://openweathermap.org/img/wn/${currentWeatherIcon}@2x.png"/>`
     );
   });
-
   $("#currentDateTime").text(dayjs().format("ddd. MMM DD, YYYY"));
 });
