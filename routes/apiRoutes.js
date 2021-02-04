@@ -10,13 +10,14 @@ require("dotenv").config();
 const fetch = require("isomorphic-fetch");
 const weatherDB = require("../db/weatherDB.json");
 const fs = require("fs");
-// const shortId = require("shortid"); // Assitance from Tutor Mazin Abed
+const shortId = require("shortid"); // Assitance from Tutor Mazin Abed
 // var plotModel = require("../models/plotModel.js")
 // var plantModel = require("../models/plantModel.js")
 // var zipCodeModel = require("../models/zipCodeModel.js")
 var db = require("../models");
 var passport = require("../config/passport");
 const { query } = require("express");
+const plotsDB = require('../db/plotsDB.json');
 
 // ===============================================================================
 // ROUTING
@@ -180,6 +181,85 @@ module.exports = function (app) {
         throw error;
       });
   });
+
+
+
+
+
+
+
+
+
+
+
+
+  //////////////////////////////////////////
+
+  //DIRECT COPY OVER FROM NOTE-TAKER (TESTING)
+  app.get("/api/plots", function(req, res) {
+    fs.readFile('./db/plotsDB.json', function(err, data){
+      if(err) throw err;
+      let plots = JSON.parse(data);
+      return res.json(plots);
+    });
+  });
+
+  app.post("/api/plots", function (req, res) {
+    //Should receive a new note to save on the request body, 
+    fs.readFile('./db/plotsDB.json', function(err, data){
+      if(err) throw err;
+      let plots = JSON.parse(data);
+      const newPlot = {
+        plot_name: req.body.plot_name,
+        plot_rows: req.body.plot_rows,
+        plot_columns: req.body.plot_columns,
+        id: shortId.generate()
+      };
+    
+      console.log(plotsDB)
+      //add it to the `db.json` file, 
+      plots.push(newPlot);
+      //and then return the new note to the client.
+      fs.writeFile('./db/plotsDB.json', JSON.stringify(plots, null, 2), (err) => {
+        if(err) throw err;
+        res.send('200');
+      })
+    });
+  });
+
+  // Express Route Params: https://www.youtube.com/watch?v=MuMs1pLuT7I
+  app.delete("/api/plots/:id", function (req, res) {
+    //In order to delete a note, you'll need to read all notes from the `db.json` file, 
+    fs.readFile('./db/plotsDB.json', function(err, data){
+      const deletePlots = req.params.id;
+      if(err) throw err;
+      let plots = JSON.parse(data);
+      //This means you'll need to find a way to give each note a unique `id` when it's saved.
+      //remove the note with the given `id` property, 
+      for (let i = 0; i < plots.length; i++) {
+        if(plots[i].id === deletePlots){
+          plots.splice(i, 1);
+        };
+      };
+      //and then rewrite the notes to the `db.json` file.
+      fs.writeFile('./db/plotsDB.json', JSON.stringify(plots, null, 2), (err) => {
+        if(err) throw err;
+        res.send('200');
+      });
+    });
+  });
+  ////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
 
   //POST: This adds a new plot ot he Plots table. This plot will be empty.
   app.post("/api/plot", function (req, res) {
