@@ -44,8 +44,8 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/html/forecast.html"));
   });
 
-  // Route to the Plots page
-  app.get("/plot", isAuthenticated, function (req, res) {
+  // Route to the Plots page (re-add "isAuthenticated," as second argument in get request after testing is done)
+  app.get("/plot", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/html/plotpage.html"));
   });
 

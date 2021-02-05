@@ -12,6 +12,7 @@ $(document).ready(function () {
 
   // activePlot is used to keep track of the plot in the page
   let activePlot = {};
+  // let currentPlotList = [];
 
   //Custom
   
@@ -54,34 +55,6 @@ $(document).ready(function () {
     });
   };
 
-  // $.ajax({
-  //   url: "/api/plot",
-  //   method: "GET",
-  // }).then((response) => {
-  //   console.log(response);
-  // });
-  
-  // function getAndRenderPlots(){ 
-  //   fetch("/api/plot")
-  //     .then((response) => {
-  //       console.log(response)
-  //       response.json()
-  //     })
-  //     .then((plotdata) => {
-  //       //console log the results
-  //       console.log(plotdata);
-  //       //console log the results with parameters
-  //       //narrow parameters further
-  //       // getAndRenderPlots(plotdata);
-  //   })
-  // };
-
-  // function getAndRenderPlots(){ 
-  //   $.get("/api/plot").then(function (response) {
-  //     console.log(response);
-  //   })
-  // };
-
   //FUNCTION FOR SAVING PLOT TO DATABASE
   const savePlot = (plot) => {
     return $.ajax({
@@ -105,28 +78,28 @@ $(document).ready(function () {
 
 
   // If there is an activePlot, display it, otherwise render empty inputs
-  const renderActivePlot = () => {
-    // $savePlotBtn.hide();
+  // const renderActivePlot = () => {
+  //   // $savePlotBtn.hide();
 
 
-    if (activePlot.id) {
-      $plotNameInput.attr("readonly", true);
-      $plotRows.attr("readonly", true);
-      $plotColumns.attr("readonly", true)
-      $plotNameInput.val(activePlot.plot_name);
-      $plotRows.attr(activePlot.plot_rows)
-      $plotColumns.attr(activePlot.plot_columns)
-    } else {
-      $plotNameInput.attr("readonly", false);
-      $plotRows.attr("readonly", false);
-      $plotColumns.attr("readonly", false);
-      $plotNameInput.val("");
-      $plotRows.val("");
-      $plotColumns.val("");
-    }
+  //   if (activePlot.id) {
+  //     $plotNameInput.attr("readonly", true);
+  //     $plotRows.attr("readonly", true);
+  //     $plotColumns.attr("readonly", true)
+  //     $plotNameInput.val(activePlot.plot_name);
+  //     $plotRows.attr(activePlot.plot_rows)
+  //     $plotColumns.attr(activePlot.plot_columns)
+  //   } else {
+  //     $plotNameInput.attr("readonly", false);
+  //     $plotRows.attr("readonly", false);
+  //     $plotColumns.attr("readonly", false);
+  //     $plotNameInput.val("");
+  //     $plotRows.val("");
+  //     $plotColumns.val("");
+  //   }
 
 
-  };
+  // };
 
   // IMPORTANT BIT, REVIEW LATER
   // Get the note data from the inputs, save it to the db and update the view
@@ -161,10 +134,10 @@ $(document).ready(function () {
   };
 
   // Sets the activeNote and displays it
-  const handlePlotView = function () {
-    activePlot = $(this).data();
-    renderActivePlot();
-  };
+  // const handlePlotView = function () {
+  //   activePlot = $(this).data();
+  //   // renderActivePlot();
+  // };
 
   // Sets the activeNote to and empty object and allows the user to enter a new note
   const handleNewPlotView = function () {
@@ -183,46 +156,60 @@ $(document).ready(function () {
   // };
 
   //RENDERS LIST WITH PLOT NAMES
-  const renderPlotList = (plots) => {
-    console.log(plots);
-    $plotList.empty();
+  const renderPlotList = () => {
+    return getPlots().then((response) => {
+      console.log("start")
+      console.log(response);
+      console.log("end")
+
+      let currentPlotList = [];
+      currentPlotList = response;
+      currentPlotList.push("test push")
+      console.log(currentPlotList);
+
+      $plotList.empty();
       // container div and ul
 
-    const plotListItems = [];
+    
+    
 
-    // Returns jquery object for li with given text and delete button
-    // unless withDeleteButton argument is provided as false
-    const create$li = (text, withDeleteButton = true) => {
-      const $li = $("<li class='list-group-item'>");
-      const $span = $("<span>").text(text);
-      $li.append($span);
+      const plotListItems = [];
 
-      // Need different icon from Bulma
-      if (withDeleteButton) {
-        const $delBtn = $(
-          "<i class='fas fa-trash-alt float-right text-danger delete-note'>"
-        );
-        $li.append($delBtn);
+      // Returns jquery object for li with given text and delete button
+      // unless withDeleteButton argument is provided as false
+      const create$li = (text, withDeleteButton = true) => {
+        const $li = $("<li class='list-group-item'>");
+        const $btn = $("<button>").text(text);
+        $btn.attr("class", "popBtn")
+        $li.append($btn);
+
+        // Need different icon from Bulma
+        if (withDeleteButton) {
+          const $delBtn = $(
+            // "<i class='fas fa-trash-alt float-right text-danger delete-note'>"
+            "<p>Delete</p>"
+          );
+          $li.append($delBtn);
+        }
+        return $li;
+      };
+
+      if (currentPlotList.length === 0) {
+        plotListItems.push(create$li("No saved Plots", false));
       }
-      return $li;
-    };
 
-    if (plots.length === 0) {
-      plotListItems.push(create$li("No saved Plots", false));
-    }
+      currentPlotList.forEach((plot) => {
+        const $li = create$li(plot.plot_name).data(plot);
+        plotListItems.push($li);
+      });
 
-    plots.forEach((plot) => {
-      const $li = create$li(plot.plot_name).data(plot);
-      plotListItems.push($li);
-    });
-
-    $plotList.append(plotListItems);
+      $plotList.append(plotListItems);
+    })
   }
 
 
   // Gets plots from the db and renders them to the right sidebar
   const getAndRenderPlots = () => {
-    // return getPlots().then(renderPlotList);
     return getPlots().then((response) => {
       console.log(response)
     })
@@ -241,63 +228,77 @@ $(document).ready(function () {
 
 
   // //POPULATE PLOT FUNCITON
-  // function populatePlot(){
-  //   $plotTable.show();
-  //   var num_rows = activePlot.plot_rows;
-  //   var num_cols = activePlot.plot_columns;
+  function populatePlot(){
+    return getPlots().then((response) => {
+      let currentPlotList = [];
+      currentPlotList = response;
+      currentPlotList.push("test populate")
+      console.log(currentPlotList);
+      $plotName.empty();
+      $plotTable.empty();
+      $plotTable.show();
 
-  //   var theader = '<table border="1">\n';
-  //   var tbody = "";
-
-    // //CREATE TABLE FOR PLOT BASED ON USER INPUT (JONESIFIED)
-    // for (var i = 0; i < num_rows; i++) {
-    //   tbody += "<tr>";
-    //   for (var j = 0; j < num_cols; j++) {
-    //     tbody += "<td>";
-    //     //tbody +=
-    //     //"<img src=https://img.icons8.com/cotton/64/000000/lotus--v1.png>";
-    //     tbody += "</td>";
-    //   }
-    //   tbody += "</tr>\n";
-    // }
-    // var tfooter = "</table>";
-    // document.getElementById("plotTable").innerHTML = theader + tbody + tfooter;
-
-
-
-
-    // //CREATE TABLE FOR PLOT BASED ON USER INPUT (DRAG N DROP)
-    // for (var i = 0; i < num_rows; i++) {
-    //   tbody += `<tr><ul>`;
-    //   for (var j = 0; j < num_cols; j++) {
-    //     tbody+=
-    //     `<li> ${i+1},${j+1}
-    //       <img src=https://img.icons8.com/cotton/64/000000/lotus--v1.png>
-    //     </li>`;
-    //   }
-    //   tbody += `</ul></tr>`;
-    // }
-    // var tfooter = `</table>`;
-    // document.getElementById("tableContainer").innerHTML = theader + tbody + tfooter;
-    // // $("#table").hide();
-
-
-    // // This sample code will make list items draggable and allows you to swap them with other draggable elements:
-    // const swappable = new Draggable.Swappable(document.querySelectorAll('ul'), {
-    //     draggable: 'li'
-    //   });
-
-    // swappable.on('swappable:start', () => console.log('swappable:start'));
-    // swappable.on('swappable:swapped', () => console.log('swappable:swapped'));
-    // swappable.on('swappable:stop', () => console.log('swappable:stop'));
-
-    // // change this to be an update statement
-    // swappable.on('swappable:stop', () => console.log('swappable:stop'));
-
-
-    //ADD PLOT TITLE
-  //   $plotName.text(activePlot.plot_name);
-  // };
+      for (i=0; i < currentPlotList.length; i++){
+        if (currentPlotList[i].id === $(this).data("id")){
+          
+          var num_rows = currentPlotList[i].plot_rows;
+          var num_cols = currentPlotList[i].plot_columns;
+      
+          var theader = '<table border="1">\n';
+          var tbody = "";
+      
+          //CREATE TABLE FOR PLOT BASED ON USER INPUT (JONESIFIED)
+          for (var i = 0; i < num_rows; i++) {
+            tbody += "<tr>";
+            for (var j = 0; j < num_cols; j++) {
+              tbody += "<td>";
+              //tbody +=
+              //"<img src=https://img.icons8.com/cotton/64/000000/lotus--v1.png>";
+              tbody += "</td>";
+            }
+            tbody += "</tr>\n";
+          }
+          var tfooter = "</table>";
+          document.getElementById("plotTable").innerHTML = theader + tbody + tfooter;
+      
+      
+      
+      
+          // //CREATE TABLE FOR PLOT BASED ON USER INPUT (DRAG N DROP)
+          // for (var i = 0; i < num_rows; i++) {
+          //   tbody += `<tr><ul>`;
+          //   for (var j = 0; j < num_cols; j++) {
+          //     tbody+=
+          //     `<li> ${i+1},${j+1}
+          //       <img src=https://img.icons8.com/cotton/64/000000/lotus--v1.png>
+          //     </li>`;
+          //   }
+          //   tbody += `</ul></tr>`;
+          // }
+          // var tfooter = `</table>`;
+          // document.getElementById("tableContainer").innerHTML = theader + tbody + tfooter;
+          // // $("#table").hide();
+      
+      
+          // // This sample code will make list items draggable and allows you to swap them with other draggable elements:
+          // const swappable = new Draggable.Swappable(document.querySelectorAll('ul'), {
+          //     draggable: 'li'
+          //   });
+      
+          // swappable.on('swappable:start', () => console.log('swappable:start'));
+          // swappable.on('swappable:swapped', () => console.log('swappable:swapped'));
+          // swappable.on('swappable:stop', () => console.log('swappable:stop'));
+      
+          // // change this to be an update statement
+          // swappable.on('swappable:stop', () => console.log('swappable:stop'));
+      
+      
+          // ADD PLOT TITLE
+          $plotName.text(currentPlotList[i].plot_name);
+        }
+      }
+    })
+  };
 
 
   //CREATE PLOT FUNCTION
@@ -369,16 +370,16 @@ $(document).ready(function () {
   });
 
   //OPENS PLANT CHOICE MODAL DATA
-  // $("#plotTable").on("click", "td", (e) => {
-  //   console.log(e.currentTarget);
-  //   cell = $(e.currentTarget);
-  //   $plantChoiceModal.addClass("is-active");
-  // });
-  $("#tableContainer").on("click", "li", (e) => {
+  $("#plotTable").on("click", "td", (e) => {
     console.log(e.currentTarget);
     cell = $(e.currentTarget);
     $plantChoiceModal.addClass("is-active");
   });
+  // $("#tableContainer").on("click", "li", (e) => {
+  //   console.log(e.currentTarget);
+  //   cell = $(e.currentTarget);
+  //   $plantChoiceModal.addClass("is-active");
+  // });
 
   //HIGHLIGHTS ONE PLANT
   $(".plant_img").on("click", function () {
@@ -400,7 +401,7 @@ $(document).ready(function () {
       
     };
     savePlot(newPlot).then(function (plots) {
-      // renderPlotList(plots);
+      renderPlotList();
       
       console.log("Success");
     });
@@ -430,7 +431,7 @@ $(document).ready(function () {
   $savePlotBtn.click(function (plots) {
     $(this).addClass("updated");
     newPlantData();
-    // renderPlotList(plots);
+    // renderPlotList();
     //$plantTypeInput.val();
   });
 
@@ -450,8 +451,8 @@ $(document).ready(function () {
     $modal.removeClass("is-active");
     createPlot();
     handlePlotSave();
-    // renderPlotList(plots);
-    // getAndRenderPlots();
+    renderPlotList();
+    getAndRenderPlots();
   });
 
   //FUNCTION FOR SAVING PLANT TO PLOT LOCATION
@@ -551,8 +552,9 @@ $(document).ready(function () {
 
   //LAST BIT OF CONVERSION/////////////////////////
   // $savePlotBtn.on("click", handlePlotSave);
-  $plotList.on("click", ".list-group-item", handlePlotView);
-  // $plotList.on("click", ".list-group-item", populatePlot);
+  // $plotList.on("click", ".list-group-item", handlePlotView);
+  $plotList.on("click", ".list-group-item", populatePlot);
+  // $(".popBtn").click(populatePlot);
   // $newPlotBtn.on("click", handleNewPlotView);
   // $plotList.on("click", ".delete-note", handlePlotDelete);
   // $plotNameInput.on("keyup", handleRenderSaveBtn);
@@ -561,4 +563,5 @@ $(document).ready(function () {
 
   // Gets and renders the initial list of plots
   getAndRenderPlots();
+  renderPlotList();
 });
