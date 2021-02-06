@@ -68,28 +68,6 @@ $(document).ready(function () {
 
 
 
-                    /////////////////// NOT USED ///////////////////
-
-  // Delete the clicked note
-  const handlePlotDelete = function (event) {
-    // prevents the click listener for the list from being called when the button inside of it is clicked
-    event.stopPropagation();
-
-    const plot = $(this).parent(".list-group-item").data();
-
-    if (activePlot.id === plot.id) {
-      activePlot = {};
-    }
-
-    deletePlot(plot.id).then(() => {
-      renderActivePlot();
-    });
-  };
-                    /////////////////// NOT USED (END) ///////////////////
-  
-
-  
-
                     /////////////////// WORKING ///////////////////
 
   // CONSOLE.LOG PLOTS DB TO TEST
@@ -147,6 +125,7 @@ $(document).ready(function () {
     })
   }
 
+  // CREATE DRAG-N-DROP TABLE WHEN CALLED
   const plotForLoop = (num_rows,num_cols) => {
     $plotName.empty();
     $plotTable.empty();
@@ -204,16 +183,21 @@ $(document).ready(function () {
     $plotName.text($plotNameInput.val());
   };
 
+  //CREATE PLOT 
+  function createPlot() {
+    var num_rows = $plotRows.val();
+    var num_cols = $plotColumns.val();
 
-  // //POPULATE PLOT FUNCITON
-  function populatePlot(){
+    plotForLoop(num_rows,num_cols);
+    $plotName.text($plotNameInput.val());
+  }
+
+  //REPOPULATE PLOTS AFTER CLICKING ON RIGHT SIDE
+  function repopulatePlot(){
     return getPlots().then((response) => {
       currentPlotList = response;
       currentPlotList.push("test populate")
       console.log(currentPlotList);
-      // $plotName.empty();
-      // $plotTable.empty();
-      // $plotTable.show();
 
       for (i=0; i < currentPlotList.length; i++){
         if (currentPlotList[i].id === $(this).data("id")){
@@ -228,50 +212,19 @@ $(document).ready(function () {
     })
   };
 
-
-  //CREATE PLOT FUNCTION
-  function createPlot() {
-    // $plotRows.empty();
-    // $plotColumns.empty();
-    // $plotNameInput.empty();
-    // $plotTable.show();
-    var num_rows = $plotRows.val();
-    var num_cols = $plotColumns.val();
-
-    plotForLoop(num_rows,num_cols);
-    $plotName.text($plotNameInput.val());
-  }
-
-  //ATTEMPT TO CHANGE TABLE DATA COLOR
-  $("#plotTable").on("click", "td", function () {
-    alert(
-      "My position in table is: " +
-        this.cellIndex +
-        "x" +
-        this.parentNode.rowIndex
-    );
-  });
-
   //OPENS PLANT CHOICE MODAL DATA
-  $("#tableContainer").on("click", "li", (e) => {
-    console.log(e.currentTarget);
-    cell = $(e.currentTarget);
-    $plantChoiceModal.addClass("is-active");
-  });
-  // $("#tableContainer").on("click", "li", (e) => {
+    // // JONESIFIED
+  // $("#plotTable").on("click", "td", (e) => {
   //   console.log(e.currentTarget);
   //   cell = $(e.currentTarget);
   //   $plantChoiceModal.addClass("is-active");
   // });
 
-  //HIGHLIGHTS ONE PLANT
-  $(".plant_img").on("click", function () {
-    console.log($(this));
-    console.log(cell.children.length);
-    cell.empty();
-    $(this).clone().appendTo(cell);
-    $(".plant_img").removeClass("chosen");
-    $(this).addClass("chosen");
+    // DRAG N DROP
+  $("#tableContainer").on("click", "li", (e) => {
+    console.log(e.currentTarget);
+    cell = $(e.currentTarget);
+    $plantChoiceModal.addClass("is-active");
   });
 
   //SAVE NEW PLOT
@@ -288,6 +241,16 @@ $(document).ready(function () {
       console.log("Success");
     });
   }
+
+  //HIGHLIGHTS ONE PLANT
+  $(".plant_img").on("click", function () {
+    console.log($(this));
+    console.log(cell.children.length);
+    cell.empty();
+    $(this).clone().appendTo(cell);
+    $(".plant_img").removeClass("chosen");
+    $(this).addClass("chosen");
+  });
 
   //SAVE NEW PLANT DATA
   function newPlantData() {
@@ -306,8 +269,6 @@ $(document).ready(function () {
       console.log(plant);
     });
   }
-
-
 
   //SAVES PLANT DATA AS OBJECT
   $savePlotBtn.click(function (plots) {
@@ -345,17 +306,6 @@ $(document).ready(function () {
     });
   }
 
-  
-
-  // //FUNCTION FOR GETTING PLOTS FROM DATABASE
-  // function getPlot(plotName) {
-  //   $.get("/api/plot/" + plotName).then(function (response) {
-  //     console.log(response);
-  //     console.log("GOT RESPONSE ^^^");
-  //   });
-  // }
-  // getPlot();
-
   //WEATHER ICON AND CURRENT DATE GET REQUEST
   $.get("/api/currentweather/1").then(function (response) {
     console.log(response);
@@ -365,6 +315,13 @@ $(document).ready(function () {
     );
   });
   $("#currentDateTime").text(dayjs().format("ddd. MMM DD, YYYY"));
+
+  
+                    /////////////////// WORKING ///////////////////
+
+
+
+                    /////////////////// NOT USED ///////////////////
 
   /*
   //ADDS PLANT IMAGE TO CELL
@@ -380,59 +337,38 @@ $(document).ready(function () {
     });
   });
   */
+ 
+  //ATTEMPT TO CHANGE TABLE DATA COLOR
+  $("#plotTable").on("click", "td", function () {
+    alert(
+      "My position in table is: " +
+        this.cellIndex +
+        "x" +
+        this.parentNode.rowIndex
+    );
+  });
 
-  //Returns jquery object for li with given text and delete button
-  //unless withDeleteButton argument is provided as false
-  /*function create$li(text) {
-  const $li = $("<li class='list-group-item'>");
-   const $span = $("<span>").text(text);
-   $li.append($span);
-*/
-  /*
-          if (withDeleteButton) {
-            const $delBtn = $(
-              "<i class='fas fa-trash-alt float-right text-danger delete-note'>"
-            );
-            $li.append($delBtn);
-          }
-          return $li;
-          */
-  // }
+  // Delete the clicked note
+  const handlePlotDelete = function (event) {
+    // prevents the click listener for the list from being called when the button inside of it is clicked
+    event.stopPropagation();
 
-  // if (notes.length === 0) {
-  //   noteListItems.push(create$li("No saved Notes"));
-  // }
+    const plot = $(this).parent(".list-group-item").data();
 
-  // notes.forEach(function (note) {
-  //   const $li = create$li(note.name).data(note);
-  //   plotListItems.push($li);
-  //   console.log(plotListItems);
-  // });
+    if (activePlot.id === plot.id) {
+      activePlot = {};
+    }
 
-  // $noteList.append(noteListItems);
-  // }
+    deletePlot(plot.id).then(() => {
+      renderActivePlot();
+    });
+  };
+                    /////////////////// NOT USED (END) ///////////////////
 
-  // $generated.click(retrievePlot());
 
-  // $generated.innerText
-  // function retrievePlot(){
-  //   let getPlotName = $(this).val();
-  //   console.log(getPlotName);
-  //   console.log(getPlotName)
-  //   // console.log("start");
-  //    $.get("/api/plot/" + getPlotName, function(response){
-  //     console.log(response);
-  //    });
-
-  //  .then(function(response){
-
-  //   console.log(response)
-  //       }
-  //     }
-  // };
 
   //LAST BIT OF CONVERSION/////////////////////////
-  $plotList.on("click", ".list-group-item", populatePlot);
+  $plotList.on("click", ".list-group-item", repopulatePlot);
   // $(".popBtn").click(populatePlot);
   // $plotList.on("click", ".delete-note", handlePlotDelete);
 
