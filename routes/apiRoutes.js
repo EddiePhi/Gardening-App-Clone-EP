@@ -329,36 +329,22 @@ module.exports = function (app) {
   });
 
   //GET: Retreive all data for one specified plot
-  app.get("/api/plot/:id", function (req, res) {
+  app.get("api/plot/:id", function (req, res) {
     db.Plots.findOne({
-        /*()
       where: {
         id: req.params.id,
       },
-      */
-      where: {
-        plot_name: req.params.plot_name,
-      },
-      /*
-      include: [
-        {
-          model: db.Locations,
-          include: [
-            {
-              model: db.Plants,
-            },
-          ],
-        },
-      ],
-      */
+      include: [db.Locations],
     })
-      .then(function (dbPlots) {
-        res.json(dbPlots);
+      .then(function (response) {
+        res.json(response);
+        console.log(response);
       })
       .catch((error) => {
         throw error;
       });
   });
+
 
 
   // app.get("/api/plot/:plot_name", function (req, res) {

@@ -157,6 +157,8 @@ li {
 }
 
 .swap-li {
+  width: 150px;
+  height: 100px;
   display: inline-block;
   vertical-align: top;
   border-style: solid;

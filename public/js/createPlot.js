@@ -7,15 +7,9 @@ $(document).ready(function () {
   const $plotRows = $("#rowInput");
   const $plotColumns = $("#columnInput");
   const $savePlotBtn = $("#updatePlant")
-  // const $newPlotBtn = $(".new-note");
   const $plotList = $(".list-container .list-group");
 
-  // activePlot is used to keep track of the plot in the page
-  let activePlot = {};
-  // let currentPlotList = [];
-
   //Custom
-  
   // const $plotNameInput = $("#plotNameInput");
   // const $columnInput = $("#columnInput");
   // const $rowInput = $("#rowInput");
@@ -24,28 +18,27 @@ $(document).ready(function () {
   const $modal = $("#plotModal");
   const $createPlot = $("#createPlot");
   const $close = $(".close");
-  
-  
   const $plotTable = $("#plotTable");
   const $makePlot = $("#makePlot");
   const $plantChoiceModal = $("#plantChoiceModal");
-  
   const $generated = $(".generated");
   const $plantTypeInput = $("#plantTypeInput");
   const $sowDateInput = $("#sowDateInput");
   const $noteInput = $("#noteInput");
-
   const $asparagusImg = $("#asparagusImg");
   const $tomatoImg = $("#tomatoImg");
   const $lotusImg = $("#lotusImg");
   const $lettuceImg = $("#lettuceImg");
-  
   const $chosenPlant = $(".chosen");
   let plant;
   let cell;
 
   //HIDE TABLE ON LAUNCH
   $plotTable.hide();
+
+
+
+                    /////////////////// API REQUESTS ///////////////////
 
   // WORKS FOR JSON FILE - A function for getting all notes from the db
   const getPlots = () => {
@@ -71,50 +64,11 @@ $(document).ready(function () {
       method: "DELETE",
     });
   };
-
-  //NOTE TAKER CONVERSION//////////////////////////////////////////
-
+                    /////////////////// API REQUESTS (END) ///////////////////
 
 
 
-  // If there is an activePlot, display it, otherwise render empty inputs
-  // const renderActivePlot = () => {
-  //   // $savePlotBtn.hide();
-
-
-  //   if (activePlot.id) {
-  //     $plotNameInput.attr("readonly", true);
-  //     $plotRows.attr("readonly", true);
-  //     $plotColumns.attr("readonly", true)
-  //     $plotNameInput.val(activePlot.plot_name);
-  //     $plotRows.attr(activePlot.plot_rows)
-  //     $plotColumns.attr(activePlot.plot_columns)
-  //   } else {
-  //     $plotNameInput.attr("readonly", false);
-  //     $plotRows.attr("readonly", false);
-  //     $plotColumns.attr("readonly", false);
-  //     $plotNameInput.val("");
-  //     $plotRows.val("");
-  //     $plotColumns.val("");
-  //   }
-
-
-  // };
-
-  // IMPORTANT BIT, REVIEW LATER
-  // Get the note data from the inputs, save it to the db and update the view
-  // const handlePlotSave = function () {
-  //   const newPlot = {
-  //     plot_name: $plotNameInput.val(),
-  //     plot_rows: $plotRows.val(),
-  //     plot_columns: $plotColumns.val(),
-  //   };
-
-  //   savePlot(newPlot).then(() => {
-  //     getAndRenderPlots();
-  //     renderActivePlot();
-  //   });
-  // };
+                    /////////////////// NOT USED ///////////////////
 
   // Delete the clicked note
   const handlePlotDelete = function (event) {
@@ -128,50 +82,36 @@ $(document).ready(function () {
     }
 
     deletePlot(plot.id).then(() => {
-      getAndRenderPlots();
       renderActivePlot();
     });
   };
+                    /////////////////// NOT USED (END) ///////////////////
+  
 
-  // Sets the activeNote and displays it
-  // const handlePlotView = function () {
-  //   activePlot = $(this).data();
-  //   // renderActivePlot();
-  // };
+  
 
-  // Sets the activeNote to and empty object and allows the user to enter a new note
-  const handleNewPlotView = function () {
-    activePlot = {};
-    renderActivePlot();
+                    /////////////////// WORKING ///////////////////
+
+  // CONSOLE.LOG PLOTS DB TO TEST
+  const consoleLogDB = () => {
+    return getPlots().then((response) => {
+      console.log(response)
+    })
   };
 
-  // If a note's title or text are empty, hide the save button
-  // Or else show it
-  // const handleRenderSaveBtn = function () {
-  //   if (!$plotNameInput.val().trim() || !$plotNameInput.val().trim()) {
-  //     $savePlotBtn.hide();
-  //   } else {
-  //     $savePlotBtn.show();
-  //   }
-  // };
-
-  //RENDERS LIST WITH PLOT NAMES
+  //RENDERS LIST WITH PLOT NAMES ON RIGHT SIDE
   const renderPlotList = () => {
     return getPlots().then((response) => {
       console.log("start")
       console.log(response);
       console.log("end")
 
-      let currentPlotList = [];
       currentPlotList = response;
       currentPlotList.push("test push")
       console.log(currentPlotList);
 
       $plotList.empty();
       // container div and ul
-
-    
-    
 
       const plotListItems = [];
 
@@ -207,36 +147,73 @@ $(document).ready(function () {
     })
   }
 
+  const plotForLoop = (num_rows,num_cols) => {
+    $plotName.empty();
+    $plotTable.empty();
+    $plotRows.empty();
+    $plotColumns.empty();
+    $plotNameInput.empty();
+    $plotTable.show();
+    
+    var theader = `<table id="table" border="1">\n`;
+    var tbody = "";
 
-  // Gets plots from the db and renders them to the right sidebar
-  const getAndRenderPlots = () => {
-    return getPlots().then((response) => {
-      console.log(response)
-    })
+    // //CREATE TABLE FOR PLOT BASED ON USER INPUT (JONESIFIED)
+    // for (var i = 0; i < num_rows; i++) {
+    //   tbody += "<tr>";
+    //   for (var j = 0; j < num_cols; j++) {
+    //     tbody += "<td>";
+    //     //tbody +=
+    //     //"<img src=https://img.icons8.com/cotton/64/000000/lotus--v1.png>";
+    //     tbody += "</td>";
+    //   }
+    //   tbody += "</tr>\n";
+    // }
+    // var tfooter = "</table>";
+    // document.getElementById("plotTable").innerHTML = theader + tbody + tfooter;
+    
+    //CREATE TABLE FOR PLOT BASED ON USER INPUT (Drag and drop)
+    for (var i = 0; i < num_rows; i++) {
+      tbody += `<tr><ul class='swap-li'>`;
+      for (var j = 0; j < num_cols; j++) {
+        tbody += 
+        `<li class='swap-li'>
+          ${i+1},${j+1}
+        </li>`;
+      }
+      tbody += `</ul></tr>`;
+    }
+    var tfooter = "</table>";
+    document.getElementById("tableContainer").innerHTML = theader + tbody + tfooter;
+    $("#table").hide();
+
+    // This sample code will make list items draggable and allows you to swap them with other draggable elements:
+    const swappable = new Draggable.Swappable(document.querySelectorAll('ul'), {
+      draggable: 'li'
+    });
+
+    swappable.on('swappable:start', () => console.log('swappable:start'));
+    swappable.on('swappable:swapped', () => console.log('swappable:swapped'));
+    swappable.on('swappable:stop', () => console.log('swappable:stop'));
+
+    // change this to be an update statement
+    // swappable.on('swappable:stop', () => {});
+
+
+    //ADD PLOT TITLE
+    $plotName.text($plotNameInput.val());
   };
-
-  
-
-
-
-
-
-
-
-
-  //CONVERSION END//////////////////////////////////////////
 
 
   // //POPULATE PLOT FUNCITON
   function populatePlot(){
     return getPlots().then((response) => {
-      let currentPlotList = [];
       currentPlotList = response;
       currentPlotList.push("test populate")
       console.log(currentPlotList);
-      $plotName.empty();
-      $plotTable.empty();
-      $plotTable.show();
+      // $plotName.empty();
+      // $plotTable.empty();
+      // $plotTable.show();
 
       for (i=0; i < currentPlotList.length; i++){
         if (currentPlotList[i].id === $(this).data("id")){
@@ -244,56 +221,7 @@ $(document).ready(function () {
           var num_rows = currentPlotList[i].plot_rows;
           var num_cols = currentPlotList[i].plot_columns;
       
-          var theader = '<table border="1">\n';
-          var tbody = "";
-      
-          //CREATE TABLE FOR PLOT BASED ON USER INPUT (JONESIFIED)
-          for (var i = 0; i < num_rows; i++) {
-            tbody += "<tr>";
-            for (var j = 0; j < num_cols; j++) {
-              tbody += "<td>";
-              //tbody +=
-              //"<img src=https://img.icons8.com/cotton/64/000000/lotus--v1.png>";
-              tbody += "</td>";
-            }
-            tbody += "</tr>\n";
-          }
-          var tfooter = "</table>";
-          document.getElementById("plotTable").innerHTML = theader + tbody + tfooter;
-      
-      
-      
-      
-          // //CREATE TABLE FOR PLOT BASED ON USER INPUT (DRAG N DROP)
-          // for (var i = 0; i < num_rows; i++) {
-          //   tbody += `<tr><ul>`;
-          //   for (var j = 0; j < num_cols; j++) {
-          //     tbody+=
-          //     `<li> ${i+1},${j+1}
-          //       <img src=https://img.icons8.com/cotton/64/000000/lotus--v1.png>
-          //     </li>`;
-          //   }
-          //   tbody += `</ul></tr>`;
-          // }
-          // var tfooter = `</table>`;
-          // document.getElementById("tableContainer").innerHTML = theader + tbody + tfooter;
-          // // $("#table").hide();
-      
-      
-          // // This sample code will make list items draggable and allows you to swap them with other draggable elements:
-          // const swappable = new Draggable.Swappable(document.querySelectorAll('ul'), {
-          //     draggable: 'li'
-          //   });
-      
-          // swappable.on('swappable:start', () => console.log('swappable:start'));
-          // swappable.on('swappable:swapped', () => console.log('swappable:swapped'));
-          // swappable.on('swappable:stop', () => console.log('swappable:stop'));
-      
-          // // change this to be an update statement
-          // swappable.on('swappable:stop', () => console.log('swappable:stop'));
-      
-      
-          // ADD PLOT TITLE
+          plotForLoop(num_rows,num_cols);
           $plotName.text(currentPlotList[i].plot_name);
         }
       }
@@ -303,59 +231,14 @@ $(document).ready(function () {
 
   //CREATE PLOT FUNCTION
   function createPlot() {
-    $plotRows.empty();
-    $plotColumns.empty();
-    $plotNameInput.empty();
-    $plotTable.show();
+    // $plotRows.empty();
+    // $plotColumns.empty();
+    // $plotNameInput.empty();
+    // $plotTable.show();
     var num_rows = $plotRows.val();
     var num_cols = $plotColumns.val();
 
-    var theader = `<table id="table" border="1">\n`;
-    var tbody = "";
-
-    //CREATE TABLE FOR PLOT BASED ON USER INPUT (JONESIFIED)
-    for (var i = 0; i < num_rows; i++) {
-      tbody += "<tr>";
-      for (var j = 0; j < num_cols; j++) {
-        tbody += "<td>";
-        //tbody +=
-        //"<img src=https://img.icons8.com/cotton/64/000000/lotus--v1.png>";
-        tbody += "</td>";
-      }
-      tbody += "</tr>\n";
-    }
-    var tfooter = "</table>";
-    document.getElementById("plotTable").innerHTML = theader + tbody + tfooter;
-   
-    // //CREATE TABLE FOR PLOT BASED ON USER INPUT (Drag and drop)
-    // for (var i = 0; i < num_rows; i++) {
-    //   tbody += `<tr><ul class='swap-li'>`;
-    //   for (var j = 0; j < num_cols; j++) {
-    //     tbody += 
-    //     `<li class='swap-li'>
-    //       <td>${i+1},${j+1}</td>
-    //     </li>`;
-    //   }
-    //   tbody += `</ul></tr>`;
-    // }
-    // var tfooter = "</table>";
-    // document.getElementById("tableContainer").innerHTML = theader + tbody + tfooter;
-    // $("#table").hide();
-
-    // This sample code will make list items draggable and allows you to swap them with other draggable elements:
-    // const swappable = new Draggable.Swappable(document.querySelectorAll('ul'), {
-    //   draggable: 'li'
-    // });
-
-    // swappable.on('swappable:start', () => console.log('swappable:start'));
-    // swappable.on('swappable:swapped', () => console.log('swappable:swapped'));
-    // swappable.on('swappable:stop', () => console.log('swappable:stop'));
-
-    // // change this to be an update statement
-    // swappable.on('swappable:stop', () => console.log('swappable:stop'));
-
-
-    //ADD PLOT TITLE
+    plotForLoop(num_rows,num_cols);
     $plotName.text($plotNameInput.val());
   }
 
@@ -370,7 +253,7 @@ $(document).ready(function () {
   });
 
   //OPENS PLANT CHOICE MODAL DATA
-  $("#plotTable").on("click", "td", (e) => {
+  $("#tableContainer").on("click", "li", (e) => {
     console.log(e.currentTarget);
     cell = $(e.currentTarget);
     $plantChoiceModal.addClass("is-active");
@@ -398,7 +281,6 @@ $(document).ready(function () {
       plot_name: $plotNameInput.val(),
       plot_rows: $plotRows.val(),
       plot_columns: $plotColumns.val(),
-      
     };
     savePlot(newPlot).then(function (plots) {
       renderPlotList();
@@ -452,7 +334,6 @@ $(document).ready(function () {
     createPlot();
     handlePlotSave();
     renderPlotList();
-    getAndRenderPlots();
   });
 
   //FUNCTION FOR SAVING PLANT TO PLOT LOCATION
@@ -551,17 +432,11 @@ $(document).ready(function () {
   // };
 
   //LAST BIT OF CONVERSION/////////////////////////
-  // $savePlotBtn.on("click", handlePlotSave);
-  // $plotList.on("click", ".list-group-item", handlePlotView);
   $plotList.on("click", ".list-group-item", populatePlot);
   // $(".popBtn").click(populatePlot);
-  // $newPlotBtn.on("click", handleNewPlotView);
   // $plotList.on("click", ".delete-note", handlePlotDelete);
-  // $plotNameInput.on("keyup", handleRenderSaveBtn);
-  // $plotRows.on("keyup", handleRenderSaveBtn);
-  // $plotColumns.on("keyup", handleRenderSaveBtn);
 
   // Gets and renders the initial list of plots
-  getAndRenderPlots();
+  consoleLogDB();
   renderPlotList();
 });
