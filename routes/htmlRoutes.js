@@ -26,10 +26,7 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/html/landingpage.html"));
   });
 
-
-
   app.get("/plants", isAuthenticated, function (req, res) {
-    
     res.sendFile(path.join(__dirname, "../public/html/plants.html"));
   });
 

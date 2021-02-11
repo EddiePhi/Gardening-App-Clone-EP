@@ -6,8 +6,8 @@
 const compression = require('compression')
 const express = require("express");
 require("dotenv").config();
-var session = require("express-session");
-var passport = require("./config/passport");
+const session = require("express-session");
+const passport = require("./config/passport");
 
 // ==============================================================================
 // EXPRESS CONFIGURATION
@@ -31,7 +31,7 @@ function shouldCompress (req, res) {
 }
 
 // Sets an initial port. We"ll use this later in our listener
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8081;
 var db = require("./models");
 
 // Sets up the Express app to handle data parsing

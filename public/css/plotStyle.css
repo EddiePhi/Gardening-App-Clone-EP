@@ -149,19 +149,25 @@ li {
 }
 
 
-/* For drag and drop */
-.swap-ul {
-  columns: 3;
-  /* margin: 0 auto;
-  text-align: center; */
+.droppable {
+  width: 100px;
+  height: 100px;
+  background: #6f562a;
+  font-size: 15pt;
+  font-family: Helvetical, Arial, sans-serif;
+  color: white;
+  line-height: 100px;
+  vertical-align: middle;
+  text-align: center;
 }
 
-.swap-li {
-  width: 150px;
-  height: 100px;
-  display: inline-block;
-  vertical-align: top;
-  border-style: solid;
-  background-color:#6f562a;
+.draggable {
+  width: auto;
+  height: auto;
+  /* background: green; */
+}
+
+.placeholder {
+  background: #a8d05f;
 }
 

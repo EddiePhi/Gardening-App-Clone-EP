@@ -32,9 +32,10 @@ $(document).ready(function () {
   const $chosenPlant = $(".chosen");
   let plant;
   let cell;
+  let div;
 
   //HIDE TABLE ON LAUNCH
-  $plotTable.hide();
+  // $plotTable.hide();
 
 
 
@@ -125,6 +126,65 @@ $(document).ready(function () {
     })
   }
 
+
+  
+
+  const dragNDrop = () => {
+    let dragLastPlace;
+    let movedLastPlace;
+
+
+    $('.draggable').draggable({
+    placeholder: 'placeholder',
+    zIndex: 1000,
+    containment: 'table',
+    helper: function(evt) {
+        let that = $(this).clone().get(0);
+        $(this).hide();
+        return that;
+    },
+    start: function(evt, ui) {
+        dragLastPlace = $(this).parent();
+    },
+    cursorAt: {
+        top: 20,
+        left: 20
+    }
+    });
+
+    $('.droppable').droppable({
+    hoverClass: 'placeholder',
+    drop: function(evt, ui) {
+        let draggable = ui.draggable;
+        let droppable = this;
+
+        if ($(droppable).children('.draggable:visible:not(.ui-draggable-dragging)').length > 0) {
+        $(droppable).children('.draggable:visible:not(.ui-draggable-dragging)').detach().prependTo(dragLastPlace);
+        }
+
+        $(draggable).detach().css({
+        top: 0,
+        left: 0
+        }).prependTo($(droppable)).show();
+
+        movedLastPlace = undefined;
+    },
+    over: function(evt, ui) {
+        let draggable = ui.draggable;
+        let droppable = this;
+
+        if (movedLastPlace) {
+        $(dragLastPlace).children().not(draggable).detach().prependTo(movedLastPlace);
+        }
+
+        if ($(droppable).children('.draggable:visible:not(.ui-draggable-dragging)').length > 0) {
+        $(droppable).children('.draggable:visible').detach().prependTo(dragLastPlace);
+        movedLastPlace = $(droppable);
+        }
+    }})
+  };
+
+
   // CREATE DRAG-N-DROP TABLE WHEN CALLED
   const plotForLoop = (num_rows,num_cols) => {
     $plotName.empty();
@@ -134,50 +194,26 @@ $(document).ready(function () {
     $plotNameInput.empty();
     $plotTable.show();
     
-    var theader = `<table id="table" border="1">\n`;
-    var tbody = "";
+    let theader = `<table id="table" border="1">\n`;
+    let tbody = "";
 
-    // //CREATE TABLE FOR PLOT BASED ON USER INPUT (JONESIFIED)
-    // for (var i = 0; i < num_rows; i++) {
-    //   tbody += "<tr>";
-    //   for (var j = 0; j < num_cols; j++) {
-    //     tbody += "<td>";
-    //     //tbody +=
-    //     //"<img src=https://img.icons8.com/cotton/64/000000/lotus--v1.png>";
-    //     tbody += "</td>";
-    //   }
-    //   tbody += "</tr>\n";
-    // }
-    // var tfooter = "</table>";
-    // document.getElementById("plotTable").innerHTML = theader + tbody + tfooter;
-    
-    //CREATE TABLE FOR PLOT BASED ON USER INPUT (Drag and drop)
-    for (var i = 0; i < num_rows; i++) {
-      tbody += `<tr><ul class='swap-li'>`;
-      for (var j = 0; j < num_cols; j++) {
+    // //CREATE TABLE FOR PLOT BASED ON USER INPUT (Drag and drop - jQuery UI)
+    for (let i = 0; i < num_rows; i++) {
+
+      tbody += `<tr>`;
+      for (let j = 0; j < num_cols; j++) {
         tbody += 
-        `<li class='swap-li'>
-          ${i+1},${j+1}
-        </li>`;
+        `<td class="droppable">
+            <div class="draggable"><p>${i+1},${j+1}</p></div>
+        </td>`;
       }
-      tbody += `</ul></tr>`;
+      tbody += `</tr>`;
     }
-    var tfooter = "</table>";
+    let tfooter = "</table>";
     document.getElementById("tableContainer").innerHTML = theader + tbody + tfooter;
-    $("#table").hide();
-
-    // This sample code will make list items draggable and allows you to swap them with other draggable elements:
-    const swappable = new Draggable.Swappable(document.querySelectorAll('ul'), {
-      draggable: 'li'
-    });
-
-    swappable.on('swappable:start', () => console.log('swappable:start'));
-    swappable.on('swappable:swapped', () => console.log('swappable:swapped'));
-    swappable.on('swappable:stop', () => console.log('swappable:stop'));
-
-    // change this to be an update statement
-    // swappable.on('swappable:stop', () => {});
-
+    // $("#table").hide();
+    
+    dragNDrop();
 
     //ADD PLOT TITLE
     $plotName.text($plotNameInput.val());
@@ -221,10 +257,12 @@ $(document).ready(function () {
   // });
 
     // DRAG N DROP
-  $("#tableContainer").on("click", "li", (e) => {
+  $("#tableContainer").on("click", "td", (e) => {
     console.log(e.currentTarget);
     cell = $(e.currentTarget);
     $plantChoiceModal.addClass("is-active");
+    // console.log(this.parentNode.rowIndex);
+    // console.log(this.cellIndex);
   });
 
   //SAVE NEW PLOT
@@ -247,9 +285,11 @@ $(document).ready(function () {
     console.log($(this));
     console.log(cell.children.length);
     cell.empty();
-    $(this).clone().appendTo(cell);
+    div = $("<div>").addClass(["draggable", "ui-draggable", "ui-draggable-handle"]).appendTo(cell)
+    $(this).clone().appendTo(div);
     $(".plant_img").removeClass("chosen");
     $(this).addClass("chosen");
+    dragNDrop();
   });
 
   //SAVE NEW PLANT DATA
@@ -259,8 +299,8 @@ $(document).ready(function () {
       plant_type: $plantTypeInput.val(),
       sow_date: $sowDateInput.val(),
       notes_input: $noteInput.val(),
-      //xCoordinate: this.cellIndex,
-      //yCoordinate: this.rowIndex,
+      //x_coordinate: this.cellIndex,
+      //y_coordinate: this.rowIndex,
       //chosenPlantIcon: $(".chosen"),
     };
     addPlant(newPlant).then(function (plant) {
@@ -317,7 +357,7 @@ $(document).ready(function () {
   $("#currentDateTime").text(dayjs().format("ddd. MMM DD, YYYY"));
 
   
-                    /////////////////// WORKING ///////////////////
+                    /////////////////// WORKING (END) ///////////////////
 
 
 
@@ -347,6 +387,15 @@ $(document).ready(function () {
         this.parentNode.rowIndex
     );
   });
+
+  // $("#tableContainer").on("click", "li", function () {
+  //   alert(
+  //     "My position in table is: " +
+  //       this.cellIndex +
+  //       "x" +
+  //       this.parentNode.rowIndex
+  //   );
+  // });
 
   // Delete the clicked note
   const handlePlotDelete = function (event) {
